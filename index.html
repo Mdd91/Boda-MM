@@ -1820,26 +1820,26 @@ requestAnimationFrame(frame);
 .gate{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:24px 16px;
   background:radial-gradient(120% 90% at 30% 10%, #16264a 0%, #0a1324 62%);color:#f4ecdc;font-family:"Albert Sans",system-ui,sans-serif;}
 .gate form{width:min(360px,100%);display:grid;gap:14px;text-align:center;}
-.gate .mono{font-family:"Italiana",Georgia,serif;font-size:64px;line-height:1;color:#d8b45f;}
-.gate .mono span{font-size:.6em;vertical-align:.2em;color:#e9d39a;margin:0 .08em;}
-.gate .t{font-family:"Italiana",Georgia,serif;font-size:28px;}
-.gate .d{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#e9d39a;}
+.gate .gmono{font-family:"Italiana",Georgia,serif;font-size:64px;line-height:1;color:#d8b45f;}
+.gate .gmono span{font-size:.6em;vertical-align:.2em;color:#e9d39a;margin:0 .08em;}
+.gate .gt{font-family:"Italiana",Georgia,serif;font-size:28px;}
+.gate .gd{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#e9d39a;}
 .gate label{font-size:13px;color:#a9b8d4;margin-top:10px;}
 .gate input{font:600 22px "Albert Sans",system-ui,sans-serif;letter-spacing:.3em;text-align:center;padding:12px;border-radius:14px;border:1px solid rgba(216,180,95,.5);background:rgba(16,28,54,.6);color:#f4ecdc;outline:none;width:100%;}
 .gate input:focus{border-color:#d8b45f;}
 .gate button{font:600 15px "Albert Sans",system-ui,sans-serif;letter-spacing:.06em;padding:13px;border-radius:999px;border:0;background:#d8b45f;color:#0a1324;cursor:pointer;}
 .gate button:focus-visible,.gate input:focus-visible{outline:2px solid #e9d39a;outline-offset:2px;}
-.gate .err{min-height:18px;font-size:13px;color:#f2b8a8;}
+.gate .gerr{min-height:18px;font-size:13px;color:#f2b8a8;}
 </style>
 <div class="gate" id="gate">
   <form id="gateForm" autocomplete="off">
-    <div class="mono">M<span>&amp;</span>M</div>
-    <div class="t">Miguel &amp; Marcela</div>
-    <div class="d">Venecia · 7 de enero de 2027</div>
+    <div class="gmono">M<span>&amp;</span>M</div>
+    <div class="gt">Miguel &amp; Marcela</div>
+    <div class="gd">Venecia · 7 de enero de 2027</div>
     <label for="gateIn">Escribe la clave de tu invitación</label>
     <input id="gateIn" type="password" inputmode="numeric" autocomplete="off" aria-describedby="gateErr">
     <button type="submit">Entrar</button>
-    <div class="err" id="gateErr" role="alert"></div>
+    <div class="gerr" id="gateErr" role="alert"></div>
   </form>
 </div>
 <script>
