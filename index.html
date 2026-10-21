@@ -859,7 +859,7 @@ const ROUTES={
   R6:mkRoute([[8.3,3.3],[8.3,10.3],[2.5,10.3]],false),                           // calle detrás del palazzo
 };
 const CHATS=[[-8.3,-0.5],[5.6,-0.4],[9.85,-6.2],[-6.8,7.35]];   // corrillos: plaza de la iglesia, jardín, campanile, campo interior
-const PAIRS=[[9.1,-0.6],[9.35,0.95],[10.45,0.15]];            // parejas en la pista
+const PAIRS=[[8.6,-1.0],[9.0,1.2],[10.3,0.1]];            // parejas en la pista
 const PLAY={c:[6.6,-6.55],r:0.95};                              // juego de los niños junto al campanile
 const ADULT_PLAN=[['dance',0],['dance',0],['chat',0],['chat',0],['walk','R1'],['chat',1],['chat',1],['dance',1],['dance',1],['walk','R2'],
   ['chat',2],['chat',2],['walk','R5'],['chat',0],['walk','R3'],['chat',3],['chat',3],['walk','R6'],['chat',1],['walk','R1'],['chat',2],['walk','R2']];
@@ -901,7 +901,7 @@ function buildGuests(D){
 function restoreLegs(m){const L=m.userData.limbs;if(m.userData.dress&&L.legL.visible){L.legL.visible=L.legR.visible=false;}}
 function turnTo(m,ang,k){let d=ang-m.rotation.y;d=Math.atan2(Math.sin(d),Math.cos(d));m.rotation.y+=d*k;}
 function resetArms(L){L.armL.rotation.set(0,0,0);L.armR.rotation.set(0,0,0);}
-const onFloor=(x,z)=>x>8.45&&x<11.2&&z>-1.25&&z<1.55;
+const onFloor=(x,z)=>x>7.45&&x<11.25&&z>-2.15&&z<2.35;
 animators.push((t,dt)=>{
   const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);
   const turnK=Math.min(1,dt*6);
@@ -1078,7 +1078,11 @@ const saxo=person({suit:0x161a24,skin:0xb7825c,hair:0x111111});saxo.position.set
     saxo.add(n);notes.push(n);}
   interactive(saxo,'saxo',1.9,0.8);
   animators.push(t=>{
-    saxo.rotation.z=Math.sin(t*2.4)*0.07;saxo.position.y=TOP+Math.abs(Math.sin(t*2.4))*0.04;
+    const live=typeof SHOW!=='undefined'&&SHOW.on&&SHOW.phase==='aperitivo';saxShow+=((live?1:0)-saxShow)*0.05;
+    APERO.visible=saxShow>0.02;APERO.scale.y=Math.min(1,saxShow*1.4);APERO.userData.spot.intensity=saxShow*2.2;APERO.userData.beam.material.opacity=0.13*saxShow;
+    const amp=1+saxShow*1.4;
+    saxo.rotation.z=Math.sin(t*2.4)*0.07*amp;saxo.position.y=TOP+saxShow*0.08+Math.abs(Math.sin(t*2.4))*0.04*amp;
+    saxo.rotation.x=-saxShow*0.18*Math.max(0,Math.sin(t*0.8));
     saxo.userData.limbs.legL.rotation.x=Math.sin(t*2.4)*0.12;
     notes.forEach((n,i)=>{const k=((t*0.45)+i/3)%1;n.position.set(0.2+Math.sin(k*6+i)*0.25,1.0+k*1.6,0.3);
       n.scale.setScalar(0.6+k*0.7);n.children.forEach(c=>c.material.opacity=k<0.15?k/0.15:1-(k-0.15)/0.85);n.rotation.z=Math.sin(t*3+i)*0.4;});
@@ -1089,8 +1093,8 @@ const saxo=person({suit:0x161a24,skin:0xb7825c,hair:0x111111});saxo.position.set
 const dj=new THREE.Group();dj.position.set(10,0,0.2);scene.add(dj);
 {
   const tiles=[];const TC=[new THREE.Color(0xd8b45f),new THREE.Color(0xd77a8f),new THREE.Color(0x4f8fd8),new THREE.Color(0x7ee0a1)];
-  for(let i=0;i<3;i++)for(let j=0;j<3;j++){const tl=rbox(0.9,0.08,0.9,mat(0x1a1d2a,{emissive:0xd8b45f,ei:0.6,rough:0.3}));
-    tl.position.set(-1.1+i*0.95,TOP+0.05,-1+j*0.95);tl.castShadow=false;dj.add(tl);tiles.push(tl);}
+  for(let i=0;i<4;i++)for(let j=0;j<5;j++){const tl=rbox(0.9,0.08,0.9,mat(0x1a1d2a,{emissive:0xd8b45f,ei:0.6,rough:0.3}));
+    tl.position.set(-2.05+i*0.95,TOP+0.05,-1.9+j*0.95);tl.castShadow=false;dj.add(tl);tiles.push(tl);}
   dj.add(at(rbox(0.7,0.75,1.7,0x22252f),1.25,TOP+0.38,0));
   const decks=[];[-0.45,0.45].forEach(z=>{const d=mesh(new THREE.CylinderGeometry(0.2,0.2,0.04,14),mat(0x101010,{metal:0.4}));d.position.set(1.22,TOP+0.78,z);dj.add(d);decks.push(d);});
   const front=rbox(0.04,0.5,1.5,mat(0x111111,{emissive:0xd8b45f,ei:0.5}));front.position.set(0.89,TOP+0.4,0);dj.add(front);
@@ -1101,16 +1105,16 @@ const dj=new THREE.Group();dj.position.set(10,0,0.2);scene.add(dj);
     const cone=mesh(new THREE.CylinderGeometry(0.16,0.16,0.04,12),mat(0x2b2d36,{emissive:0xd8b45f,ei:0.2}));cone.rotation.z=Math.PI/2;cone.position.set(-0.26,0.72,0);s.add(cone);
     const cone2=mesh(new THREE.CylinderGeometry(0.1,0.1,0.04,10),0x2b2d36);cone2.rotation.z=Math.PI/2;cone2.position.set(-0.26,0.34,0);s.add(cone2);
     dj.add(s);spk.push({s,cone});});
-  const ball=mesh(new THREE.IcosahedronGeometry(0.28,1),mat(0xdfe6f2,{metal:0.9,rough:0.15,emissive:0x8899bb,ei:0.25}));ball.position.set(-0.15,TOP+2.6,0);dj.add(ball);
-  dj.add(at(mesh(new THREE.CylinderGeometry(0.01,0.01,0.6,4),0x777777),-0.15,TOP+3.0,0));
-  [[-1.6,-1.6],[-1.6,1.6]].forEach(([x,z])=>{dj.add(at(mesh(new THREE.CylinderGeometry(0.04,0.04,2.9,6),0x2a2a30),x,TOP+1.45,z));});
-  dj.add(at(mesh(new THREE.CylinderGeometry(0.025,0.025,3.4,5),0x2a2a30),-1.6,TOP+2.9,0).rotateX(Math.PI/2));
+  const ball=mesh(new THREE.IcosahedronGeometry(0.28,1),mat(0xdfe6f2,{metal:0.9,rough:0.15,emissive:0x8899bb,ei:0.25}));ball.position.set(-0.6,TOP+2.6,0);dj.add(ball);
+  dj.add(at(mesh(new THREE.CylinderGeometry(0.01,0.01,0.6,4),0x777777),-0.6,TOP+3.0,0));
+  [[-2.75,-2.3],[-2.75,2.3]].forEach(([x,z])=>{dj.add(at(mesh(new THREE.CylinderGeometry(0.04,0.04,2.9,6),0x2a2a30),x,TOP+1.45,z));});
+  dj.add(at(mesh(new THREE.CylinderGeometry(0.025,0.025,4.6,5),0x2a2a30),-2.75,TOP+2.9,0).rotateX(Math.PI/2));
   const beams=[];
-  for(let i=0;i<3;i++){const bg=new THREE.ConeGeometry(0.55,3,14,1,true);bg.translate(0,-1.5,0);
+  for(let i=0;i<4;i++){const bg=new THREE.ConeGeometry(0.6,3,14,1,true);bg.translate(0,-1.5,0);
     const bm=new THREE.Mesh(bg,new THREE.MeshBasicMaterial({color:TC[i].getHex(),transparent:true,opacity:0.16,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
-    bm.userData.noPick=true;bm.position.set(-1.6,TOP+2.9,-1+i);dj.add(bm);beams.push(bm);}
+    bm.userData.noPick=true;bm.position.set(-2.75,TOP+2.9,-1.65+i*1.1);dj.add(bm);beams.push(bm);}
   const djLight=new THREE.PointLight(0xd8b45f,1.2,7,1.6);djLight.position.set(-0.3,TOP+1.8,0);dj.add(djLight);
-  interactive(dj,'dj',3.4,2.3);
+  interactive(dj,'dj',4.2,2.3);
   const tmp=new THREE.Color();
   animators.push(t=>{
     const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*2*2.0)),6);
@@ -1308,9 +1312,32 @@ function placeCard(force){
 /* ---------- Modo 7 de enero: el día completo de 4:00 a 11:30 PM en dos minutos ---------- */
 const SHOW={on:false,t:0,dur:90,paused:false,phase:null,p:0,cam:true,snap:false,start:16,end:23.5,n:0};
 const PH=[{k:'ceremonia',a:16,b:17,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17,b:18,lbl:'Fase 2 · Fotos en el taxi acuático'},
-  {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo con saxofón'},{k:'cena',a:19,b:21,lbl:'Fase 4 · Cena en la mesa en U'},{k:'fiesta',a:21,b:23.5,lbl:'Fase 4 · Fiesta'}];
-const GARDEN=[[3.9,-1.6],[5.5,-0.4],[7.1,-1.7],[4.7,0.7],[6.6,0.9]];
-const FIESTA=[[8.85,-0.85],[9.75,-0.85],[10.65,-0.85],[8.85,0.05],[9.75,0.05],[10.65,0.05],[8.85,0.95],[9.75,0.95],[10.65,0.95],[8.0,-1.6],[8.0,0.3],[9.3,-1.95],[10.4,-1.95]];
+  {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:21,lbl:'Fase 4 · Cena en la mesa en U'},{k:'fiesta',a:21,b:23.5,lbl:'Fase 4 · Fiesta'}];
+const GARDEN=[[4.0,-1.45],[5.5,-1.45],[6.95,-1.3],[4.0,0.25],[5.5,0.2],[7.0,0.15],[4.5,1.75]];
+/* Mesitas altas del aperitivo y escenario del saxofonista (solo en el Modo Fiesta, durante el aperitivo) */
+const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
+{
+  const cloth=mat(0xf4ecdc,{rough:0.85}),dark=mat(0x2a2a30,{metal:0.5,rough:0.4}),glassM=mat(0xe9cf88,{emissive:0xd8b45f,ei:0.35,transparent:true,opacity:0.85});
+  GARDEN.forEach(([x,z])=>{const t=new THREE.Group();t.position.set(x,TOP,z);
+    t.add(at(mesh(new THREE.CylinderGeometry(0.05,0.05,0.62,8),dark),0,0.31,0));
+    t.add(at(mesh(new THREE.CylinderGeometry(0.16,0.18,0.03,14),dark),0,0.015,0));
+    t.add(at(mesh(new THREE.CylinderGeometry(0.2,0.27,0.5,16,1,true),cloth),0,0.4,0));
+    t.add(at(mesh(new THREE.CylinderGeometry(0.21,0.21,0.03,16),cloth),0,0.66,0));
+    t.add(at(mesh(new THREE.CylinderGeometry(0.03,0.03,0.08,8),glassM),0.06,0.71,0.03));
+    t.add(at(mesh(new THREE.CylinderGeometry(0.02,0.02,0.1,8),mat(0xfff1c9,{emissive:0xffc46b,ei:1.2})),-0.05,0.72,-0.04));
+    t.children.forEach(c=>c.userData.noPick=true);APERO.add(t);});
+  const stage=new THREE.Group();stage.position.set(6.4,TOP,1.6);APERO.add(stage);
+  stage.add(at(mesh(new THREE.CylinderGeometry(0.62,0.66,0.08,24),mat(0x1d2233,{emissive:0xd8b45f,ei:0.12,rough:0.5})),0,0.04,0));
+  stage.add(at(mesh(new THREE.TorusGeometry(0.64,0.018,6,32),mat(0xd8b45f,{metal:0.8,emissive:0xd8b45f,ei:0.5})),0,0.08,0).rotateX(Math.PI/2));
+  const coneG=new THREE.ConeGeometry(0.7,2.6,20,1,true);coneG.translate(0,-1.3,0);
+  const beam=new THREE.Mesh(coneG,new THREE.MeshBasicMaterial({color:0xffe2a6,transparent:true,opacity:0.13,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
+  beam.position.set(0,2.75,0);stage.add(beam);
+  const spot=new THREE.PointLight(0xffd99a,0,4.5,1.6);spot.position.set(0,1.6,0);stage.add(spot);
+  APERO.traverse(o=>{o.userData.noPick=true;});
+  APERO.userData.spot=spot;APERO.userData.beam=beam;
+}
+let saxShow=0;
+const FIESTA=[[8.4,-1.4],[9.35,-1.4],[10.3,-1.4],[8.4,-0.45],[9.35,-0.45],[10.3,-0.45],[8.4,0.5],[9.35,0.5],[10.3,0.5],[8.4,1.45],[9.35,1.45],[10.3,1.45],[7.9,0.0]];
 const showHour=()=>SHOW.start+(SHOW.end-SHOW.start)*SHOW.t/SHOW.dur;
 const showPhase=h=>PH.find(p=>h<p.b)||PH[PH.length-1];
 function fmtHour(h){const H24=Math.floor(h),mm=Math.floor((h-H24)*60);const h12=((H24+11)%12)+1;return h12+':'+String(mm).padStart(2,'0')+(H24<12?' a. m.':' p. m.');}
@@ -1323,7 +1350,7 @@ function showTarget(g,ph,p){
   if(ph==='ceremonia'){const sp=PEWS[i%PEWS.length];return{x:sp.x,z:sp.z-0.02,y:sp.y,pose:'sit',face:Math.PI};}
   if(ph==='traslado'){const k=Math.max(0,Math.min(1,p*1.35-i*0.014));const R=ROUTES.R1;const q=routeAt(R,k*R.len);const lat=((i%3)-1)*0.28;
     return{x:q.x-q.dz*lat,z:q.z+q.dx*lat,pose:k>0&&k<1?'walk':'stand',face:Math.atan2(q.dx,q.dz),route:true};}
-  if(ph==='aperitivo'){const G=GARDEN.length,gi=i%G,idx=Math.floor(i/G),n=Math.floor((N-1-gi)/G)+1;const r=0.32+0.1*n;const a=idx/n*Math.PI*2+gi;
+  if(ph==='aperitivo'){const G=GARDEN.length,gi=i%G,idx=Math.floor(i/G),n=Math.floor((N-1-gi)/G)+1;const r=0.46+0.04*n;const a=idx/n*Math.PI*2+gi;
     return{x:GARDEN[gi][0]+Math.cos(a)*r,z:GARDEN[gi][1]+Math.sin(a)*r,pose:'chat',cx:GARDEN[gi][0],cz:GARDEN[gi][1],idx,n,gi};}
   if(ph==='fiesta'){const c=FIESTA[Math.floor(i/2)%FIESTA.length];return{x:c[0],z:c[1],pose:'dance',sign:i%2?1:-1,pair:Math.floor(i/2)};}
   return null;
@@ -1353,7 +1380,7 @@ function showGuest(g,t,dt){
   if(T.pose==='stand'){m.position.set(T.x,TOP,T.z);turnTo(m,T.face,turnK);L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;
     L.armL.rotation.x=-0.25;L.armR.rotation.x=-0.25;m.rotation.z=Math.sin(t*0.8+g.step)*0.015;}
   else if(T.pose==='chat'){m.position.set(T.x,TOP,T.z);const n=T.n;const sp=Math.floor((t+T.gi*1.3)/2.8)%n;const me=sp===T.idx;
-    const ang=sp/n*Math.PI*2+T.gi;const r=0.32+0.1*n;const tx=me?T.cx:T.cx+Math.cos(ang)*r,tz=me?T.cz:T.cz+Math.sin(ang)*r;
+    const ang=sp/n*Math.PI*2+T.gi;const r=0.46+0.04*n;const lis=((t*0.13+T.gi*0.37)%1)<0.3;const tx=lis?6.4:me?T.cx:T.cx+Math.cos(ang)*r,tz=lis?1.6:me?T.cz:T.cz+Math.sin(ang)*r;
     turnTo(m,Math.atan2(tx-T.x,tz-T.z),turnK);L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;
     if(me){L.armR.rotation.x=-0.9+Math.sin(t*5+g.step)*0.4;L.armL.rotation.x=-0.5+Math.sin(t*3.3)*0.3;}else L.armR.rotation.x=-0.85;}
   else if(T.pose==='dance'){const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);const th=t*0.9+T.pair*1.7;
