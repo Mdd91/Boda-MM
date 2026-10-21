@@ -865,12 +865,42 @@ const ROUTES={
   R8:mkRoute([[2.5,10.3],[5.5,10.3],[5.5,14.5],[2.1,14.5],[2.1,19],[9,19],[9,14.5],[5.5,14.5]],false),     // calle → islita del campo
   RD:mkRoute([[8.3,3.3],[12.6,3.3],[16.4,3.3],[17.4,2.4]],false),                // hacia la discoteca
 };
+/* ---------- Red de caminos: los invitados van de un lugar a otro por calles y puentes ---------- */
+const NAV={
+  a1:[-8.3,-0.4],a2:[-10.2,-1.7],a3:[-10.2,-10.3],a4:[-5.8,-10.3],a5:[-5.8,-3.4],a6:[-5.5,-1.6],a7:[-3.2,-1.5],a8:[-9.6,0.4],
+  br:[0,-1.5],
+  b1:[3.2,-1.5],b2:[2.5,0.2],b3:[2.35,2.8],b4:[2.3,5.1],b5:[5.5,-0.5],b12:[9.3,0.2],b13:[6.6,-2.5],b14:[8.3,2.4],b15:[3.3,2.45],
+  b7:[8.3,3.3],b8:[8.3,10.3],b10:[5.5,10.3],b9:[2.5,10.3],b11:[12.6,3.3],
+  c1:[6.6,-5.4],c2:[6.6,-6.55],c3:[9.85,-6.2],c4:[4.6,-8.0],
+  d1:[-9.6,3.45],d2:[-3.1,3.45],d3:[-12.6,3.45],d5:[-6.35,3.45],d4:[-6.5,7.35],
+  w1:[-16,3.45],w2:[-16,1.2],w3:[-20.4,1.2],w4:[-20.4,5.9],w5:[-16,5.9],w6:[-16.1,3.95],
+  s1:[5.5,14.4],s3:[2.1,14.5],s4:[2.1,19],s5:[9,19],s6:[9,14.5],
+  e1:[16.4,3.3],e2:[17.6,2.2]};
+const NAVE=[['a1','a2'],['a2','a3'],['a3','a4'],['a4','a5'],['a5','a6'],['a6','a1'],['a6','a7'],['a1','a8'],['a7','br'],['br','b1'],
+  ['b1','b2'],['b2','b3'],['b3','b4'],['b2','b5'],['b5','b12'],['b5','b13'],['b3','b15'],['b15','b14'],['b14','b12'],['b14','b7'],['b7','b8'],['b8','b10'],['b10','b9'],['b9','b4'],['b7','b11'],
+  ['b13','c1'],['c1','c2'],['c1','c3'],['c2','c4'],
+  ['a8','d1'],['d1','d3'],['d1','d5'],['d5','d2'],['d5','d4'],
+  ['d3','w1'],['w1','w2'],['w2','w3'],['w3','w4'],['w4','w5'],['w5','w1'],['w1','w6'],
+  ['b10','s1'],['s1','s3'],['s3','s4'],['s4','s5'],['s5','s6'],['s6','s1'],['b11','e1'],['e1','e2']];
+const NADJ={};NAVE.forEach(([a,b])=>{const d=Math.hypot(NAV[a][0]-NAV[b][0],NAV[a][1]-NAV[b][1]);(NADJ[a]=NADJ[a]||[]).push([b,d]);(NADJ[b]=NADJ[b]||[]).push([a,d]);});
+function navPath(from,to){const dist={},prev={},Q=new Set(Object.keys(NAV));Object.keys(NAV).forEach(k=>dist[k]=Infinity);dist[from]=0;
+  while(Q.size){let u=null;Q.forEach(k=>{if(u===null||dist[k]<dist[u])u=k;});Q.delete(u);if(u===to||dist[u]===Infinity)break;
+    (NADJ[u]||[]).forEach(([v,d])=>{if(Q.has(v)&&dist[u]+d<dist[v]){dist[v]=dist[u]+d;prev[v]=u;}});}
+  const p=[];let c=to;while(c){p.unshift(c);if(c===from)break;c=prev[c];}return p[0]===from?p:[from,to];}
+/* Lugares donde pasan cosas: conversar, bailar, mirar el agua, ver el mercado... */
+const SPOTS=[
+  {n:'a1',k:'chat',w:3},{n:'d4',k:'chat',w:2},{n:'c3',k:'chat',w:2},{n:'w6',k:'chat',w:2},{n:'s1',k:'chat',w:2,off:[0.1,1.1],r:1.1},{n:'b5',k:'chat',w:3},
+  {n:'b12',k:'dance',w:3},{n:'e2',k:'dance',w:3,off:[0.3,-1.6]},
+  {n:'br',k:'view',w:2,face:0},{n:'s4',k:'view',w:1,face:-Math.PI*0.25},{n:'w3',k:'view',w:1,face:-Math.PI*0.75},{n:'c4',k:'view',w:1,face:-Math.PI*0.5},{n:'d2',k:'view',w:1,face:Math.PI*0.5},
+  {n:'a4',k:'chat',w:1},{n:'w4',k:'chat',w:1}];
+const SPOTW=SPOTS.reduce((a,b)=>a+b.w,0);
+function pickSpot(not){for(let i=0;i<6;i++){let r=Math.random()*SPOTW;for(const sp of SPOTS){r-=sp.w;if(r<=0){if(sp!==not)return sp;break;}}}return SPOTS[0];}
+const spotPos=sp=>{const p=NAV[sp.n],o=sp.off||[0,0];return[p[0]+o[0],p[1]+o[1]];};
 const CHATS=[[-8.3,-0.5],[5.6,-0.4],[9.85,-6.2],[-6.8,7.35]];   // corrillos: plaza de la iglesia, jardín, campanile, campo interior
 const PAIRS=[[8.6,-1.0],[9.0,1.2],[10.3,0.1]];            // parejas en la pista
 const PLAY={c:[6.6,-6.55],r:0.95};                              // juego de los niños junto al campanile
-const ADULT_PLAN=[['dance',0],['dance',0],['chat',0],['chat',0],['walk','R1'],['chat',1],['chat',1],['disco'],['disco'],['walk','R7'],
-  ['chat',2],['chat',2],['walk','R5'],['disco'],['walk','R8'],['chat',3],['chat',3],['walk','R6'],['disco'],['walk','R2'],['walk','R7'],['walk','R8'],['disco']];
-const KID_PLAN=[['play'],['play'],['dance',2],['play'],['dance',2]];
+const ADULT_PLAN=[];  // todos los adultos deambulan por la ciudad (ver 'roam')
+const KID_PLAN=[['play'],['play'],['roam'],['play'],['roam']];
 const DOG_PLAN=[['follow','R1'],['play'],['follow','R2'],['play']];
 const WALK_CYCLE=['R1','R7','R5','R8','R6','R2','R3'];
 function buildGuests(D){
@@ -887,7 +917,7 @@ function buildGuests(D){
   if(selectedGroup&&old.has(selectedGroup))closeCard();
   const rnd=seeded(20270107);let ai=0,ki=0,wi=0;
   const human=(fem,kid)=>person({suit:pick(SUITS,rnd),skin:pick(SKINS,rnd),hair:pick(HAIRS,rnd),dress:fem?pick(GOWNS,rnd):null,s:kid?0.6:0.92});
-  const planFor=kid=>{const P=kid?KID_PLAN:ADULT_PLAN;const i=kid?ki++:ai++;return i<P.length?P[i]:(kid?['play']:['walk',WALK_CYCLE[wi++%WALK_CYCLE.length]]);};
+  const planFor=kid=>{const P=kid?KID_PLAN:ADULT_PLAN;const i=kid?ki++:ai++;return i<P.length?P[i]:(kid?['play']:['roam']);};
   const add=(m,kid,plan)=>{const g={m,kid,act:plan[0],arg:plan[1],phase:rnd(),speed:0.5+rnd()*0.22,lat:(rnd()-0.5)*0.5,step:rnd()*6,drink:rnd()<0.5};
     guestsRoot.add(m);guests.push(g);return g;};
   ps.forEach(p=>{const kid=/niñ/i.test(p.tipo||'');const m=lookPerson(p.id,FEM.test(p.relacion||''),kid);
@@ -901,7 +931,8 @@ function buildGuests(D){
   CHATS.forEach((c,ci)=>{const mem=count('chat',ci);mem.forEach((g,i)=>{g.idx=i;g.n=mem.length;});});
   PAIRS.forEach((c,pi)=>{const mem=count('dance',pi);mem.forEach((g,i)=>{g.idx=i;g.n=mem.length;});});
   const players=guests.filter(g=>g.act==='play');players.forEach((g,i)=>{g.idx=i;g.n=players.length;});
-  guests.filter(g=>g.act==='follow').forEach(g=>{g.owner=guests.find(o=>o.act==='walk'&&o.arg===g.arg&&!o.kid);if(!g.owner){g.act='play';g.idx=players.length;g.n=players.length+1;}});
+  guests.filter(g=>g.act==='follow').forEach(g=>{g.owner=guests.find(o=>o.act==='roam'&&!o.kid&&!o.hasDog);if(g.owner)g.owner.hasDog=true;else{g.act='play';g.idx=players.length;g.n=players.length+1;}});
+  guests.filter(g=>g.act==='roam').forEach((g,i)=>{g.idx=i;const sp=pickSpot();g.spot=sp;g.mode='stay';const p=spotPos(sp);g.px=p[0]+(Math.random()-0.5);g.pz=p[1]+(Math.random()-0.5);g.until=performance.now()/1000+2+Math.random()*14;g.arr=Math.random();g.da=Math.random()*6.28;g.dr=0.45+Math.random()*0.8;});
   guests.filter(g=>g.act==='walk').forEach((g,i)=>{g.phase=(i*0.37)%1;g.idx=i;});
   const disc=guests.filter(g=>g.act==='disco');disc.forEach((g,i)=>{g.idx=i;g.n=disc.length;g.phase=(i*0.29+0.1)%1;});
   guests.forEach((g,i)=>{const t=tags.find(x=>x.target===g.m);if(t)t.level=LEVELS[((g.idx??i)+(g.arg|0))%LEVELS.length];});
@@ -913,8 +944,40 @@ const onFloor=(x,z)=>x>7.45&&x<11.25&&z>-2.15&&z<2.35;
 animators.push((t,dt)=>{
   const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);
   const turnK=Math.min(1,dt*6);
+  // quién está en cada lugar (para armar los corrillos)
+  const atSpot=new Map();for(const g of guests)if(g.act==='roam'&&g.mode==='stay'){const a=atSpot.get(g.spot)||[];a.push(g);atSpot.set(g.spot,a);}
+  atSpot.forEach(a=>a.sort((x,y)=>x.arr-y.arr));
+  const now=performance.now()/1000;
   for(const g of guests){
     if(SHOW.on&&showGuest(g,t,dt))continue;
+    if(g.act==='roam'){const m=g.m,L=m.userData.limbs;let x=g.px,z=g.pz,y=TOP;
+      if(g.mode==='stay'&&now>g.until){ // se va a otro lugar
+        const nxt=pickSpot(g.spot);const path=navPath(g.spot.n,nxt.n).map(k=>NAV[k]);const end=spotPos(nxt);
+        g.path=[[g.px,g.pz],...path.slice(path.length>1?1:0),end];g.pi=1;g.next=nxt;g.mode='walk';}
+      if(g.mode==='walk'){const tg=g.path[g.pi];const dx=tg[0]-x,dz=tg[1]-z,d=Math.hypot(dx,dz);const st=g.speed*(g.kid?1.15:1)*dt*1.4;
+        if(d<=st){x=tg[0];z=tg[1];g.pi++;if(g.pi>=g.path.length){g.mode='stay';g.spot=g.next;g.arr=now+Math.random()*0.01;
+          g.until=now+(g.spot.k==='dance'?14:g.spot.k==='view'?6:10)+Math.random()*16;}}
+        else{x+=dx/d*st;z+=dz/d*st;turnTo(m,Math.atan2(dx,dz),Math.min(1,dt*8));}
+        const ph=now*g.speed*13+g.step;y=groundY(x,z)+Math.abs(Math.sin(ph))*0.03;m.rotation.z=0;m.rotation.x=0;
+        if(L){resetArms(L);walkPose(m,ph,g.kid?0.7:0.5);if(g.drink&&!g.kid)L.armR.rotation.x=-0.8;}
+        g.st={x,z,dx:Math.sin(m.rotation.y),dz:Math.cos(m.rotation.y)};}
+      else{const sp=g.spot,c=spotPos(sp),mem=atSpot.get(sp)||[g],n=mem.length,ix=Math.max(0,mem.indexOf(g));let tx,tz,face;
+        L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;resetArms(L);m.rotation.z=0;m.rotation.x=0;
+        if(sp.k==='chat'){const r=Math.max(sp.r||0,0.3+0.09*Math.max(2,n));const a=ix/n*Math.PI*2+c[0];tx=c[0]+Math.cos(a)*r;tz=c[1]+Math.sin(a)*r;
+          const spk=Math.floor((t+c[1])/3.1)%n,me=spk===ix&&n>1;const s=mem[spk]||g;
+          face=me?Math.atan2(c[0]-x,c[1]-z):Math.atan2(s.px-x,s.pz-z);
+          if(n===1){face=g.da;if(g.drink)L.armR.rotation.x=-0.9;}
+          else if(me){L.armR.rotation.x=-0.9+Math.sin(t*5+g.step)*0.4;L.armL.rotation.x=-0.5+Math.sin(t*3.3)*0.3;y+=Math.abs(Math.sin(t*3))*0.02;}
+          else{if(g.drink)L.armR.rotation.x=-0.85+Math.sin(t*0.7+g.step)*0.1;if(Math.sin(t*0.5+g.step)>0.9)y+=Math.abs(Math.sin(t*14))*0.04;}}
+        else if(sp.k==='dance'){const a=g.da+t*0.5;tx=c[0]+Math.cos(a)*g.dr;tz=c[1]+Math.sin(a)*g.dr;face=Math.atan2(c[0]-tx,c[1]-tz)+Math.sin(t*2+g.step)*0.6;
+          const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);y+=0.09+beat*0.08;
+          L.armL.rotation.x=-2.4+Math.sin(t*4+g.step)*0.5;L.armR.rotation.x=-1.2+Math.cos(t*4+g.step)*0.7;L.legL.rotation.x=Math.sin(t*8+g.step)*0.3;L.legR.rotation.x=-L.legL.rotation.x;m.rotation.z=Math.sin(t*4+g.step)*0.08;}
+        else{const o=(ix%2?1:-1)*Math.ceil(ix/2)*0.42;tx=c[0]+Math.cos(sp.face)*o;tz=c[1]-Math.sin(sp.face)*o;face=sp.face+Math.sin(t*0.4+g.step)*0.4;
+          if(Math.sin(t*0.3+g.step)>0.4){L.armR.rotation.x=-1.6;L.armL.rotation.x=-1.5;}} // foto del paisaje
+        const k=Math.min(1,dt*2.2);const ddx=tx-x,ddz=tz-z;if(Math.hypot(ddx,ddz)>0.12&&sp.k!=='dance'){x+=ddx*k;z+=ddz*k;walkPose(m,now*9+g.step,0.35);}else{x+=ddx*k;z+=ddz*k;}
+        turnTo(m,face,Math.min(1,dt*5));y=Math.max(y,groundY(x,z));g.st={x,z,dx:Math.sin(m.rotation.y),dz:Math.cos(m.rotation.y)};}
+      g.px=x;g.pz=z;if((onFloor(x,z)||onDisco(x,z))&&!(g.mode==='stay'&&g.spot.k==='dance'))y=Math.max(y,TOP+0.09);
+      m.position.set(x,y,z);continue;}
     const m=g.m,L=m.userData.limbs;let x,z,y;
     if(g.act==='walk'){
       const R=ROUTES[g.arg];let s,dir=1;
@@ -1017,7 +1080,7 @@ const novios=new THREE.Group();let miguelFig=null,marcelaFig=null;
   interactive(novios,'novios',1.25,0.9);
   interactive(taxi,'taxi',1.4,1.7);
 }
-const TPATH=new THREE.CatmullRomCurve3([[-7,2.2],[-10.2,2.1],[-13.8,2.7],[-14.4,6.5],[-14,11.9],[-9,12.4],[-4,12.3],[-0.4,11.2],[0.1,8.3],[0.55,6.2]].map(p=>new THREE.Vector3(p[0],0.05,p[1])),false,'catmullrom',0.5);
+const TPATH=new THREE.CatmullRomCurve3([[-7,2.05],[-4.4,2.0],[-1.3,2.3],[-0.2,3.8],[0.05,5.4],[0.55,6.2]].map(p=>new THREE.Vector3(p[0],0.05,p[1])),false,'catmullrom',0.5);
 const TLEN=TPATH.getLength();
 const wake=[];for(let i=0;i<16;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(0.12,6,4),new THREE.MeshStandardMaterial({color:0xe9f1ff,transparent:true,opacity:0,flatShading:true}));m.userData.noPick=true;scene.add(m);wake.push({m,life:0});}
 let wakeI=0,wakeT=0;
@@ -1157,7 +1220,7 @@ function flatBridge(x0,z0,x1,z1){const alongX=Math.abs(x1-x0)>Math.abs(z1-z0);co
   g.add(at(rbox(L,0.16,1.15,0xe9e2d2),0,TOP-0.04,0));
   [-0.55,0.55].forEach(zz=>{g.add(at(rbox(L,0.06,0.06,0xf4ecdc),0,TOP+0.42,zz));
     for(let i=0;i<=Math.round(L/0.6);i++)g.add(at(rbox(0.05,0.4,0.05,0xf4ecdc),-L/2+i*(L/Math.round(L/0.6)),TOP+0.2,zz));});}
-flatBridge(-15.4,3.45,-13.1,3.45);flatBridge(5.5,10.9,5.5,14.1);flatBridge(12.9,3.3,16.1,3.3);
+flatBridge(-15.4,3.45,-13.1,3.45);flatBridge(-9.6,0.7,-9.6,3.3);flatBridge(6.6,-2.75,6.6,-5.25);flatBridge(5.5,10.9,5.5,14.1);flatBridge(12.9,3.3,16.1,3.3);
 [[-19,3.5,1.8,2.6,2.4],[3.9,17.4,2.4,2.8,2.0],[7.5,17.3,1.8,2.4,2.2]].forEach((h,i)=>house(h[0],h[1],h[2],h[3],h[4],HC[(i+3)%HC.length]));
 tree(-18.3,5.3,0.8);tree(-19.5,5.4,0.7);tree(8.2,15.6,0.85);tree(6.0,18.6,0.7);tree(21.2,-2.8,0.75);tree(16.6,-2.9,0.7);
 { // puestos del mercado
@@ -1223,7 +1286,7 @@ function gondola(axis,fixed,from,to,speed,ph){
     else{g.position.set(fixed,0.05+Math.sin(t*1.6+ph)*0.03,v);g.rotation.y=fwd?-Math.PI/2:Math.PI/2;}
     g.rotation.z=Math.sin(t*1.2+ph)*0.03;oar.rotation.z=Math.sin(t*1.8)*0.35;gd.rotation.z=Math.sin(t*1.8)*0.08;});
 }
-gondola('x',-4,3.4,15.2,0.05,0.3);
+gondola('x',-4,9.3,15.2,0.05,0.3);
 gondola('z',-14.7,-12.6,0.2,0.045,1.1);
 
 /* ---------- Cielo (estrellas y luna) ---------- */
@@ -1554,7 +1617,9 @@ function startShow(){
 function stopShow(){
   document.body.classList.remove('showing');
   SHOW.on=false;SHOW.phase=null;showEl.hidden=true;showBtn.setAttribute('aria-pressed','false');showBtn.textContent='Modo Fiesta';
-  raul.visible=gian.visible=true;novios.visible=true;openSalon(MESA_OPEN);openChurch(CHURCH_OPEN);guests.forEach(g=>{g.m.visible=true;if(g.bs)g.m.scale.setScalar(g.bs);if(!g.dog)restoreLegs(g.m);});seatsRoot.visible=true;
+  raul.visible=gian.visible=true;novios.visible=true;openSalon(MESA_OPEN);openChurch(CHURCH_OPEN);guests.forEach(g=>{g.m.visible=true;if(g.bs)g.m.scale.setScalar(g.bs);if(!g.dog)restoreLegs(g.m);
+    if(g.act==='roam'){const x=g.m.position.x,z=g.m.position.z;let best='b5',bd=1e9;for(const k in NAV){const d=Math.hypot(NAV[k][0]-x,NAV[k][1]-z);if(d<bd){bd=d;best=k;}}
+      const nxt=pickSpot();g.path=[[x,z],...navPath(best,nxt.n).map(k=>NAV[k]),spotPos(nxt)];g.pi=1;g.next=nxt;g.mode='walk';g.px=x;g.pz=z;}});seatsRoot.visible=true;
   resetSky();userMoved=false;fitView(true);
 }
 function updateShow(dt){
