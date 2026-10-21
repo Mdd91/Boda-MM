@@ -837,7 +837,7 @@ let CHURCH_OPEN=false;
 function openChurch(on){churchShell.forEach(c=>c.visible=!on);nave.visible=on;
   HOUSES.forEach(h=>{if(h.position.x<-10.5&&h.position.z<-1&&h.position.z>-10.6)h.visible=!on;});}
 function setChurch(on,fly){
-  CHURCH_OPEN=on;openChurch(on||(SHOW.on&&SHOW.phase==='ceremonia'));
+  const was=CHURCH_OPEN;CHURCH_OPEN=on;if(!on&&was&&fly!==false&&!SHOW.on){userMoved=false;fitView(true);}openChurch(on||(SHOW.on&&SHOW.phase==='ceremonia'));
   if(on&&fly!==false){userMoved=true;flyTo(-8,-6,innerWidth<640?2.4:2.9,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);}
 }
 
@@ -1223,8 +1223,8 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
 const ring=new THREE.Mesh(new THREE.RingGeometry(0.85,1,40),new THREE.MeshBasicMaterial({color:0xd8b45f,transparent:true,opacity:0.8,side:THREE.DoubleSide,depthWrite:false}));
 ring.rotation.x=-Math.PI/2;ring.visible=false;ring.userData.noPick=true;scene.add(ring);
 
-function select(g){selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
-function closeCard(){selectedId=null;selectedGroup=null;card.hidden=true;ring.visible=false;rows=[];}
+function select(g){if(CHURCH_OPEN&&!SHOW.on&&g.userData.pid!=='iglesia')setChurch(false,false);selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
+function closeCard(){if(CHURCH_OPEN&&!SHOW.on)setChurch(false);selectedId=null;selectedGroup=null;card.hidden=true;ring.visible=false;rows=[];}
 
 /* ---------- Tarjeta ---------- */
 let rows=[];let rowSig='';
@@ -1429,7 +1429,7 @@ function onPhase(P){
   else flyTo(9.7,0.2,zf,null,[1,0.92,0.35]);
 }
 function startShow(){
-  if(MESA_OPEN)setMesa(false);if(CHURCH_OPEN)setChurch(false);closeCard();
+  if(MESA_OPEN)setMesa(false);if(CHURCH_OPEN)setChurch(false,false);closeCard();
   document.body.classList.add('showing');if(INFO_OPEN)setInfo(false);
   SHOW.on=true;SHOW.t=0;SHOW.paused=false;SHOW.phase=null;SHOW.cam=true;userMoved=true;assignShow();
   showEl.hidden=false;showBtn.setAttribute('aria-pressed','true');showBtn.textContent='Salir del Modo Fiesta';
