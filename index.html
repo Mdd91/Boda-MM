@@ -252,7 +252,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 <section class="show" id="show" aria-label="Modo Fiesta" hidden>
   <div class="srow"><div class="clock" id="sClock">4:00 p. m.</div><div class="sphase" id="sPhase"></div></div>
   <div class="strack" id="sTrack" title="Toca para saltar a otra hora"><i id="sBar"></i></div>
-  <div class="slabels"><span>4:00</span><span>Ceremonia</span><span>Bote</span><span>Aperitivo</span><span>Cena</span><span>Fiesta</span><span>11:30</span></div>
+  <div class="slabels"><span>4:00</span><span>Ceremonia</span><span>Bote</span><span>Aperitivo</span><span>Cena</span><span>Fiesta</span><span>Regreso</span><span>12:00</span></div>
   <div class="sbtns"><button class="reset" id="sPause" type="button">Pausa</button><button class="reset" id="sStop" type="button">Salir</button></div>
 </section>
 <div class="lb" id="lb" role="dialog" aria-label="Fotos" hidden>
@@ -1309,10 +1309,10 @@ function placeCard(force){
   card.style.left=x+'px';card.style.top=y+'px';
 }
 
-/* ---------- Modo 7 de enero: el día completo de 4:00 a 11:30 PM en dos minutos ---------- */
-const SHOW={on:false,t:0,dur:90,paused:false,phase:null,p:0,cam:true,snap:false,start:16,end:23.5,n:0};
-const PH=[{k:'ceremonia',a:16,b:17,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17,b:18,lbl:'Fase 2 · Fotos en el taxi acuático'},
-  {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:21,lbl:'Fase 4 · Cena en la mesa en U'},{k:'fiesta',a:21,b:23.5,lbl:'Fase 4 · Fiesta'}];
+/* ---------- Modo Fiesta: el día completo de 4:00 PM a medianoche en 90 segundos ---------- */
+const SHOW={on:false,t:0,dur:90,paused:false,phase:null,p:0,cam:true,snap:false,start:16,end:24,n:0};
+const PH=[{k:'ceremonia',a:16,b:17,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17,b:18,lbl:'Fase 2 · Bote y fotos'},
+  {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:20.5,lbl:'Fase 4 · Cena y fiesta en el salón'},{k:'fiesta',a:20.5,b:23.5,lbl:'Fase 5 · Fiesta en la pista'},{k:'regreso',a:23.5,b:24,lbl:'Fase 6 · Regreso a los hoteles'}];
 const GARDEN=[[4.0,-1.45],[5.5,-1.45],[6.95,-1.3],[4.0,0.25],[5.5,0.2],[7.0,0.15],[4.5,1.75]];
 /* Mesitas altas del aperitivo y escenario del saxofonista (solo en el Modo Fiesta, durante el aperitivo) */
 const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
@@ -1353,11 +1353,15 @@ function showTarget(g,ph,p){
   if(ph==='aperitivo'){const G=GARDEN.length,gi=i%G,idx=Math.floor(i/G),n=Math.floor((N-1-gi)/G)+1;const r=0.46+0.04*n;const a=idx/n*Math.PI*2+gi;
     return{x:GARDEN[gi][0]+Math.cos(a)*r,z:GARDEN[gi][1]+Math.sin(a)*r,pose:'chat',cx:GARDEN[gi][0],cz:GARDEN[gi][1],idx,n,gi};}
   if(ph==='fiesta'){const c=FIESTA[Math.floor(i/2)%FIESTA.length];return{x:c[0],z:c[1],pose:'dance',sign:i%2?1:-1,pair:Math.floor(i/2)};}
+  if(ph==='regreso'){const k=p*1.9-(i/N)*0.9;const c=FIESTA[Math.floor(i/2)%FIESTA.length];
+    if(k<=0)return{x:c[0],z:c[1],pose:'stand',face:Math.PI*0.5};
+    const R=ROUTES.R1,q=routeAt(R,R.len);const lat=((i%3)-1)*0.2;return{x:q.x+lat,z:q.z,pose:'stand',face:Math.PI,leave:true};}
   return null;
 }
 function showGuest(g,t,dt){
   const m=g.m;const ph=SHOW.phase;
   if(g.dog){const o=g.showOwner;if(!o)return false;
+    if(ph==='regreso'&&!o.m.visible){m.visible=false;return true;}
     if(ph==='cena'){m.visible=false;return true;}m.visible=true;
     const tx=o.m.position.x+0.42,tz=o.m.position.z+0.32;const dx=tx-m.position.x,dz=tz-m.position.z,d=Math.hypot(dx,dz);
     if(SHOW.snap||d>4){m.position.set(tx,groundY(tx,tz),tz);}
@@ -1367,6 +1371,7 @@ function showGuest(g,t,dt){
     D.legs[0].rotation.x=a;D.legs[3].rotation.x=a;D.legs[1].rotation.x=-a;D.legs[2].rotation.x=-a;D.tail.rotation.y=Math.sin(t*12+g.step)*0.7;
     return true;}
   const L=m.userData.limbs;const T=showTarget(g,ph,SHOW.p);if(!T||T.pose!=='sit')restoreLegs(m);
+  if(T&&T.leave&&Math.hypot(T.x-m.position.x,T.z-m.position.z)<0.3){m.visible=false;return true;}
   if(!T){m.visible=false;return true;}m.visible=true;m.rotation.x=0;m.rotation.z=0;
   if(T.route){m.position.set(T.x,groundY(T.x,T.z),T.z);m.rotation.y=T.face;resetArms(L);
     if(T.pose==='walk')walkPose(m,t*7+g.step,0.5);else{L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;}return true;}
@@ -1390,7 +1395,7 @@ function showGuest(g,t,dt){
     L.legL.rotation.x=Math.sin(t*8+g.step)*0.3;L.legR.rotation.x=-L.legL.rotation.x;m.rotation.z=Math.sin(t*4+g.step)*0.08;}
   return true;
 }
-function showTaxi(){const k=SHOW.phase;if(k==='ceremonia')return{u:0,moving:false};if(k==='traslado')return{u:Math.min(1,SHOW.p*1.1),moving:SHOW.p<0.9};return{u:1,moving:false};}
+function showTaxi(){const k=SHOW.phase;if(k==='ceremonia')return{u:0,moving:false};if(k==='traslado')return{u:Math.min(1,SHOW.p*1.1),moving:SHOW.p<0.9};if(k==='regreso'&&SHOW.p>0.72)return{u:1-(SHOW.p-0.72)/0.28*0.7,moving:true};return{u:1,moving:false};}
 
 /* Cielo: de la hora dorada a la noche (en enero el sol se pone en Venecia hacia las 4:45 p. m.) */
 const SKYK=[{h:16,a:[0.96,0.64,0.40],b:[0.36,0.22,0.36],n:0,hs:[1,0.84,0.66],hg:[0.35,0.27,0.37],hi:1.15,mc:[1,0.72,0.47],mi:1.1,sp:[-24,9,-4]},
@@ -1418,7 +1423,7 @@ function flyTo(x,z,zf,follow,dir){const p=new THREE.Vector3(x,TOP+0.6,z);
 function onPhase(P){
   $('#sPhase').textContent=P.lbl;
   const cena=P.k==='cena',cer=P.k==='ceremonia';openSalon(cena||MESA_OPEN);openChurch(cer||CHURCH_OPEN);
-  raul.visible=gian.visible=!(cena||cer);novios.visible=!(cena||cer||P.k==='fiesta');
+  raul.visible=gian.visible=!(cena||cer||P.k==='regreso');novios.visible=!(cena||cer||P.k==='fiesta'||P.k==='regreso');
   SHOW.snap=true;
   if(!SHOW.cam)return;
   const zf=innerWidth<640?2.0:2.5;
@@ -1426,6 +1431,7 @@ function onPhase(P){
   else if(P.k==='traslado')flyTo(taxi.position.x,taxi.position.z,zf*0.85,taxi);
   else if(P.k==='aperitivo')flyTo(5.4,-0.2,zf);
   else if(cena)flyTo(4.9,6.1,zf*1.12,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
+  else if(P.k==='regreso'){const q=routeAt(ROUTES.R1,ROUTES.R1.len);flyTo((q.x+9.5)/2,(q.z+0.2)/2,zf*0.8);}
   else flyTo(9.7,0.2,zf,null,[1,0.92,0.35]);
 }
 function startShow(){
