@@ -1416,8 +1416,21 @@ const FIESTA=[[8.4,-1.4],[9.35,-1.4],[10.3,-1.4],[8.4,-0.45],[9.35,-0.45],[10.3,
 const showHour=()=>SHOW.start+(SHOW.end-SHOW.start)*SHOW.t/SHOW.dur;
 const showPhase=h=>PH.find(p=>h<p.b)||PH[PH.length-1];
 function fmtHour(h){const H24=Math.floor(h),mm=Math.floor((h-H24)*60);const h12=((H24+11)%12)+1;return h12+':'+String(mm).padStart(2,'0')+(H24<12?' a. m.':' p. m.');}
+/* Recorrido por puntos: posición y dirección a una fracción k del camino */
+function polyAt(P,k){let L=0;const seg=[];for(let i=0;i<P.length-1;i++){const l=Math.hypot(P[i+1][0]-P[i][0],P[i+1][1]-P[i][1]);seg.push(l);L+=l;}
+  let s=Math.max(0,Math.min(1,k))*L;for(let i=0;i<seg.length;i++){if(s<=seg[i]||i===seg.length-1){const f=seg[i]?Math.min(1,s/seg[i]):1;const a=P[i],b=P[i+1];
+    return{x:a[0]+(b[0]-a[0])*f,z:a[1]+(b[1]-a[1])*f,face:Math.atan2(b[0]-a[0],b[1]-a[1])};}s-=seg[i];}return{x:P[0][0],z:P[0][1],face:0};}
+/* Puestos de la cena para el Modo Fiesta (coordenadas del mundo) */
+const PDOOR=[2.3,5.1],PMID=[2.45,2.7];let SHOWSEATS=[];
+function planShowSeats(N){const ox=palazzo.position.x,oz=palazzo.position.z;const out=[];
+  const nc=Math.min(6,N),rest=N-nc,ni=Math.ceil(rest/2),nd=rest-ni;const span=U.armZ*2,armLen=U.baseX-U.openX-0.45;
+  const sideL=oz-U.armZ-0.42,sideR=oz+U.armZ+0.42,openX=ox+U.openX-0.35;
+  for(let i=0;i<nc;i++){const x=ox+U.baseX+0.42,z=oz-span/2+span*(i+0.5)/nc;out.push({x,z,face:-Math.PI/2,path:[[openX,sideL],[x,sideL],[x,z]]});}
+  for(let i=0;i<ni;i++){const x=ox+U.baseX-0.45-armLen*(i+0.5)/ni,z=sideL;out.push({x,z,face:0,path:[[openX,sideL],[x,z]]});}
+  for(let i=0;i<nd;i++){const x=ox+U.baseX-0.45-armLen*(i+0.5)/nd,z=sideR;out.push({x,z,face:Math.PI,path:[[openX,sideR],[x,z]]});}
+  return out;}
 function assignShow(){
-  const hum=guests.filter(g=>!g.dog);hum.forEach((g,i)=>g.si=i);SHOW.n=hum.length;
+  const hum=guests.filter(g=>!g.dog);hum.forEach((g,i)=>{g.si=i;g.bs=g.bs||g.m.scale.x;});SHOW.n=hum.length;SHOWSEATS=planShowSeats(hum.length);
   guests.filter(g=>g.dog).forEach((g,j)=>{g.showOwner=hum.length?hum[(j*5+2)%hum.length]:null;});
 }
 function showTarget(g,ph,p){
@@ -1431,7 +1444,21 @@ function showTarget(g,ph,p){
     const f=(s-R.len)/dd;return{x:e.x+dx*f,z:e.z+dz*f,pose:'walk',face:Math.atan2(dx,dz),route:true};}
   if(ph==='aperitivo'){const G=GARDEN.length,gi=i%G,idx=Math.floor(i/G),n=Math.floor((N-1-gi)/G)+1;const r=0.46+0.04*n;const a=idx/n*Math.PI*2+gi;
     return{x:GARDEN[gi][0]+Math.cos(a)*r,z:GARDEN[gi][1]+Math.sin(a)*r,pose:'chat',cx:GARDEN[gi][0],cz:GARDEN[gi][1],idx,n,gi};}
+  if(ph==='cena'){ // entran al palazzo, se sientan a comer y a las 8:30 salen a la pista
+    const A=showTarget(g,'aperitivo',0),S=SHOWSEATS[i%SHOWSEATS.length],F=showTarget(g,'fiesta',0);
+    const seatY=TOP+0.22;
+    const kin=Math.max(0,Math.min(1,p/0.26*1.25-i/N*0.25)),kout=Math.max(0,Math.min(1,(p-0.8)/0.2*1.25-i/N*0.25));
+    if(kout>0){if(kout>=1)return F;const q=polyAt([[S.x,S.z],...S.path.slice(0,-1).reverse(),PDOOR,PMID,[F.x,F.z]],kout);const inside=kout<0.35;
+      return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true,small:inside};}
+    if(kin>=1)return{x:S.x,z:S.z,y:seatY,pose:'sit',face:S.face,small:true,eat:true};
+    if(kin<=0)return A;
+    const q=polyAt([[A.x,A.z],PMID,PDOOR,...S.path],kin);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true,small:kin>0.62};}
   if(ph==='fiesta'){const c=FIESTA[Math.floor(i/2)%FIESTA.length];return{x:c[0],z:c[1],pose:'dance',sign:i%2?1:-1,pair:Math.floor(i/2)};}
+  if(ph==='regreso'&&i%4===1){ // unos cuantos siguen la fiesta en la discoteca
+    const F=showTarget(g,'fiesta',0);const k=Math.max(0,Math.min(1,p*1.8-(i/N)*0.5));
+    const n=Math.ceil(N/4),j=Math.floor(i/4),a=j/n*Math.PI*2;const dx=DISCO.c[0]+Math.cos(a)*0.6,dz=DISCO.c[1]+Math.sin(a)*0.6;
+    if(k<=0)return F;if(k>=1)return{x:dx,z:dz,pose:'dance',sign:j%2?1:-1,pair:j+20};
+    const q=polyAt([[F.x,F.z],[11.9,2.9],[12.6,3.3],[16.4,3.3],[17.4,2.4],[dx,dz]],k);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true};}
   if(ph==='regreso'){const k=p*1.9-(i/N)*0.9;const c=FIESTA[Math.floor(i/2)%FIESTA.length];
     if(k<=0)return{x:c[0],z:c[1],pose:'stand',face:Math.PI*0.5};
     const R=ROUTES.R1,q=routeAt(R,R.len);const lat=((i%3)-1)*0.2;return{x:q.x+lat,z:q.z,pose:'stand',face:Math.PI,leave:true};}
@@ -1441,8 +1468,8 @@ function showGuest(g,t,dt){
   const m=g.m;const ph=SHOW.phase;
   if(g.dog){const o=g.showOwner;if(!o)return false;
     if(ph==='regreso'&&!o.m.visible){m.visible=false;return true;}
-    if(ph==='cena'){m.visible=false;return true;}m.visible=true;
-    const tx=o.m.position.x+0.42,tz=o.m.position.z+0.32;const dx=tx-m.position.x,dz=tz-m.position.z,d=Math.hypot(dx,dz);
+    m.visible=true;const jd=guests.filter(x=>x.dog).indexOf(g);const wait=ph==='cena'&&o.m.scale.x<(o.bs||1)*0.9;
+    const tx=wait?1.7+jd*0.38:o.m.position.x+0.42,tz=wait?4.3:o.m.position.z+0.32;const dx=tx-m.position.x,dz=tz-m.position.z,d=Math.hypot(dx,dz);
     if(SHOW.snap||d>4){m.position.set(tx,groundY(tx,tz),tz);}
     else if(d>0.08){const s=Math.min(d,dt*2.2);m.position.x+=dx/d*s;m.position.z+=dz/d*s;m.rotation.y=Math.atan2(dx,dz);}
     m.position.y=groundY(m.position.x,m.position.z)+(onFloor(m.position.x,m.position.z)?0.09:0);
@@ -1450,6 +1477,7 @@ function showGuest(g,t,dt){
     D.legs[0].rotation.x=a;D.legs[3].rotation.x=a;D.legs[1].rotation.x=-a;D.legs[2].rotation.x=-a;D.tail.rotation.y=Math.sin(t*12+g.step)*0.7;
     return true;}
   const L=m.userData.limbs;const T=showTarget(g,ph,SHOW.p);if(!T||T.pose!=='sit')restoreLegs(m);
+  if(g.bs){const want=T&&T.small?g.bs*0.66:g.bs;if(Math.abs(m.scale.x-want)>1e-3)m.scale.setScalar(want);}
   if(T&&T.leave&&Math.hypot(T.x-m.position.x,T.z-m.position.z)<0.3){m.visible=false;return true;}
   if(!T){m.visible=false;return true;}m.visible=true;m.rotation.x=0;m.rotation.z=0;
   if(T.route){m.position.set(T.x,groundY(T.x,T.z),T.z);m.rotation.y=T.face;resetArms(L);
@@ -1459,6 +1487,8 @@ function showGuest(g,t,dt){
   else if(d>0.06){const s=Math.min(d,dt*1.6);m.position.x+=dx/d*s;m.position.z+=dz/d*s;
     m.position.y=groundY(m.position.x,m.position.z)+(onFloor(m.position.x,m.position.z)?0.09:0);m.rotation.y=Math.atan2(dx,dz);resetArms(L);walkPose(m,t*9+g.step,0.5);return true;}
   const turnK=Math.min(1,dt*6);resetArms(L);
+  if(T.pose==='sit'&&T.eat){const sc=m.scale.x;m.position.set(T.x,T.y-0.42*sc,T.z);m.rotation.y=T.face;L.legL.visible=L.legR.visible=true;
+    L.legL.rotation.x=L.legR.rotation.x=-1.45;L.armL.rotation.x=-0.7+Math.sin(t*1.3+g.step)*0.08;L.armR.rotation.x=-0.75+Math.max(0,Math.sin(t*0.9+g.step))*0.55;m.rotation.z=Math.sin(t*0.6+g.step)*0.03;return true;}
   if(T.pose==='sit'){const sc=m.scale.x;m.position.set(T.x,T.y-0.42*sc,T.z);m.rotation.y=T.face;L.legL.visible=L.legR.visible=true;
     L.legL.rotation.x=L.legR.rotation.x=-1.45;L.armL.rotation.x=L.armR.rotation.x=-0.35;m.rotation.z=Math.sin(t*0.7+g.step)*0.02;return true;}
   if(T.pose==='stand'){m.position.set(T.x,TOP,T.z);turnTo(m,T.face,turnK);L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;
@@ -1469,7 +1499,7 @@ function showGuest(g,t,dt){
     if(me){L.armR.rotation.x=-0.9+Math.sin(t*5+g.step)*0.4;L.armL.rotation.x=-0.5+Math.sin(t*3.3)*0.3;}else L.armR.rotation.x=-0.85;}
   else if(T.pose==='dance'){const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);const th=t*0.9+T.pair*1.7;
     const x=T.x+Math.cos(th)*0.27*T.sign,z=T.z+Math.sin(th)*0.27*T.sign;
-    m.position.set(x,TOP+(onFloor(x,z)?0.09:0)+beat*0.07,z);m.rotation.y=Math.atan2(-Math.cos(th)*T.sign,-Math.sin(th)*T.sign);
+    m.position.set(x,TOP+(onFloor(x,z)||onDisco(x,z)?0.09:0)+beat*0.07,z);m.rotation.y=Math.atan2(-Math.cos(th)*T.sign,-Math.sin(th)*T.sign);
     L.armL.rotation.x=-2.3+Math.sin(t*4+g.step)*0.5;L.armR.rotation.x=-1.1+Math.cos(t*4+g.step)*0.6;
     L.legL.rotation.x=Math.sin(t*8+g.step)*0.3;L.legR.rotation.x=-L.legL.rotation.x;m.rotation.z=Math.sin(t*4+g.step)*0.08;}
   return true;
@@ -1509,14 +1539,14 @@ function onPhase(P){
   if(cer)flyTo(-8,-6,zf*1.15,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
   else if(P.k==='traslado')flyTo(taxi.position.x,taxi.position.z,zf*0.85,taxi);
   else if(P.k==='aperitivo')flyTo(5.4,-0.2,zf);
-  else if(cena)flyTo(4.9,6.1,zf*1.12,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
+  else if(cena)flyTo(4.3,4.2,zf*0.98,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
   else if(P.k==='regreso'){const q=routeAt(ROUTES.R1,ROUTES.R1.len);flyTo((q.x+9.5)/2,(q.z+0.2)/2,zf*0.8);}
   else flyTo(9.7,0.2,zf,null,[1,0.92,0.35]);
 }
 function startShow(){
   if(MESA_OPEN)setMesa(false);if(CHURCH_OPEN)setChurch(false,false);closeCard();
   document.body.classList.add('showing');if(INFO_OPEN)setInfo(false);
-  SHOW.on=true;SHOW.t=0;SHOW.paused=false;SHOW.phase=null;SHOW.cam=true;userMoved=true;assignShow();
+  SHOW.on=true;SHOW.t=0;SHOW.paused=false;SHOW.phase=null;SHOW.cam=true;userMoved=true;assignShow();seatsRoot.visible=false;
   showEl.hidden=false;showBtn.setAttribute('aria-pressed','true');showBtn.textContent='Salir del Modo Fiesta';
   $('#sPause').textContent='Pausa';
   if(!MUSIC.on)toggleMusic(true);
@@ -1524,7 +1554,7 @@ function startShow(){
 function stopShow(){
   document.body.classList.remove('showing');
   SHOW.on=false;SHOW.phase=null;showEl.hidden=true;showBtn.setAttribute('aria-pressed','false');showBtn.textContent='Modo Fiesta';
-  raul.visible=gian.visible=true;novios.visible=true;openSalon(MESA_OPEN);openChurch(CHURCH_OPEN);guests.forEach(g=>{g.m.visible=true;if(!g.dog)restoreLegs(g.m);});
+  raul.visible=gian.visible=true;novios.visible=true;openSalon(MESA_OPEN);openChurch(CHURCH_OPEN);guests.forEach(g=>{g.m.visible=true;if(g.bs)g.m.scale.setScalar(g.bs);if(!g.dog)restoreLegs(g.m);});seatsRoot.visible=true;
   resetSky();userMoved=false;fitView(true);
 }
 function updateShow(dt){
