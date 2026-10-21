@@ -8,6 +8,7 @@
 <meta property="og:title" content="Miguel &amp; Marcela · Venecia">
 <meta property="og:description" content="Jueves 7 de enero de 2027">
 <meta name="theme-color" content="#0a1324">
+<link rel="icon" href="img/mm.png">
 <style>*,*::before,*::after{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
 <title>Boda M&amp;M en Venecia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +50,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .reset:hover{border-color:var(--gold);}
 .reset[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-soft);}
 .reset:focus-visible,.card .x:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
-.tools{top:calc(env(safe-area-inset-top,0px) + 100px);left:max(16px, env(safe-area-inset-left,0px));pointer-events:auto;display:grid;gap:8px;width:min(330px, calc(100vw - 32px));}
+.tools{top:calc(env(safe-area-inset-top,0px) + 132px);left:max(16px, env(safe-area-inset-left,0px));pointer-events:auto;display:grid;gap:8px;width:min(330px, calc(100vw - 32px));}
 .search{position:relative;}
 .search input{width:100%;box-sizing:border-box;font:500 13px var(--ui);color:var(--ivory);background:var(--glass);border:1px solid var(--line);border-radius:999px;
   padding:9px 14px 9px 34px;outline:none;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
@@ -114,9 +115,11 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
   background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
 .guest .tabs{display:flex;}
 .tabs button{font:600 12.5px var(--ui);letter-spacing:.04em;color:var(--ivory);background:transparent;border:0;border-radius:999px;padding:8px 16px;cursor:pointer;}
+.tabs button[hidden]{display:none;}
 .tabs button[aria-selected="true"]{background:var(--gold);color:var(--night);}
 .tabs button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px;}
 .guest .live{display:none;}
+.guest .search{display:none;}
 .showing .tabs{display:none!important;}
 @media (max-width:640px){.guest .tabs{top:calc(env(safe-area-inset-top,0px) + 66px);left:max(16px, env(safe-area-inset-left,0px));transform:none;}}
 .info{position:fixed;inset:0;z-index:8;overflow:auto;overscroll-behavior:contain;background:linear-gradient(180deg,rgba(8,15,30,.94),rgba(10,19,36,.97));
@@ -126,6 +129,9 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .iw{max-width:760px;margin:0 auto;display:grid;gap:28px;}
 .ihero{text-align:center;display:grid;gap:6px;padding-bottom:6px;border-bottom:1px solid var(--line);}
 .ihero .mono{font-family:var(--display);color:var(--gold);font-size:clamp(40px,8vw,64px);line-height:1;}
+.brand .mono img{display:block;height:clamp(48px,7vw,66px);width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));}
+@media (max-width:640px){.brand .mono img{height:44px;} .guest .brand .place{display:none;}}
+.ihero .mono img{display:block;margin:0 auto;height:clamp(84px,16vw,124px);width:auto;}
 .ihero .mono span{font-size:.6em;vertical-align:.2em;color:var(--gold-soft);margin:0 .1em;}
 .ihero .names{font-family:var(--display);font-size:clamp(26px,5vw,36px);color:var(--ivory);text-wrap:balance;}
 .ihero .date{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);}
@@ -155,6 +161,12 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .dress b{font-size:15px;color:var(--ivory);font-weight:600;}
 .tips{margin:0;padding-left:18px;display:grid;gap:8px;color:var(--mist);font-size:13.5px;line-height:1.5;max-width:65ch;}
 .ifoot{text-align:center;font-size:12px;color:var(--mist);}
+.vintro{margin:4px auto 10px;max-width:56ch;font-size:13.5px;line-height:1.55;color:var(--mist);text-wrap:pretty;}
+.vcats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.vcats button{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--ui);color:var(--ivory);background:rgba(22,38,74,.55);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;}
+.vcats button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.vcats button[aria-pressed="true"]{background:var(--gold);color:var(--night);border-color:var(--gold);}
+.vcats button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px;}
 @media (max-width:640px){.tl li{grid-template-columns:86px 1fr;gap:12px;}.tl .h{font-size:17px;}.guest .info{padding-top:calc(env(safe-area-inset-top,0px) + 124px);}}
 .tip{position:fixed;z-index:6;pointer-events:none;padding:5px 10px;border-radius:8px;background:rgba(10,19,36,.82);border:1px solid var(--line);
   font-size:12px;color:var(--ivory);white-space:nowrap;transform:translate(14px,14px);}
@@ -211,7 +223,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 <canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="gl" tabindex="0" aria-label="Mundo 3D de la boda en Venecia. Arrastra para girar, clic derecho o dos dedos para mover, rueda o pellizco para acercar, toca un objeto para ver sus datos."></canvas>
 
-<div class="hud brand"><div class="mono">M<span>&amp;</span>M</div><div class="place" id="place">Venecia</div></div>
+<div class="hud brand"><div class="mono"><img src="img/mm.png" alt="M&amp;M"></div><div class="place" id="place">Venecia</div></div>
 <div class="hud live stale" id="live" role="status"><span class="dot"></span><b>LIVE</b><span class="ago" id="ago">Conectando…</span></div>
 <div class="hud tools" id="tools">
   <div class="search" role="search">
@@ -229,7 +241,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
   <div class="legend" aria-hidden="true"><span><i class="ok"></i>Confirmado</span><span><i class="pe"></i>Por confirmar</span><span id="lgPot" hidden><i class="po"></i>Potencial</span></div>
 </div>
 <div class="hud hint" id="hint">Arrastra para girar · clic derecho, Shift + arrastrar o flechas para mover · rueda o pellizco para acercar · toca la iglesia, Ca’ Sagredo, el taxi acuático, los músicos o la foto de cualquier invitado.</div>
-<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="showBtn" type="button" aria-pressed="false">7 de enero</button><button class="reset" id="musicBtn" type="button" aria-pressed="false">Música</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
+<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
 <section class="plan" id="plan" aria-label="Plano de la mesa en U" hidden>
   <div class="eyebrow" id="planSub">Cena en Ca’ Sagredo</div>
   <h3>Mesa en U</h3>
@@ -237,7 +249,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
   <div class="unassigned" id="planFree" hidden></div>
   <p class="note">Vista desde la entrada de la U. Toca un puesto para ver a la persona. Para cambiar puestos, pídelo en el chat del proyecto.</p>
 </section>
-<section class="show" id="show" aria-label="Modo 7 de enero" hidden>
+<section class="show" id="show" aria-label="Modo Fiesta" hidden>
   <div class="srow"><div class="clock" id="sClock">4:00 p. m.</div><div class="sphase" id="sPhase"></div></div>
   <div class="strack" id="sTrack" title="Toca para saltar a otra hora"><i id="sBar"></i></div>
   <div class="slabels"><span>4:00</span><span>Ceremonia</span><span>Bote</span><span>Aperitivo</span><span>Cena</span><span>Fiesta</span><span>11:30</span></div>
@@ -249,7 +261,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
   <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
   <button class="lbn next" id="lbNext" type="button" aria-label="Foto siguiente">›</button>
 </div>
-<nav class="tabs" role="tablist" aria-label="Secciones"><button type="button" role="tab" id="tabMundo" aria-selected="true">Mundo</button><button type="button" role="tab" id="tabInfo" aria-selected="false">Información</button></nav>
+<nav class="tabs" role="tablist" aria-label="Secciones"><button type="button" role="tab" id="tabMundo" aria-selected="true">Mundo</button><button type="button" role="tab" id="tabInfo" aria-selected="false">Información</button><button type="button" role="tab" id="tabVen" aria-selected="false">Venecia</button></nav>
 <section class="info" id="info" role="tabpanel" aria-labelledby="tabInfo" hidden><div class="iw" id="infoBody"></div></section>
 <div class="tip" id="tip" hidden></div>
 <section class="card" id="card" role="dialog" aria-live="polite" aria-labelledby="cTitle" hidden>
@@ -1393,13 +1405,13 @@ function startShow(){
   if(MESA_OPEN)setMesa(false);if(CHURCH_OPEN)setChurch(false);closeCard();
   document.body.classList.add('showing');if(INFO_OPEN)setInfo(false);
   SHOW.on=true;SHOW.t=0;SHOW.paused=false;SHOW.phase=null;SHOW.cam=true;userMoved=true;assignShow();
-  showEl.hidden=false;showBtn.setAttribute('aria-pressed','true');showBtn.textContent='Salir del 7 de enero';
+  showEl.hidden=false;showBtn.setAttribute('aria-pressed','true');showBtn.textContent='Salir del Modo Fiesta';
   $('#sPause').textContent='Pausa';
   if(!MUSIC.on)toggleMusic(true);
 }
 function stopShow(){
   document.body.classList.remove('showing');
-  SHOW.on=false;SHOW.phase=null;showEl.hidden=true;showBtn.setAttribute('aria-pressed','false');showBtn.textContent='7 de enero';
+  SHOW.on=false;SHOW.phase=null;showEl.hidden=true;showBtn.setAttribute('aria-pressed','false');showBtn.textContent='Modo Fiesta';
   raul.visible=gian.visible=true;novios.visible=true;openSalon(MESA_OPEN);openChurch(CHURCH_OPEN);guests.forEach(g=>{g.m.visible=true;if(!g.dog)restoreLegs(g.m);});
   resetSky();userMoved=false;fitView(true);
 }
@@ -1472,7 +1484,11 @@ function toggleMusic(force){
   if(MUSIC.ctx){if(on)MUSIC.ctx.resume();MUSIC.master.gain.setTargetAtTime(on?0.22:0,MUSIC.ctx.currentTime,0.4);}
   musicBtn.setAttribute('aria-pressed',on?'true':'false');musicBtn.textContent=on?'Silenciar':'Música';
 }
-musicBtn.addEventListener('click',()=>toggleMusic());
+let MUSIC_AUTO=true;
+musicBtn.addEventListener('click',()=>{if(MUSIC_AUTO&&!MUSIC.on){MUSIC_AUTO=false;musicBtn.setAttribute('aria-pressed','false');musicBtn.textContent='Música';return;}MUSIC_AUTO=false;toggleMusic();});
+function autoMusic(e){if(!MUSIC_AUTO)return;if(e.target&&e.target.closest&&e.target.closest('#musicBtn'))return;MUSIC_AUTO=false;toggleMusic(true);
+  ['pointerdown','keydown','touchend'].forEach(t=>removeEventListener(t,autoMusic,true));}
+['pointerdown','keydown','touchend'].forEach(t=>addEventListener(t,autoMusic,true));
 document.addEventListener('visibilitychange',()=>{if(!MUSIC.ctx)return;if(document.hidden)MUSIC.ctx.suspend();else if(MUSIC.on)MUSIC.ctx.resume();});
 
 /* ---------- Acciones de la tarjeta y galería de fotos ---------- */
@@ -1623,14 +1639,15 @@ animators.push(t=>{
 
 /* ---------- Información del evento (pestaña estática) ---------- */
 const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let INFO_OPEN=false,infoKey='';
+let INFO_OPEN=false,INFO_VIEW='info',infoKey='';
 function renderInfo(){
-  const I=(DATA&&DATA.info)||{};const key=JSON.stringify(I);if(key===infoKey)return;infoKey=key;
+  const I=(DATA&&DATA.info)||{};const key=INFO_VIEW+JSON.stringify(I);if(key===infoKey)return;infoKey=key;
+  if(INFO_VIEW==='venecia')return renderVenecia(I.venecia);
   const b=$('#infoBody');
   if(!I.programa&&!I.lugares){b.innerHTML='<p class="ifoot">La información del evento todavía no está cargada.</p>';return;}
   const d=daysUntil((DATA.evento&&DATA.evento.fecha)||'2027-01-07');
   const mono=(I.titulo||'M & M').split('&').map(x=>esc(x.trim()));
-  let h='<header class="ihero"><div class="mono">M<span>&amp;</span>M</div><div class="names">'+mono.join(' &amp; ')+'</div>'+
+  let h='<header class="ihero"><div class="mono"><img src="img/mm.png" alt="M&amp;M"></div><div class="names">'+mono.join(' &amp; ')+'</div>'+
     '<div class="date">'+esc(I.fecha||'')+(I.ciudad?' · '+esc(I.ciudad):'')+'</div><div class="count">'+(d>0?'Faltan '+NF0.format(d)+(d===1?' día':' días'):'¡Es hoy!')+'</div></header>';
   if(I.programa&&I.programa.length){h+='<section class="isec"><h3>Programa</h3><ol class="tl">'+I.programa.map(p=>
     '<li><div class="h">'+esc(p.hora)+'</div><div><b>'+esc(p.titulo)+'</b>'+(p.lugar?'<div class="lg">'+esc(p.lugar)+'</div>':'')+(p.detalle?'<p>'+esc(p.detalle)+'</p>':'')+'</div></li>').join('')+'</ol></section>';}
@@ -1650,12 +1667,32 @@ function renderInfo(){
     const p=new THREE.Vector3();g.getWorldPosition(p);userMoved=true;flyTo(p.x,p.z,innerWidth<640?1.9:2.3);}));
 }
 function selectText(el){try{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);}catch(e){}}
-function setInfo(on){INFO_OPEN=on;if(on){renderInfo();closeCard();}$('#info').hidden=!on;
-  $('#tabMundo').setAttribute('aria-selected',on?'false':'true');$('#tabInfo').setAttribute('aria-selected',on?'true':'false');
-  $('#infoBtn').setAttribute('aria-pressed',on?'true':'false');$('#infoBtn').textContent=on?'Volver al mundo':'Información';
+let VEN_CAT=null;
+const VEN_ICON={cultura:'<path d="M3 10l9-6 9 6M5 10v9m4-9v9m6-9v9m4-9v9M3 21h18"/>',restaurantes:'<path d="M7 3v8m-3-8v4a3 3 0 006 0V3M7 11v10m10-18c-2 0-3 2-3 6s1 5 3 5v7"/>',
+  hoteles:'<path d="M3 20V6m0 8h18v6M3 14V9h7a3 3 0 013 3v2m8 0v-2a3 3 0 00-3-3h-5"/>',fiestas:'<path d="M5 21l4-11 5 5-9 6zM14 4l1 2m4 1l-2 1m-3 3l3-3m1 7l2 1M12 3v1"/>'};
+function renderVenecia(V){
+  const b=$('#infoBody');
+  if(!V||!V.categorias||!V.categorias.length){b.innerHTML='<p class="ifoot">Pronto: ideas para disfrutar Venecia.</p>';return;}
+  if(!VEN_CAT||!V.categorias.some(c=>c.id===VEN_CAT))VEN_CAT=V.categorias[0].id;
+  const cat=V.categorias.find(c=>c.id===VEN_CAT);
+  let h='<header class="ihero"><div class="mono"><img src="img/mm.png" alt="M&amp;M"></div><div class="names">Venecia</div>'+(V.intro?'<p class="vintro">'+esc(V.intro)+'</p>':'')+'</header>';
+  h+='<div class="vcats" role="group" aria-label="Categorías">'+V.categorias.map(c=>'<button type="button" data-cat="'+esc(c.id)+'" aria-pressed="'+(c.id===VEN_CAT)+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+(VEN_ICON[c.icono||c.id]||'')+'</svg>'+esc(c.titulo)+'</button>').join('')+'</div>';
+  h+='<div class="ilugares">'+(cat.items||[]).map(it=>'<article class="ilugar"><div class="rol">'+esc(it.zona||'')+'</div><h4>'+esc(it.nombre)+'</h4>'+(it.detalle?'<div class="how">'+esc(it.detalle)+'</div>':'')+
+    (it.mapa?'<div class="acts"><a href="'+esc(it.mapa)+'" target="_blank" rel="noopener">Ver en el mapa</a></div>':'')+'</article>').join('')+'</div>';
+  h+='<p class="ifoot">Horarios y precios pueden cambiar: confirma antes de ir.</p>';
+  b.innerHTML=h;
+  b.querySelectorAll('[data-cat]').forEach(bt=>bt.addEventListener('click',()=>{VEN_CAT=bt.dataset.cat;infoKey='';renderInfo();}));
+}
+function setInfo(on,view){if(view)INFO_VIEW=view;INFO_OPEN=on;if(on){renderInfo();closeCard();}$('#info').hidden=!on;
+  $('#tabMundo').setAttribute('aria-selected',on?'false':'true');
+  $('#tabInfo').setAttribute('aria-selected',on&&INFO_VIEW==='info'?'true':'false');$('#tabVen').setAttribute('aria-selected',on&&INFO_VIEW==='venecia'?'true':'false');
+  const iO=on&&INFO_VIEW==='info',vO=on&&INFO_VIEW==='venecia';
+  $('#infoBtn').setAttribute('aria-pressed',iO?'true':'false');$('#infoBtn').textContent=iO?'Volver al mundo':'Información';
+  $('#venBtn').setAttribute('aria-pressed',vO?'true':'false');$('#venBtn').textContent=vO?'Volver al mundo':'Venecia';
   if(on)$('#info').scrollTop=0;}
-$('#tabMundo').addEventListener('click',()=>setInfo(false));$('#tabInfo').addEventListener('click',()=>setInfo(true));
-$('#infoBtn').addEventListener('click',()=>setInfo(!INFO_OPEN));
+$('#tabMundo').addEventListener('click',()=>setInfo(false));$('#tabInfo').addEventListener('click',()=>setInfo(true,'info'));$('#tabVen').addEventListener('click',()=>setInfo(true,'venecia'));
+$('#infoBtn').addEventListener('click',()=>setInfo(!(INFO_OPEN&&INFO_VIEW==='info'),'info'));
+$('#venBtn').addEventListener('click',()=>setInfo(!(INFO_OPEN&&INFO_VIEW==='venecia'),'venecia'));
 addEventListener('keydown',e=>{if(INFO_OPEN&&e.key==='Escape')setInfo(false);});
 
 /* ---------- Plano 2D de la mesa en U ---------- */
@@ -1768,7 +1805,7 @@ function setStaticTags(D){
   spec.forEach(([fig,owner,p],i)=>{if(fig&&p){addTag(fig,owner,p.foto,p.nombre,1.22,true,{lado:p.lado,ok:okOf(p),kind:'persona'});tags[tags.length-1].level=i%2?1.2:0;}});
 }
 function onData(){
-  GUEST=DATA.modo==='invitados';$('#infoBtn').hidden=GUEST||!DATA.info;if(INFO_OPEN)renderInfo();document.body.classList.toggle('guest',GUEST);$('#mesaBtn').hidden=!DATA.mesa;if(!DATA.mesa&&MESA_OPEN)setMesa(false);
+  GUEST=DATA.modo==='invitados';$('#infoBtn').hidden=GUEST||!DATA.info;$('#venBtn').hidden=GUEST||!(DATA.info&&DATA.info.venecia);$('#tabVen').hidden=!(DATA.info&&DATA.info.venecia);if(INFO_OPEN)renderInfo();document.body.classList.toggle('guest',GUEST);$('#mesaBtn').hidden=!DATA.mesa;if(!DATA.mesa&&MESA_OPEN)setMesa(false);
   updateLive();updateChips();buildSeats(DATA.mesa);if(MESA_OPEN)renderPlan();
   const ev=DATA.evento||{};
   buildGuests(DATA);setStaticTags(DATA);updatePayView(DATA);
@@ -1821,7 +1858,7 @@ requestAnimationFrame(frame);
   background:radial-gradient(120% 90% at 30% 10%, #16264a 0%, #0a1324 62%);color:#f4ecdc;font-family:"Albert Sans",system-ui,sans-serif;}
 .gate form{width:min(360px,100%);display:grid;gap:14px;text-align:center;}
 .gate .gmono{font-family:"Italiana",Georgia,serif;font-size:64px;line-height:1;color:#d8b45f;}
-.gate .gmono span{font-size:.6em;vertical-align:.2em;color:#e9d39a;margin:0 .08em;}
+.gate .gmono img{display:block;margin:0 auto;height:120px;width:auto;}
 .gate .gt{font-family:"Italiana",Georgia,serif;font-size:28px;}
 .gate .gd{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#e9d39a;}
 .gate label{font-size:13px;color:#a9b8d4;margin-top:10px;}
@@ -1833,7 +1870,7 @@ requestAnimationFrame(frame);
 </style>
 <div class="gate" id="gate">
   <form id="gateForm" autocomplete="off">
-    <div class="gmono">M<span>&amp;</span>M</div>
+    <div class="gmono"><img src="img/mm.png" alt="M&amp;M"></div>
     <div class="gt">Miguel &amp; Marcela</div>
     <div class="gd">Venecia · 7 de enero de 2027</div>
     <label for="gateIn">Escribe la clave de tu invitación</label>
