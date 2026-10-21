@@ -1,0 +1,995 @@
+{
+ "modo": "invitados",
+ "actualizado": "2026-10-21T13:20:44+00:00",
+ "fuente": "Matrimonio M&M · Venecia",
+ "evento": {
+  "fecha": "2027-01-07",
+  "adultos": 20,
+  "ninos": 5
+ },
+ "objetos": {
+  "campanile": {
+   "titulo": "Cuenta regresiva",
+   "sub": "Campanile · 7 de enero de 2027",
+   "metricas": [
+    {
+     "label": "Días para la boda",
+     "value": "2027-01-07",
+     "fmt": "dias"
+    },
+    {
+     "label": "Ceremonia",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Vestimenta",
+     "value": "Corbata negra · vestido largo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "iglesia": {
+   "titulo": "Santa Maria dei Miracoli",
+   "sub": "Ceremonia religiosa",
+   "metricas": [
+    {
+     "label": "Hora",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Días para la ceremonia",
+     "value": "2027-01-07",
+     "fmt": "dias"
+    },
+    {
+     "label": "Vestimenta",
+     "value": "Corbata negra · vestido largo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "palazzo": {
+   "titulo": "Ca’ Sagredo",
+   "sub": "Aperitivo y cena",
+   "metricas": [
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "taxi": {
+   "titulo": "Taxi acuático",
+   "sub": "El bote de los novios",
+   "metricas": [
+    {
+     "label": "Recorrido",
+     "value": "De los Miracoli a Ca’ Sagredo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "fotografo": {
+   "titulo": "Fotógrafo",
+   "sub": "Mirco Toffolo Studio",
+   "metricas": [
+    {
+     "label": "Acompaña",
+     "value": "De la ceremonia a la fiesta",
+     "fmt": "text"
+    }
+   ]
+  },
+  "dj": {
+   "titulo": "DJ, sonido y luces",
+   "sub": "Massimo Pillon",
+   "metricas": [
+    {
+     "label": "Dónde",
+     "value": "Ca’ Sagredo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "saxo": {
+   "titulo": "Saxofonista",
+   "sub": "Marco G.",
+   "metricas": [
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "decoracion": {
+   "titulo": "Decoración",
+   "sub": "Flores y faroles de Ca’ Sagredo",
+   "metricas": [
+    {
+     "label": "Dónde",
+     "value": "Entrada por el canal",
+     "fmt": "text"
+    }
+   ]
+  },
+  "invitados": {
+   "titulo": "Invitados",
+   "sub": "Familia y amigos",
+   "metricas": [
+    {
+     "label": "Invitados",
+     "value": 25,
+     "fmt": "int"
+    },
+    {
+     "label": "Niños",
+     "value": 5,
+     "fmt": "int"
+    }
+   ]
+  },
+  "novios": {
+   "titulo": "Miguel y Marcela",
+   "sub": "Los novios",
+   "fotos": [
+    "fotos/migue.jpg",
+    "fotos/marce.jpg"
+   ],
+   "metricas": [
+    {
+     "label": "Ceremonia",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "raul": {
+   "titulo": "Raúl",
+   "sub": "Papá de Miguel",
+   "foto": "fotos/rad.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "giancarlo": {
+   "titulo": "Giancarlo",
+   "sub": "Papá de Marcela",
+   "foto": "fotos/gian.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g1": {
+   "titulo": "Marce",
+   "sub": "Novia",
+   "foto": "fotos/marce.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Marcela",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g2": {
+   "titulo": "Migue",
+   "sub": "Novio",
+   "foto": "fotos/migue.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Miguel",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g3": {
+   "titulo": "Lili",
+   "sub": "Mamá de Marcela",
+   "foto": "fotos/lili.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Liliana María Hidalgo Morán",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g4": {
+   "titulo": "Gian",
+   "sub": "Papá de Marcela",
+   "foto": "fotos/gian.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Giancarlo Auqué De Silvestri",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g5": {
+   "titulo": "Toti",
+   "sub": "Hermana de Marcela",
+   "foto": "fotos/toti.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Rosana Auqué Rosenwach",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g6": {
+   "titulo": "FA",
+   "sub": "Mamá de Miguel",
+   "foto": "fotos/fa.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Fátima Dávila Armenta",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g7": {
+   "titulo": "RAD",
+   "sub": "Papá de Miguel",
+   "foto": "fotos/rad.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Raúl Alberto Dávila Jimeno",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g8": {
+   "titulo": "RED",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/red.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g9": {
+   "titulo": "TIZ",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/tiz.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g10": {
+   "titulo": "Raúl Alberto",
+   "sub": "Sobrino de Miguel",
+   "foto": "fotos/raul-alberto.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g11": {
+   "titulo": "Cristina",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/cristina.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g12": {
+   "titulo": "Rafa",
+   "sub": "Sobrino de Miguel",
+   "foto": "fotos/rafa.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g13": {
+   "titulo": "Machi",
+   "sub": "Hermana de Miguel",
+   "foto": "fotos/machi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g14": {
+   "titulo": "Jose",
+   "sub": "Cuñado de Miguel",
+   "foto": "fotos/jose.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g15": {
+   "titulo": "Ale",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/ale.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g16": {
+   "titulo": "Fa Jr.",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/fa-jr.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g17": {
+   "titulo": "Beto",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/beto.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g18": {
+   "titulo": "Cata",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/cata.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g19": {
+   "titulo": "Pipe",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/pipe.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g20": {
+   "titulo": "Nana",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/nana.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g22": {
+   "titulo": "Henry",
+   "sub": "Cuñado de Marcela",
+   "foto": "fotos/henry.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g23": {
+   "titulo": "Isa",
+   "sub": "Hermana de Marcela",
+   "foto": "fotos/isa.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g24": {
+   "titulo": "Juanchi",
+   "sub": "Cuñado de Marcela",
+   "foto": "fotos/juanchi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g25": {
+   "titulo": "Pacho",
+   "sub": "Amigo de la familia de Marcela",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Pacho Infante",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g26": {
+   "titulo": "Maribel",
+   "sub": "Tía de Marcela",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m1": {
+   "titulo": "Rayo",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/rayo.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m2": {
+   "titulo": "Billi",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/billi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m3": {
+   "titulo": "Fiji",
+   "sub": "Sobrina perruna de Miguel",
+   "foto": "fotos/fiji.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m4": {
+   "titulo": "Ruffo",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/ruffo.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  }
+ },
+ "personas": [
+  {
+   "id": "g1",
+   "nombre": "Marce",
+   "completo": "Marcela",
+   "relacion": "Novia",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/marce.jpg",
+   "potencial": false,
+   "escena": "taxi-novia"
+  },
+  {
+   "id": "g2",
+   "nombre": "Migue",
+   "completo": "Miguel",
+   "relacion": "Novio",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/migue.jpg",
+   "potencial": false,
+   "escena": "taxi-novio"
+  },
+  {
+   "id": "g3",
+   "nombre": "Lili",
+   "completo": "Liliana María Hidalgo Morán",
+   "relacion": "Mamá de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/lili.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g4",
+   "nombre": "Gian",
+   "completo": "Giancarlo Auqué De Silvestri",
+   "relacion": "Papá de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/gian.jpg",
+   "potencial": false,
+   "escena": "giancarlo"
+  },
+  {
+   "id": "g5",
+   "nombre": "Toti",
+   "completo": "Rosana Auqué Rosenwach",
+   "relacion": "Hermana de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/toti.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g6",
+   "nombre": "FA",
+   "completo": "Fátima Dávila Armenta",
+   "relacion": "Mamá de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/fa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g7",
+   "nombre": "RAD",
+   "completo": "Raúl Alberto Dávila Jimeno",
+   "relacion": "Papá de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/rad.jpg",
+   "potencial": false,
+   "escena": "raul"
+  },
+  {
+   "id": "g8",
+   "nombre": "RED",
+   "completo": "RED",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/red.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g9",
+   "nombre": "TIZ",
+   "completo": "TIZ",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/tiz.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g10",
+   "nombre": "Raúl Alberto",
+   "completo": "Raúl Alberto",
+   "relacion": "Sobrino de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/raul-alberto.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g11",
+   "nombre": "Cristina",
+   "completo": "Cristina",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/cristina.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g12",
+   "nombre": "Rafa",
+   "completo": "Rafa",
+   "relacion": "Sobrino de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/rafa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g13",
+   "nombre": "Machi",
+   "completo": "Machi",
+   "relacion": "Hermana de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/machi.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g14",
+   "nombre": "Jose",
+   "completo": "Jose",
+   "relacion": "Cuñado de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/jose.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g15",
+   "nombre": "Ale",
+   "completo": "Ale",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/ale.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g16",
+   "nombre": "Fa Jr.",
+   "completo": "Fa Jr.",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/fa-jr.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g17",
+   "nombre": "Beto",
+   "completo": "Beto",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/beto.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g18",
+   "nombre": "Cata",
+   "completo": "Cata",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/cata.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g19",
+   "nombre": "Pipe",
+   "completo": "Pipe",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/pipe.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g20",
+   "nombre": "Nana",
+   "completo": "Nana",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/nana.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g22",
+   "nombre": "Henry",
+   "completo": "Henry",
+   "relacion": "Cuñado de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/henry.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g23",
+   "nombre": "Isa",
+   "completo": "Isa",
+   "relacion": "Hermana de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/isa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g24",
+   "nombre": "Juanchi",
+   "completo": "Juanchi",
+   "relacion": "Cuñado de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/juanchi.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g25",
+   "nombre": "Pacho",
+   "completo": "Pacho Infante",
+   "relacion": "Amigo de la familia de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g26",
+   "nombre": "Maribel",
+   "completo": "Maribel",
+   "relacion": "Tía de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  }
+ ],
+ "mascotas": [
+  {
+   "id": "m1",
+   "nombre": "Rayo",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/rayo.jpg"
+  },
+  {
+   "id": "m2",
+   "nombre": "Billi",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/billi.jpg"
+  },
+  {
+   "id": "m3",
+   "nombre": "Fiji",
+   "relacion": "Sobrina perruna de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/fiji.jpg"
+  },
+  {
+   "id": "m4",
+   "nombre": "Ruffo",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/ruffo.jpg"
+  }
+ ],
+ "galerias": {},
+ "info": {
+  "ciudad": "Venecia, Italia",
+  "consejos": [
+   "En enero las noches en Venecia suelen estar entre 1 °C y 7 °C: lleven abrigo para los trayectos a pie.",
+   "En invierno puede haber acqua alta. Revisen el pronóstico ese día y lleven calzado de repuesto.",
+   "No se permite fumar dentro de Ca’ Sagredo."
+  ],
+  "fecha": "Jueves 7 de enero de 2027",
+  "lugares": [
+   {
+    "direccion": "Campo dei Miracoli, Cannaregio 6075, 30121 Venezia",
+    "id": "iglesia",
+    "llegar": "Vaporetto línea 1, parada Ca’ d’Oro o Rialto; desde cualquiera de las dos son unos minutos a pie por Cannaregio.",
+    "mapa": "https://www.google.com/maps/search/?api=1&query=Chiesa+di+Santa+Maria+dei+Miracoli+Venezia",
+    "nombre": "Chiesa di Santa Maria dei Miracoli",
+    "rol": "Ceremonia · 4:30 PM",
+    "telefono": ""
+   },
+   {
+    "direccion": "Campo Santa Sofia 4198/99, Cannaregio, 30121 Venezia",
+    "id": "palazzo",
+    "llegar": "Vaporetto línea 1, parada Ca’ d’Oro, junto al hotel. En taxi acuático: unos 5 minutos desde la estación Santa Lucia y unos 30 minutos desde el aeropuerto.",
+    "mapa": "https://www.google.com/maps/search/?api=1&query=Ca%27+Sagredo+Hotel+Venezia",
+    "nombre": "Ca’ Sagredo Hotel",
+    "rol": "Aperitivo, cena y celebración · desde las 6:00 PM",
+    "telefono": "+39 041 241 3111"
+   }
+  ],
+  "programa": [
+   {
+    "detalle": "",
+    "hora": "4:30 PM",
+    "lugar": "Santa Maria dei Miracoli",
+    "lugarId": "iglesia",
+    "titulo": "Ceremonia"
+   },
+   {
+    "detalle": "",
+    "hora": "6:00 PM",
+    "lugar": "Ca’ Sagredo",
+    "lugarId": "palazzo",
+    "titulo": "Aperitivo"
+   },
+   {
+    "detalle": "",
+    "hora": "7:00 PM",
+    "lugar": "Ca’ Sagredo",
+    "lugarId": "palazzo",
+    "titulo": "Cena"
+   }
+  ],
+  "titulo": "Miguel & Marcela",
+  "vestimenta": "Corbata negra · vestido largo"
+ }
+}
