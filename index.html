@@ -912,7 +912,7 @@ renderer.setClearColor(0x000000,0);
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 const scene=new THREE.Scene();
 const camera=new THREE.OrthographicCamera(-10,10,10,-10,0.1,300);
-const CAM_DIR=new THREE.Vector3(-1,0.92,1).normalize();
+const CAM_DIR=new THREE.Vector3(-0.22,0.95,1).normalize();
 camera.position.copy(CAM_DIR).multiplyScalar(80);camera.lookAt(0,0,0);
 const controls=new THREE.OrbitControls(camera,canvas);
 controls.enableDamping=true;controls.dampingFactor=0.08;controls.rotateSpeed=0.7;
@@ -922,7 +922,7 @@ controls.enablePan=true;controls.panSpeed=1;controls.keyPanSpeed=18;
 controls.touches={ONE:THREE.TOUCH.ROTATE,TWO:THREE.TOUCH.DOLLY_PAN};
 if(controls.listenToKeyEvents)controls.listenToKeyEvents(window);
 /* Mantener el centro de la vista sobre Venecia al mover */
-controls.addEventListener('change',()=>{const t=controls.target;const cx=Math.max(-15,Math.min(15,t.x)),cy=Math.max(-1,Math.min(7,t.y)),cz=Math.max(-13,Math.min(13,t.z));
+controls.addEventListener('change',()=>{const t=controls.target;const cx=Math.max(-24,Math.min(26,t.x)),cy=Math.max(-1,Math.min(7,t.y)),cz=Math.max(-18,Math.min(21,t.z));
   if(cx!==t.x||cy!==t.y||cz!==t.z){const d=new THREE.Vector3(cx-t.x,cy-t.y,cz-t.z);t.add(d);camera.position.add(d);}});
 
 const TOP=0.5;
@@ -948,11 +948,11 @@ const hemi=new THREE.HemisphereLight(0x9fb4e6,0x2a2340,0.95);scene.add(hemi);
 const moon=new THREE.DirectionalLight(0xd4ddff,0.85);
 moon.position.set(-14,24,12);moon.castShadow=true;
 moon.shadow.mapSize.set(MOBILE?1024:2048,MOBILE?1024:2048);
-Object.assign(moon.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:1,far:80});
+Object.assign(moon.shadow.camera,{left:-36,right:36,top:36,bottom:-36,near:1,far:110});
 moon.shadow.bias=-0.0006;moon.shadow.normalBias=0.03;
 scene.add(moon);
-const warm1=at(new THREE.PointLight(0xffb45a,1.3,12,1.6),3.2,3,6);scene.add(warm1);
-const warm2=at(new THREE.PointLight(0xffc982,0.9,9,1.6),-7,2.5,-1.2);scene.add(warm2);
+const warm1=at(new THREE.PointLight(0xffb45a,1.3,12,1.6),-15,3,2.2);scene.add(warm1);
+const warm2=at(new THREE.PointLight(0xffc982,0.9,9,1.6),8,2.5,3);scene.add(warm2);
 
 /* ---------- Registro interactivo ---------- */
 const pickables=[];const groupsById={};
@@ -976,26 +976,29 @@ function unregister(group){
 }
 
 /* ---------- Agua e islas ---------- */
-const WX=56,WZ=46;
+const WX=62,WZ=50;
 const waterGeo=new THREE.PlaneGeometry(WX,WZ,51,45);waterGeo.rotateX(-Math.PI/2);
 const water=new THREE.Mesh(waterGeo,new THREE.MeshStandardMaterial({color:0x1f4870,roughness:0.28,metalness:0.18,flatShading:true,transparent:true,opacity:0.94}));
-water.receiveShadow=true;water.position.set(0.25,0,4);scene.add(water);
+water.receiveShadow=true;water.position.set(1.5,0,2);scene.add(water);
 const wBase=waterGeo.attributes.position.array.slice();
-const bed=rbox(WX,0.8,WZ,0x0d1b33);bed.position.set(0.25,-0.75,4);bed.castShadow=false;scene.add(bed);
-const rim=rbox(WX+0.5,0.5,WZ+0.5,0x172a4a);rim.position.set(0.25,-1.05,4);rim.castShadow=false;scene.add(rim);
+const bed=rbox(WX,0.8,WZ,0x0d1b33);bed.position.set(1.5,-0.75,2);bed.castShadow=false;scene.add(bed);
+const rim=rbox(WX+0.5,0.5,WZ+0.5,0x172a4a);rim.position.set(1.5,-1.05,2);rim.castShadow=false;scene.add(rim);
 function island(x0,x1,z0,z1){
   const w=x1-x0,d=z1-z0;
   const b=rbox(w,1.1,d,0xc4b394);b.position.set((x0+x1)/2,TOP-0.55,(z0+z1)/2);scene.add(b);
   const edge=rbox(w+0.12,0.12,d+0.12,0xe6dcc6);edge.position.set((x0+x1)/2,TOP-0.03,(z0+z1)/2);edge.castShadow=false;scene.add(edge);
   const pave=rbox(w-0.3,0.06,d-0.3,0xb6a383);pave.position.set((x0+x1)/2,TOP+0.01,(z0+z1)/2);pave.castShadow=false;scene.add(pave);
 }
-island(-13,-2,-11,1);   // A · Miracoli
-island(-13,-2.5,3,11);  // A2 · casas
-island(2,13,-3,11);     // B · Ca' Sagredo
-island(2,13,-11,-5);    // C · campanile
-island(-21,-15.5,0.5,6.5);   // D · islita del mercado
-island(1.5,9.5,14,19.5);     // E · islita del campo
-island(16,22,-3.5,4.5);      // F · islita de la discoteca
+/* Plano (oeste a la izquierda, norte al fondo): Ca' Sagredo con su campo, Campo Santi Apostoli, rio y puente,
+   los Miracoli; al frente el Gran Canal con Rialto y el mercado; a la derecha la Plaza San Marco; atrás canales internos */
+island(-23,-12.6,-7.6,0.75);   // Ca' Sagredo (el palacio sobre el agua)
+island(-12.6,-0.6,-7.6,4.2);   // campo del hotel (aperitivo y pista) + Campo Santi Apostoli
+island(3,16.5,-7.6,4.2);       // Santa Maria dei Miracoli
+island(-23,-6.5,-17,-9.4);     // Cannaregio de atrás (campo con fuente)
+island(-4.5,16.5,-17,-9.4);    // Fondamente Nove
+island(18.5,25.5,-9,0.5);      // islita de la discoteca
+island(-23,-1,10,18);          // Rialto: mercado
+island(3,19.5,11,20.5);        // Plaza San Marco
 
 /* Ventanas que titilan (decorado) */
 const winMats=[0,1,2].map(()=>mat(0x3b2a18,{emissive:0xffc06a,ei:0.8,rough:0.5}));
@@ -1023,10 +1026,12 @@ function house(x,z,w,h,d,color){
   g.position.set(x,0,z);scene.add(g);HOUSES.push(g);
 }
 const HC=[0xd6a77a,0xc9826a,0xe0c48f,0xb86f58,0xd9b3a0,0xc79a6b];
-[[-11.9,-9.4,1.8,2.6,2.6],[-11.9,-6.3,1.8,3.2,2.4],[-11.9,-3,1.8,2.4,2.6],[-4,-9.6,2.2,2.2,2],[-3.9,-6.8,2,2.8,2.2],
- [-11.6,5,2.2,2.8,2.6],[-11.4,8.9,2.4,3.4,3],[-8.2,9.4,2.6,2.6,2.2],[-5,9.3,2.6,3,2.2],[-8,5.4,2,2.2,2],[-4.4,5.4,2.6,2.4,2.4],
- [4.2,-9.4,2.6,3,2.4],[4.4,-6.3,2.4,2.2,2],[11.6,-9.2,2.2,2.6,2.6],[11.7,-6.4,2,2.2,2],
- [10.2,5.2,2.2,3,2.6],[10.3,8.8,2.4,3.6,2.8],[12.3,7,1.2,2.4,3.4]].forEach((h,i)=>house(h[0],h[1],h[2],h[3],h[4],HC[i%HC.length]));
+[[-22.3,-3.4,1.2,2.8,3.4],[-4.4,-4.9,1.4,3.0,2.2],[-1.3,-4.9,1.2,2.6,2.2],
+ [4.6,-4.6,2.2,3.0,2.6],[5.0,-1.3,2.0,2.6,2.4],[13.4,-4.4,2.2,3.2,2.6],[13.6,-0.6,2.4,2.6,2.0],
+ [-19.6,-11.6,2.4,3.0,2.4],[-19.6,-15.2,2.4,3.4,2.6],[-9.2,-15.6,2.6,2.6,2.2],[-15.4,-16.1,2.6,2.8,1.6],
+ [0.6,-14.6,2.6,3.0,2.4],[10.0,-14.4,2.6,3.2,2.6],[13.8,-14.6,2.2,2.6,2.4],
+ [-19.6,11.6,2.4,3.0,2.2],[-5.4,16.4,2.6,3.0,2.2],[-9.6,17.0,2.4,2.6,1.6],[-14.6,17.0,2.4,2.4,1.6],
+ [24.2,-1.6,1.6,2.4,2.4]].forEach((h,i)=>house(h[0],h[1],h[2],h[3],h[4],HC[i%HC.length]));
 
 /* Paline: postes de amarre a rayas */
 function palina(x,z,c){
@@ -1037,7 +1042,7 @@ function palina(x,z,c){
 }
 
 /* ---------- Santa Maria dei Miracoli ---------- */
-const church=new THREE.Group();church.position.set(-8,0,-6);
+const CH_S=1.15;const church=new THREE.Group();church.position.set(9.8,TOP*(1-CH_S),-3.2);church.scale.setScalar(CH_S);
 {
   const marble=0xeee2d3;
   church.add(at(rbox(3,2.6,6,marble),0,TOP+1.3,0));
@@ -1064,7 +1069,7 @@ const church=new THREE.Group();church.position.set(-8,0,-6);
   const cpier=at(rbox(1.3,0.12,1.4,0x6b4a33),1,TOP-0.02,7.6);church.add(cpier);
   const p1=palina(0.5,8.4,0x2d4f8a),p2=palina(1.5,8.4,0x2d4f8a);church.add(p1,p2);church.userData.keep=[cpier,p1,p2];
   scene.add(church);
-  interactive(church,'iglesia',6.2,3.6);
+  interactive(church,'iglesia',7.0,4.0);
   animators.push((t)=>{rose.rotation.z=t*0.25;
     sideWin.forEach((w,i)=>w.userData.flick=0.75+0.25*Math.sin(t*1.3+i));
     lantern.userData.flick=0.7+0.3*Math.sin(t*2.1);
@@ -1073,7 +1078,7 @@ const church=new THREE.Group();church.position.set(-8,0,-6);
 }
 
 /* ---------- Ca' Sagredo ---------- */
-const palazzo=new THREE.Group();palazzo.position.set(4.9,0,6.1);
+const PAL_S=1.25;const palazzo=new THREE.Group();palazzo.position.set(-17.6,TOP*(1-PAL_S),-3.4);palazzo.rotation.y=Math.PI/2;palazzo.scale.setScalar(PAL_S);
 {
   const rose=0xe9d0c2,stone=0xf5ede1;
   palazzo.add(at(rbox(4.6,4.4,6.2,rose),0,TOP+2.2,0));
@@ -1081,7 +1086,7 @@ const palazzo=new THREE.Group();palazzo.position.set(4.9,0,6.1);
   [1.5,2.95].forEach(y=>palazzo.add(at(rbox(4.74,0.1,6.34,stone),0,TOP+y,0)));
   palazzo.add(at(rbox(4.9,0.2,6.5,stone),0,TOP+4.45,0));
   for(let z=-3;z<=3.01;z+=0.5)palazzo.add(at(rbox(0.2,0.26,0.2,stone),-2.35,TOP+4.68,z));
-  for(let x=-2;x<=2.01;x+=0.5)palazzo.add(at(rbox(0.2,0.26,0.2,stone),x,TOP+4.68,3.15));
+  for(let x=-2;x<=2.01;x+=0.5){palazzo.add(at(rbox(0.2,0.26,0.2,stone),x,TOP+4.68,3.15));palazzo.add(at(rbox(0.2,0.26,0.2,stone),x,TOP+4.68,-3.15));}
   const pwins=[];
   const wm=()=>mat(0x3b2716,{emissive:0xffbd66,ei:0.9,rough:0.5});
   [[2.2,0.82],[3.65,0.7]].forEach(([y,h],f)=>{
@@ -1091,7 +1096,7 @@ const palazzo=new THREE.Group();palazzo.position.set(4.9,0,6.1);
       palazzo.add(at(mesh(new THREE.ConeGeometry(0.22,0.22,4),stone),-2.34,TOP+y+(h+0.12)/2+0.09,z));});
     palazzo.add(at(rbox(0.3,0.08,2.0,stone),-2.45,TOP+y-h/2-0.12,0));
   });
-  [-1.6,-0.55,0.55,1.6].forEach((x,i)=>{[2.2,3.65].forEach((y,j)=>{const w=rbox(0.36,0.7,0.06,wm());w.position.set(x,TOP+y,3.13);palazzo.add(w);pwins.push(w);});});
+  [-1.6,-0.55,0.55,1.6].forEach((x,i)=>{[2.2,3.65].forEach((y,j)=>{const w2=rbox(0.36,0.7,0.06,wm());w2.position.set(x,TOP+y,-3.13);palazzo.add(w2);pwins.push(w2);const w=rbox(0.36,0.7,0.06,wm());w.position.set(x,TOP+y,3.13);palazzo.add(w);pwins.push(w);});});
   const door=rbox(0.08,0.95,1.0,mat(0x2d1d12,{emissive:0xffa94d,ei:0.35}));door.position.set(-2.33,TOP+0.48,0);palazzo.add(door);pwins.push(door);
   const pier=at(rbox(1.5,0.12,1.3,0x6b4a33),-3.2,TOP-0.04,0);palazzo.add(pier);
   const pp=[palina(-3.8,-0.75,0x9e2b2b),palina(-3.8,0.75,0x9e2b2b),palina(-4.15,-0.2,0x9e2b2b)];pp.forEach(p=>palazzo.add(p));
@@ -1102,7 +1107,7 @@ const palazzo=new THREE.Group();palazzo.position.set(4.9,0,6.1);
   flag.position.set(1.6,TOP+5.7,2.4);flag.castShadow=true;palazzo.add(flag);
   const fBase=fg.attributes.position.array.slice();
   scene.add(palazzo);
-  interactive(palazzo,'palazzo',5.4,4.2);
+  interactive(palazzo,'palazzo',6.8,5.2);
   animators.push(t=>{
     pwins.forEach((w,i)=>w.userData.flick=0.7+0.22*Math.sin(t*(0.9+(i%5)*0.21)+i)+(Math.sin(t*13+i*7)>0.97?0.25:0));
     const a=fg.attributes.position.array;
@@ -1200,7 +1205,7 @@ function setMesa(on){
 }
 
 /* ---------- Campanile (presupuesto general) ---------- */
-const campanile=new THREE.Group();campanile.position.set(8,0,-8);
+const campanile=new THREE.Group();campanile.position.set(9.9,0,14.3);
 {
   const brick=0xa65a40,stone=0xf1e8d8;
   campanile.add(at(rbox(1.5,0.5,1.5,stone),0,TOP+0.25,0));
@@ -1226,17 +1231,33 @@ const campanile=new THREE.Group();campanile.position.set(8,0,-8);
 }
 
 /* ---------- Puente ---------- */
-const BR_Z=-1.5,BR_HALF=2.8;
-const archY=x=>TOP+0.72*Math.cos(Math.PI*x/(2*BR_HALF));
+const BRX=1.2,BR_Z=1.4,BR_HALF=2.8;
+const archY=x=>TOP+0.72*Math.cos(Math.PI*x/(2*BR_HALF));   // x relativo al centro del puente
+const RX=-2.9,RZ=7.1,RH=3.7;const rialtoY=z=>TOP+1.15*Math.cos(Math.PI*z/(2*RH));
 {
   const s=new THREE.Shape();s.moveTo(-BR_HALF,0.05);
   for(let i=0;i<=24;i++){const x=-BR_HALF+i*(2*BR_HALF/24);s.lineTo(x,archY(x));}
   s.lineTo(BR_HALF,0.05);s.lineTo(2.0,0.05);s.quadraticCurveTo(0,1.45,-2.0,0.05);s.lineTo(-BR_HALF,0.05);
   const g=new THREE.ExtrudeGeometry(s,{depth:1.5,bevelEnabled:true,bevelSize:0.04,bevelThickness:0.04,bevelSegments:1});
-  const br=mesh(g,0xe7ddca);br.position.set(0,0,BR_Z-0.75);scene.add(br);
-  [-0.72,0.72].forEach(dz=>{const pts=[];for(let i=0;i<=16;i++){const x=-BR_HALF+0.15+i*((2*BR_HALF-0.3)/16);pts.push(new THREE.Vector3(x,archY(x)+0.28,BR_Z+dz));}
+  const br=mesh(g,0xe7ddca);br.position.set(BRX,0,BR_Z-0.75);scene.add(br);
+  [-0.72,0.72].forEach(dz=>{const pts=[];for(let i=0;i<=16;i++){const x=-BR_HALF+0.15+i*((2*BR_HALF-0.3)/16);pts.push(new THREE.Vector3(BRX+x,archY(x)+0.28,BR_Z+dz));}
     scene.add(mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),24,0.05,5,false),0xf6efe2));
-    for(let i=0;i<=8;i++){const x=-BR_HALF+0.2+i*((2*BR_HALF-0.4)/8);scene.add(at(mesh(new THREE.CylinderGeometry(0.04,0.04,0.28,5),0xf6efe2),x,archY(x)+0.14,BR_Z+dz));}});
+    for(let i=0;i<=8;i++){const x=-BR_HALF+0.2+i*((2*BR_HALF-0.4)/8);scene.add(at(mesh(new THREE.CylinderGeometry(0.04,0.04,0.28,5),0xf6efe2),BRX+x,archY(x)+0.14,BR_Z+dz));}});
+}
+/* Puente de Rialto sobre el Gran Canal: arco alto de piedra con su pórtico central */
+{
+  const s=new THREE.Shape();s.moveTo(-RH,0.05);
+  for(let i=0;i<=28;i++){const z=-RH+i*(2*RH/28);s.lineTo(z,rialtoY(z));}
+  s.lineTo(RH,0.05);s.lineTo(RH-0.9,0.05);s.quadraticCurveTo(0,2.3,-(RH-0.9),0.05);s.lineTo(-RH,0.05);
+  const W=1.9;const g=new THREE.ExtrudeGeometry(s,{depth:W,bevelEnabled:true,bevelSize:0.05,bevelThickness:0.05,bevelSegments:1});
+  const rb=mesh(g,0xf1e8d8);rb.rotation.y=-Math.PI/2;rb.position.set(RX+W/2,0,RZ);scene.add(rb);
+  [-0.86,0.86].forEach(dx=>{const pts=[];for(let i=0;i<=18;i++){const z=-RH+0.2+i*((2*RH-0.4)/18);pts.push(new THREE.Vector3(RX+dx,rialtoY(z)+0.3,RZ+z));}
+    scene.add(mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),28,0.05,5,false),0xfaf4ea));
+    for(let i=0;i<=10;i++){const z=-RH+0.25+i*((2*RH-0.5)/10);if(Math.abs(z)<0.75)continue;scene.add(at(mesh(new THREE.CylinderGeometry(0.04,0.04,0.3,5),0xfaf4ea),RX+dx,rialtoY(z)+0.15,RZ+z));}});
+  const por=new THREE.Group();por.position.set(RX,rialtoY(0),RZ);scene.add(por);
+  [[-0.7,-0.6],[0.7,-0.6],[-0.7,0.6],[0.7,0.6]].forEach(([x,z])=>por.add(at(rbox(0.22,1.0,0.22,0xf6efe2),x,0.5,z)));
+  por.add(at(rbox(1.75,0.18,1.55,0xf6efe2),0,1.08,0));
+  const roof=mesh(new THREE.ConeGeometry(1.25,0.55,4),0xa8553d);roof.rotation.y=Math.PI/4;roof.scale.set(1,1,0.9);roof.position.y=1.45;por.add(roof);
 }
 
 /* ---------- Personas ---------- */
@@ -1266,13 +1287,13 @@ function hstr(str){let h=2166136261;for(const ch of String(str)){h^=ch.charCodeA
 function lookPerson(id,fem,kid,s){const r=seeded(hstr(id));return person({suit:pick(SUITS,r),skin:pick(SKINS,r),hair:pick(HAIRS,r),dress:fem?pick(GOWNS,r):null,s:s||(kid?0.6:0.92)});}
 
 /* Ruta de invitados: plaza de la iglesia → puente → fondamenta → entrada de Ca' Sagredo */
-const GPATH=[[-7.6,-2.2],[-5.5,-1.6],[-BR_HALF-0.4,BR_Z],[BR_HALF+0.4,BR_Z],[2.5,0.2],[2.35,2.8],[2.3,5.1]].map(p=>new THREE.Vector2(p[0],p[1]));
+const GPATH=[[9.8,1.2],[5.6,1.4],[BRX+BR_HALF+0.4,BR_Z],[BRX-BR_HALF-0.4,BR_Z],[-4.6,1.2],[-12.9,0.15],[-17.6,0.05]].map(p=>new THREE.Vector2(p[0],p[1]));
 const gSegs=[];let gLen=0;
 for(let i=0;i<GPATH.length-1;i++){const l=GPATH[i].distanceTo(GPATH[i+1]);gSegs.push({a:GPATH[i],b:GPATH[i+1],l,s:gLen});gLen+=l;}
 function pathAt(s){s=Math.max(0,Math.min(gLen,s));for(const g of gSegs){if(s<=g.s+g.l){const k=(s-g.s)/g.l;
   return{x:g.a.x+(g.b.x-g.a.x)*k,z:g.a.y+(g.b.y-g.a.y)*k,dx:(g.b.x-g.a.x)/g.l,dz:(g.b.y-g.a.y)/g.l};}}
   const g=gSegs[gSegs.length-1];return{x:g.b.x,z:g.b.y,dx:(g.b.x-g.a.x)/g.l,dz:(g.b.y-g.a.y)/g.l};}
-function groundY(x,z){if(Math.abs(x)<BR_HALF&&Math.abs(z-BR_Z)<0.9)return archY(x);return TOP;}
+function groundY(x,z){if(Math.abs(x-BRX)<BR_HALF&&Math.abs(z-BR_Z)<0.9)return archY(x-BRX);if(Math.abs(z-RZ)<RH&&Math.abs(x-RX)<0.95)return rialtoY(z-RZ);return TOP;}
 
 /* ---------- Medallones: foto + nombre sobre cada persona ---------- */
 const tags=[],tagSprites=[];
@@ -1378,7 +1399,7 @@ function dog(c){
 /* ---------- Santa Maria dei Miracoli por dentro ---------- */
 const churchKeep=new Set(church.userData.keep||[]);
 const churchShell=church.children.filter(c=>!churchKeep.has(c));
-const nave=new THREE.Group();nave.visible=false;church.add(nave);
+const nave=new THREE.Group();nave.visible=false;church.add(nave);church.updateMatrixWorld(true);
 const PEWS=[];   // asientos de las bancas en coordenadas del mundo
 {
   // piso de mármol en damero rosa y gris
@@ -1417,7 +1438,7 @@ const PEWS=[];   // asientos de las bancas en coordenadas del mundo
   const wood=0x6b4a33;
   for(let r=0;r<6;r++){const z=-0.75+r*0.6;[-0.72,0.72].forEach(x=>{nave.add(at(rbox(1.0,0.05,0.2,wood),x,TOP+0.2,z));
     nave.add(at(rbox(1.0,0.24,0.04,wood),x,TOP+0.33,z+0.12));nave.add(at(rbox(0.04,0.22,0.22,wood),x-0.5,TOP+0.11,z));nave.add(at(rbox(0.04,0.22,0.22,wood),x+0.5,TOP+0.11,z));
-    [-0.33,0,0.33].forEach(o=>PEWS.push({x:-8+x+o,z:-6+z,y:TOP+0.22}));});}
+    [-0.33,0,0.33].forEach(o=>{const w=church.localToWorld(new THREE.Vector3(x+o,TOP+0.22,z));PEWS.push({x:w.x,z:w.z,y:w.y});});});}
   // luz cálida interior
   const nl=new THREE.PointLight(0xffd29a,0,6,1.6);nl.position.set(0,TOP+1.5,-0.5);nave.add(nl);
   // novios y sacerdote en el altar
@@ -1434,10 +1455,10 @@ const PEWS=[];   // asientos de las bancas en coordenadas del mundo
 }
 let CHURCH_OPEN=false;
 function openChurch(on){churchShell.forEach(c=>c.visible=!on);nave.visible=on;
-  HOUSES.forEach(h=>{if(h.position.x<-10.5&&h.position.z<-1&&h.position.z>-10.6)h.visible=!on;});}
+}
 function setChurch(on,fly){
   const was=CHURCH_OPEN;CHURCH_OPEN=on;if(!on&&was&&fly!==false&&!SHOW.on){userMoved=false;fitView(true);}openChurch(on||(SHOW.on&&SHOW.phase==='ceremonia'));
-  if(on&&fly!==false){userMoved=true;flyTo(-8,-6,innerWidth<640?2.4:2.9,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);}
+  if(on&&fly!==false){userMoved=true;flyTo(church.position.x,church.position.z,innerWidth<640?2.4:2.9,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);}
 }
 
 /* ---------- Invitados: pasean por toda Venecia, bailan, conversan y juegan ---------- */
@@ -1463,21 +1484,18 @@ const ROUTES={
 };
 /* ---------- Red de caminos: los invitados van de un lugar a otro por calles y puentes ---------- */
 const NAV={
-  a1:[-8.3,-0.4],a2:[-10.2,-1.7],a3:[-10.2,-10.3],a4:[-5.8,-10.3],a5:[-5.8,-3.4],a6:[-5.5,-1.6],a7:[-3.2,-1.5],a8:[-9.6,0.4],
-  br:[0,-1.5],
-  b1:[3.2,-1.5],b2:[2.5,0.2],b3:[2.35,2.8],b4:[2.3,5.1],b5:[5.5,-0.5],b12:[9.3,0.2],b13:[6.6,-2.5],b14:[8.3,2.4],b15:[3.3,2.45],
-  b7:[8.3,3.3],b8:[8.3,10.3],b10:[5.5,10.3],b9:[2.5,10.3],b11:[12.6,3.3],
-  c1:[6.6,-5.4],c2:[6.6,-6.55],c3:[9.85,-6.2],c4:[4.6,-8.0],
-  d1:[-9.6,3.45],d2:[-3.1,3.45],d3:[-12.6,3.45],d5:[-6.35,3.45],d4:[-6.5,7.35],
-  w1:[-16,3.45],w2:[-16,1.2],w3:[-20.4,1.2],w4:[-20.4,5.9],w5:[-16,5.9],w6:[-16.1,3.95],
-  s1:[5.5,14.4],s3:[2.1,14.5],s4:[2.1,19],s5:[9,19],s6:[9,14.5],
-  e1:[16.4,3.3],e2:[17.6,2.2]};
-const NAVE=[['a1','a2'],['a2','a3'],['a3','a4'],['a4','a5'],['a5','a6'],['a6','a1'],['a6','a7'],['a1','a8'],['a7','br'],['br','b1'],
-  ['b1','b2'],['b2','b3'],['b3','b4'],['b2','b5'],['b5','b12'],['b5','b13'],['b3','b15'],['b15','b14'],['b14','b12'],['b14','b7'],['b7','b8'],['b8','b10'],['b10','b9'],['b9','b4'],['b7','b11'],
-  ['b13','c1'],['c1','c2'],['c1','c3'],['c2','c4'],
-  ['a8','d1'],['d1','d3'],['d1','d5'],['d5','d2'],['d5','d4'],
-  ['d3','w1'],['w1','w2'],['w2','w3'],['w3','w4'],['w4','w5'],['w5','w1'],['w1','w6'],
-  ['b10','s1'],['s1','s3'],['s3','s4'],['s4','s5'],['s5','s6'],['s6','s1'],['b11','e1'],['e1','e2']];
+  hd:[-17.6,0.05],h1:[-13.2,0.15],h2:[-12.1,-0.5],h3:[-12.1,-6.9],h4:[-9.0,-6.9],g:[-9.2,1.6],f:[-8.6,-3.6],
+  p1:[-4.6,1.4],pc:[-2.9,-0.9],pb:[-2.6,-6.9],pf:[-2.9,3.4],pbw:[-2.0,1.4],brm:[1.2,1.4],pbe:[4.4,1.4],
+  rm:[-2.9,7.1],m1:[-2.9,11.0],m2:[-5.5,12.8],mc:[-8.6,12.8],m4:[-16.8,12.8],m5:[-20.4,16.6],m3:[-2.2,14.5],
+  s1:[3.8,14.5],s6:[6.2,16.4],s3:[12.6,17.4],s4:[13.6,20.0],
+  c2:[6.6,2.6],c3:[15.4,2.6],c4:[15.6,-1.6],c5:[15.6,-6.9],e1:[19.2,-1.6],e2:[22,-3.1],
+  bl1:[-9.0,-10.3],blc:[-13.5,-11.1],bl2:[-17.2,-12.6],bl3:[-7.2,-13.0],
+  br1:[-2.6,-10.3],br2:[-3.6,-13.0],br3:[5.0,-12.2],br4:[15.6,-10.3],br5:[6.0,-16.4]};
+const NAVE=[['hd','h1'],['h1','g'],['h1','h2'],['h2','h3'],['h3','h4'],['h4','f'],['g','f'],['h4','bl1'],['g','p1'],
+  ['p1','pc'],['p1','pbw'],['pc','pbw'],['pc','pb'],['pb','br1'],['p1','pf'],['pf','rm'],['rm','m1'],['pbw','brm'],['brm','pbe'],
+  ['pbe','c2'],['c2','c3'],['c3','c4'],['c4','e1'],['e1','e2'],['c4','c5'],['c5','br4'],
+  ['m1','m2'],['m2','mc'],['mc','m4'],['m4','m5'],['m1','m3'],['m3','s1'],['s1','s6'],['s6','s3'],['s3','s4'],
+  ['bl1','blc'],['blc','bl2'],['bl1','bl3'],['bl3','br2'],['br1','br2'],['br1','br3'],['br3','br4'],['br3','br5']];
 const NADJ={};NAVE.forEach(([a,b])=>{const d=Math.hypot(NAV[a][0]-NAV[b][0],NAV[a][1]-NAV[b][1]);(NADJ[a]=NADJ[a]||[]).push([b,d]);(NADJ[b]=NADJ[b]||[]).push([a,d]);});
 function navPath(from,to){const dist={},prev={},Q=new Set(Object.keys(NAV));Object.keys(NAV).forEach(k=>dist[k]=Infinity);dist[from]=0;
   while(Q.size){let u=null;Q.forEach(k=>{if(u===null||dist[k]<dist[u])u=k;});Q.delete(u);if(u===to||dist[u]===Infinity)break;
@@ -1485,16 +1503,15 @@ function navPath(from,to){const dist={},prev={},Q=new Set(Object.keys(NAV));Obje
   const p=[];let c=to;while(c){p.unshift(c);if(c===from)break;c=prev[c];}return p[0]===from?p:[from,to];}
 /* Lugares donde pasan cosas: conversar, bailar, mirar el agua, ver el mercado... */
 const SPOTS=[
-  {n:'a1',k:'chat',w:3},{n:'d4',k:'chat',w:2},{n:'c3',k:'chat',w:2},{n:'w6',k:'chat',w:2},{n:'s1',k:'chat',w:2,off:[0.1,1.1],r:1.1},{n:'b5',k:'chat',w:3},
-  {n:'b12',k:'dance',w:3},{n:'e2',k:'dance',w:3,off:[0.3,-1.6]},
-  {n:'br',k:'view',w:2,face:0},{n:'s4',k:'view',w:1,face:-Math.PI*0.25},{n:'w3',k:'view',w:1,face:-Math.PI*0.75},{n:'c4',k:'view',w:1,face:-Math.PI*0.5},{n:'d2',k:'view',w:1,face:Math.PI*0.5},
-  {n:'a4',k:'chat',w:1},{n:'w4',k:'chat',w:1}];
+  {n:'pc',k:'chat',w:3},{n:'c2',k:'chat',w:3},{n:'g',k:'chat',w:3},{n:'mc',k:'chat',w:3},{n:'blc',k:'chat',w:2},{n:'br3',k:'chat',w:1},{n:'s3',k:'chat',w:3},
+  {n:'f',k:'dance',w:3},{n:'e2',k:'dance',w:3},
+  {n:'brm',k:'view',w:2,face:0},{n:'rm',k:'view',w:2,face:Math.PI/2},{n:'s4',k:'view',w:2,face:0},{n:'br5',k:'view',w:1,face:Math.PI},{n:'m5',k:'view',w:1,face:-Math.PI/2}];
 const SPOTW=SPOTS.reduce((a,b)=>a+b.w,0);
 function pickSpot(not){for(let i=0;i<6;i++){let r=Math.random()*SPOTW;for(const sp of SPOTS){r-=sp.w;if(r<=0){if(sp!==not)return sp;break;}}}return SPOTS[0];}
 const spotPos=sp=>{const p=NAV[sp.n],o=sp.off||[0,0];return[p[0]+o[0],p[1]+o[1]];};
 const CHATS=[[-8.3,-0.5],[5.6,-0.4],[9.85,-6.2],[-6.8,7.35]];   // corrillos: plaza de la iglesia, jardín, campanile, campo interior
 const PAIRS=[[8.6,-1.0],[9.0,1.2],[10.3,0.1]];            // parejas en la pista
-const PLAY={c:[6.6,-6.55],r:0.95};                              // juego de los niños junto al campanile
+const PLAY={c:[8.2,17.6],r:0.95};                              // juego de los niños junto al campanile
 const ADULT_PLAN=[];  // todos los adultos deambulan por la ciudad (ver 'roam')
 const KID_PLAN=[['play'],['play'],['roam'],['play'],['roam']];
 const DOG_PLAN=[['follow','R1'],['play'],['follow','R2'],['play']];
@@ -1536,7 +1553,7 @@ function buildGuests(D){
 function restoreLegs(m){const L=m.userData.limbs;if(m.userData.dress&&L.legL.visible){L.legL.visible=L.legR.visible=false;}}
 function turnTo(m,ang,k){let d=ang-m.rotation.y;d=Math.atan2(Math.sin(d),Math.cos(d));m.rotation.y+=d*k;}
 function resetArms(L){L.armL.rotation.set(0,0,0);L.armR.rotation.set(0,0,0);}
-const onFloor=(x,z)=>x>7.45&&x<11.25&&z>-2.15&&z<2.35;
+const onFloor=(x,z)=>x>-10.55&&x<-6.75&&z>-6.0&&z<-1.2;
 animators.push((t,dt)=>{
   const beat=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),6);
   const turnK=Math.min(1,dt*6);
@@ -1638,7 +1655,7 @@ const photog=person({suit:0x2c2f36,skin:0xd7a982,hair:0x111111});
   photog.userData.limbs.armL.rotation.x=-1.25;photog.userData.limbs.armR.rotation.x=-1.25;
   const flashLight=new THREE.PointLight(0xf2f6ff,0,7,1.5);flashLight.position.set(0,1.1,0.4);photog.add(flashLight);
   scene.add(photog);interactive(photog,'fotografo',1.55,0.75);
-  const C={x:-5.9,z:-1.2},R=1.2;let a=0,dir=1;
+  const C={x:-4.3,z:-0.7},R=0.9;let a=0,dir=1;   // fotógrafo en el Campo Santi Apostoli
   animators.push((t,dt)=>{
     const ph=t%6;
     if(ph<4.6){a+=dt*0.55*dir;if(a>1.1){a=1.1;dir=-1;}if(a<-1.1){a=-1.1;dir=1;}
@@ -1676,7 +1693,7 @@ const novios=new THREE.Group();let miguelFig=null,marcelaFig=null;
   interactive(novios,'novios',1.25,0.9);
   interactive(taxi,'taxi',1.4,1.7);
 }
-const TPATH=new THREE.CatmullRomCurve3([[-7,2.05],[-4.4,2.0],[-1.3,2.3],[-0.2,3.8],[0.05,5.4],[0.55,6.2]].map(p=>new THREE.Vector3(p[0],0.05,p[1])),false,'catmullrom',0.5);
+const TPATH=new THREE.CatmullRomCurve3([[12.4,6.6],[8,7.3],[2,7.4],[-3,7.3],[-8,7.2],[-12,6.6],[-14.2,4.6],[-15.0,3.0],[-15.3,2.55]].map(p=>new THREE.Vector3(p[0],0.05,p[1])),false,'catmullrom',0.5);
 const TLEN=TPATH.getLength();
 const wake=[];for(let i=0;i<16;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(0.12,6,4),new THREE.MeshStandardMaterial({color:0xe9f1ff,transparent:true,opacity:0,flatShading:true}));m.userData.noPick=true;scene.add(m);wake.push({m,life:0});}
 let wakeI=0,wakeT=0;
@@ -1699,9 +1716,9 @@ animators.push((t,dt)=>{
 });
 
 /* ---------- Decoración: arco floral y faroles ---------- */
-const decor=new THREE.Group();scene.add(decor);
+const decor=new THREE.Group();palazzo.updateMatrixWorld(true);{const d=palazzo.localToWorld(new THREE.Vector3(-2.6,0,0));decor.position.set(d.x,0,d.z);}decor.rotation.y=palazzo.rotation.y;scene.add(decor);
 {
-  const arch=new THREE.Group();arch.position.set(2.3,TOP,6.1);decor.add(arch);
+  const arch=new THREE.Group();arch.position.set(0,TOP,0);decor.add(arch);
   const ag=new THREE.TorusGeometry(0.9,0.06,6,18,Math.PI);
   const am=mesh(ag,mat(0xd8b45f,{metal:0.55,rough:0.35}));am.rotation.y=Math.PI/2;am.position.y=0.95;arch.add(am);
   [-0.9,0.9].forEach(z=>arch.add(at(mesh(new THREE.CylinderGeometry(0.06,0.06,0.95,6),mat(0xd8b45f,{metal:0.55,rough:0.35})),0,0.47,z)));
@@ -1710,7 +1727,7 @@ const decor=new THREE.Group();scene.add(decor);
     f.position.set(0,0.95+Math.sin(a)*0.9,Math.cos(a)*0.9);arch.add(f);flowers.push(f);}
   for(let i=0;i<6;i++){const f=mesh(new THREE.IcosahedronGeometry(0.12,0),FC[i%FC.length]);f.position.set(0,0.12+i*0.13,i%2?0.9:-0.9);arch.add(f);flowers.push(f);}
   const lamps=[];
-  [3.3,4.5,7.7,8.9].forEach(z=>{const g=new THREE.Group();g.position.set(2.22,TOP,z);
+  [-3.0,-1.6,1.6,3.0].forEach(z=>{const g=new THREE.Group();g.position.set(-0.08,TOP,z);
     g.add(at(mesh(new THREE.CylinderGeometry(0.035,0.05,1.1,6),0x1f1f24),0,0.55,0));
     const box=rbox(0.2,0.26,0.2,mat(0xffe2a6,{emissive:0xffbb55,ei:1}));box.position.y=1.22;g.add(box);
     g.add(at(mesh(new THREE.ConeGeometry(0.17,0.14,4),0x1f1f24),0,1.42,0).rotateY(Math.PI/4));
@@ -1724,8 +1741,8 @@ const decor=new THREE.Group();scene.add(decor);
 }
 
 /* ---------- Aportantes: Raúl y Giancarlo ---------- */
-const raul=person({suit:0x1d2740,skin:0xd9ab84,hair:0x8c8c8c});raul.position.set(3.7,TOP,1.6);raul.rotation.y=1.0;scene.add(raul);
-const gian=person({suit:0x2b2b30,skin:0xe6c09c,hair:0xb9b9b9});gian.position.set(4.6,TOP,1.95);gian.rotation.y=-2.1;scene.add(gian);
+const raul=person({suit:0x1d2740,skin:0xd9ab84,hair:0x8c8c8c});raul.position.set(-1.9,TOP,-2.7);raul.rotation.y=1.0;scene.add(raul);
+const gian=person({suit:0x2b2b30,skin:0xe6c09c,hair:0xb9b9b9});gian.position.set(-1.1,TOP,-2.19);gian.rotation.y=-2.1;scene.add(gian);
 interactive(raul,'raul',1.4,0.7);interactive(gian,'giancarlo',1.4,0.7);
 {
   const glass=(p)=>{const g=mesh(new THREE.CylinderGeometry(0.035,0.02,0.14,6),mat(0xf2e3a8,{transparent:true,opacity:0.85,emissive:0x7a5a10,ei:0.3}));g.position.set(0,-0.42,0.06);p.userData.limbs.armR.add(g);};
@@ -1739,7 +1756,7 @@ interactive(raul,'raul',1.4,0.7);interactive(gian,'giancarlo',1.4,0.7);
 }
 
 /* ---------- Saxofonista ---------- */
-const saxo=person({suit:0x161a24,skin:0xb7825c,hair:0x111111});saxo.position.set(6.4,TOP,1.6);saxo.rotation.y=-0.9;scene.add(saxo);
+const saxo=person({suit:0x161a24,skin:0xb7825c,hair:0x111111});saxo.position.set(-6.2,TOP,2.9);saxo.rotation.y=-1.37;scene.add(saxo);
 {
   const gm=mat(0xd9ad4f,{metal:0.75,rough:0.3});
   const sax=new THREE.Group();sax.position.set(0.02,0.66,0.2);saxo.add(sax);
@@ -1766,7 +1783,7 @@ const saxo=person({suit:0x161a24,skin:0xb7825c,hair:0x111111});saxo.position.set
 }
 
 /* ---------- DJ, pista y luces ---------- */
-const dj=new THREE.Group();dj.position.set(10,0,0.2);scene.add(dj);
+const dj=new THREE.Group();dj.position.set(-8.0,0,-3.6);scene.add(dj);
 {
   const tiles=[];const TC=[new THREE.Color(0xd8b45f),new THREE.Color(0xd77a8f),new THREE.Color(0x4f8fd8),new THREE.Color(0x7ee0a1)];
   for(let i=0;i<4;i++)for(let j=0;j<5;j++){const tl=rbox(0.9,0.08,0.9,mat(0x1a1d2a,{emissive:0xd8b45f,ei:0.6,rough:0.3}));
@@ -1809,26 +1826,63 @@ function tree(x,z,s){const g=new THREE.Group();g.position.set(x,TOP,z);g.scale.s
   const c=mesh(new THREE.IcosahedronGeometry(0.55,0),0x2f5a46);c.position.y=1.1;g.add(c);
   const c2=mesh(new THREE.IcosahedronGeometry(0.38,0),0x3a6b52);c2.position.set(0.18,1.45,0.1);g.add(c2);
   scene.add(g);const ph=Math.random()*6;animators.push(t=>{g.rotation.z=Math.sin(t*0.9+ph)*0.04;g.rotation.x=Math.cos(t*0.7+ph)*0.03;});}
-tree(12.2,-2.2,1);tree(7.4,-2.4,0.85);tree(12.3,2.4,0.9);tree(-10.2,-0.2,0.8);tree(-3.5,-3.4,0.75);tree(3.4,-8,0.8);
+tree(-4.7,-6.7,0.85);tree(-0.9,-6.8,0.75);tree(6.6,-6.8,0.8);tree(16,3.4,0.8);tree(3.6,3.4,0.7);tree(-12.1,3.6,0.75);
 /* ---------- Islitas nuevas: puentes, casas, mercado, fuente y discoteca ---------- */
 function flatBridge(x0,z0,x1,z1){const alongX=Math.abs(x1-x0)>Math.abs(z1-z0);const L=alongX?Math.abs(x1-x0)+0.6:Math.abs(z1-z0)+0.6;
   const g=new THREE.Group();g.position.set((x0+x1)/2,0,(z0+z1)/2);if(!alongX)g.rotation.y=Math.PI/2;scene.add(g);
   g.add(at(rbox(L,0.16,1.15,0xe9e2d2),0,TOP-0.04,0));
   [-0.55,0.55].forEach(zz=>{g.add(at(rbox(L,0.06,0.06,0xf4ecdc),0,TOP+0.42,zz));
     for(let i=0;i<=Math.round(L/0.6);i++)g.add(at(rbox(0.05,0.4,0.05,0xf4ecdc),-L/2+i*(L/Math.round(L/0.6)),TOP+0.2,zz));});}
-flatBridge(-15.4,3.45,-13.1,3.45);flatBridge(-9.6,0.7,-9.6,3.3);flatBridge(6.6,-2.75,6.6,-5.25);flatBridge(5.5,10.9,5.5,14.1);flatBridge(12.9,3.3,16.1,3.3);
-[[-19,3.5,1.8,2.6,2.4],[3.9,17.4,2.4,2.8,2.0],[7.5,17.3,1.8,2.4,2.2]].forEach((h,i)=>house(h[0],h[1],h[2],h[3],h[4],HC[(i+3)%HC.length]));
-tree(-18.3,5.3,0.8);tree(-19.5,5.4,0.7);tree(8.2,15.6,0.85);tree(6.0,18.6,0.7);tree(21.2,-2.8,0.75);tree(16.6,-2.9,0.7);
+flatBridge(-9,-7.4,-9,-9.6);flatBridge(-2.6,-7.4,-2.6,-9.6);flatBridge(15.6,-7.4,15.6,-9.6);flatBridge(-6.7,-13,-4.3,-13);flatBridge(16.3,-1.6,18.7,-1.6);flatBridge(-1.2,14.5,3.2,14.5);
+tree(-20.6,-9.9,0.8);tree(-11,-16.4,0.7);tree(11.4,-10.1,0.8);tree(-21.2,14.6,0.8);tree(-1.8,17.4,0.7);tree(4.2,19.8,0.75);tree(25,-8.4,0.75);tree(19.2,-8.4,0.7);
 { // puestos del mercado
   const cols=[0xb4473a,0x2f6f8f,0xd8b45f];
-  [[-17.3,3.2],[-17.3,4.6]].forEach(([x,z],i)=>{const g=new THREE.Group();g.position.set(x,TOP,z);scene.add(g);
+  [[-12.2,11.6],[-10.6,11.6],[-9.0,11.6],[-7.4,11.6]].forEach(([x,z],i)=>{const g=new THREE.Group();g.position.set(x,TOP,z);scene.add(g);
     g.add(at(rbox(0.9,0.5,0.6,0x7a5a3c),0,0.25,0));
     [[-0.4,-0.27],[0.4,-0.27],[-0.4,0.27],[0.4,0.27]].forEach(([a,b])=>g.add(at(mesh(new THREE.CylinderGeometry(0.02,0.02,1.05,4),0x5a4632),a,0.52,b)));
     const roof=rbox(1.05,0.06,0.75,cols[i%3]);roof.position.y=1.06;roof.rotation.x=0.18;g.add(roof);
     for(let k=0;k<5;k++)g.add(at(mesh(new THREE.SphereGeometry(0.07,6,5),[0xe2a23b,0xc0392b,0x7fae4b][k%3]),-0.32+k*0.16,0.56,(k%2)*0.12-0.06));});
+  // Pescheria: logia abierta del mercado de Rialto
+  const lg=new THREE.Group();lg.position.set(-13,0,14.6);scene.add(lg);
+  for(let i=0;i<7;i++)[-1.0,1.0].forEach(z=>lg.add(at(rbox(0.2,1.6,0.2,0xf1e8d8),-3+i,TOP+0.8,z)));
+  lg.add(at(rbox(6.5,0.2,2.4,0xe8dcc6),0,TOP+1.7,0));
+  const lrg=new THREE.CylinderGeometry(0.01,1.45,0.7,4,1);lrg.rotateY(Math.PI/4);const lr=mesh(lrg,0xa8553d);lr.scale.set(3.2,1,1.2);lr.position.y=TOP+2.15;lg.add(lr);
+  for(let i=0;i<5;i++)lg.add(at(rbox(0.9,0.35,0.7,[0x9a7b52,0x7a5a3c][i%2]),-2.4+i*1.2,TOP+0.18,0));
+}
+{ // Plaza San Marco: basílica, Procuratie, columnas del muelle y Palacio Ducal
+  const cream=0xf0e4cf,gold=mat(0xd8b45f,{metal:0.6,rough:0.35,emissive:0x5a3e0c,ei:0.3});
+  for(let i=0;i<6;i++)scene.add(at(rbox(0.06,0.012,7.2,0xf4ecdc),4.6+i*2.4,TOP+0.03,17.0));
+  const bas=new THREE.Group();bas.position.set(13.4,0,13.2);scene.add(bas);
+  bas.add(at(rbox(5.2,2.5,3.4,cream),0,TOP+1.25,0));
+  for(let i=0;i<5;i++){const x=-2.0+i;const h=i===2?1.45:1.15;
+    bas.add(at(rbox(0.78,h,0.08,mat(0x3b2a1a,{emissive:0xc98a3a,ei:0.45})),x,TOP+h/2,1.72));
+    const ar=mesh(new THREE.TorusGeometry(0.39,0.05,5,12,Math.PI),gold);ar.position.set(x,TOP+h,1.75);bas.add(ar);
+    const lu=new THREE.Mesh(new THREE.CircleGeometry(0.33,12,0,Math.PI),mat(0x2b4a7a,{emissive:0xc9a15a,ei:0.35}));lu.position.set(x,TOP+h+1.0,1.73);bas.add(lu);}
+  [[0,0,0.95],[-1.7,-0.6,0.7],[1.7,-0.6,0.7],[0,-1.1,0.7],[0,1.0,0.6]].forEach(([x,z,r])=>{
+    bas.add(at(mesh(new THREE.CylinderGeometry(r*0.75,r*0.8,0.35,12),cream),x,TOP+2.65,z));
+    bas.add(at(mesh(new THREE.SphereGeometry(r,12,6,0,Math.PI*2,0,Math.PI/2),mat(0x8b9aa6,{metal:0.35,rough:0.5})),x,TOP+2.82,z));
+    bas.add(at(mesh(new THREE.ConeGeometry(0.06,0.4,6),gold),x,TOP+2.82+r+0.15,z));});
+  const pro=new THREE.Group();pro.position.set(6.5,0,12.4);scene.add(pro);
+  pro.add(at(rbox(6.2,2.6,1.5,0xe9dcc6),0,TOP+1.3,0));
+  for(let i=0;i<10;i++){const x=-2.8+i*0.62;[0.55,1.55].forEach(y=>{pro.add(at(rbox(0.36,0.6,0.06,mat(0x2e2418,{emissive:0xffb85e,ei:y<1?0.25:0.7})),x,TOP+y,0.77));
+      const a=mesh(new THREE.TorusGeometry(0.18,0.03,4,10,Math.PI),0xfaf4ea);a.position.set(x,TOP+y+0.3,0.79);pro.add(a);});}
+  pro.add(at(rbox(6.4,0.16,1.7,0xfaf4ea),0,TOP+2.66,0));
+  const duc=new THREE.Group();duc.position.set(17.8,0,17.4);scene.add(duc);
+  duc.add(at(rbox(2.4,3.2,4.0,0xe8c9c0),0,TOP+1.6,0));
+  for(let i=0;i<4;i++){const x=-0.9+i*0.6;duc.add(at(rbox(0.32,0.9,0.06,mat(0x2e2418,{emissive:0xffb85e,ei:0.35})),x,TOP+0.55,2.02));
+    duc.add(at(rbox(0.26,0.6,0.06,mat(0x2e2418,{emissive:0xffc06a,ei:0.8})),x,TOP+2.2,2.02));}
+  duc.add(at(rbox(2.6,0.16,4.2,0xfaf4ea),0,TOP+3.26,0));
+  [[12.6,19.9],[14.6,19.9]].forEach(([x,z],i)=>{const c=new THREE.Group();c.position.set(x,TOP,z);scene.add(c);
+    c.add(at(rbox(0.5,0.3,0.5,0xe6dcc6),0,0.15,0));c.add(at(mesh(new THREE.CylinderGeometry(0.16,0.18,2.6,10),0xd8cfc2),0,1.6,0));
+    c.add(at(rbox(0.36,0.2,0.36,0xe6dcc6),0,2.98,0));c.add(at(mesh(i?new THREE.ConeGeometry(0.12,0.45,6):new THREE.IcosahedronGeometry(0.2,0),gold),0,3.3,0));});
+}
+{ // pozo del Campo Santi Apostoli
+  const w=new THREE.Group();w.position.set(-3.9,TOP,-2.4);scene.add(w);
+  w.add(at(mesh(new THREE.CylinderGeometry(0.42,0.46,0.5,10),0xe6dcc6),0,0.25,0));
+  w.add(at(mesh(new THREE.CylinderGeometry(0.3,0.3,0.04,10),0x2a3a4a),0,0.51,0));
 }
 { // fuente del campo
-  const g=new THREE.Group();g.position.set(5.6,TOP,15.5);scene.add(g);
+  const g=new THREE.Group();g.position.set(-13.5,TOP,-12.6);scene.add(g);
   g.add(at(mesh(new THREE.CylinderGeometry(0.75,0.82,0.3,18),0xe6dcc6),0,0.15,0));
   g.add(at(mesh(new THREE.CylinderGeometry(0.62,0.62,0.04,18),mat(0x3f7fb2,{emissive:0x1d4f7a,ei:0.4,rough:0.2})),0,0.28,0));
   g.add(at(mesh(new THREE.CylinderGeometry(0.08,0.12,0.7,8),0xe6dcc6),0,0.55,0));
@@ -1836,9 +1890,9 @@ tree(-18.3,5.3,0.8);tree(-19.5,5.4,0.7);tree(8.2,15.6,0.85);tree(6.0,18.6,0.7);t
   animators.push(t=>{jet.scale.set(1,1+Math.sin(t*5)*0.25,1);});
 }
 /* Discoteca */
-const DISCO={c:[17.9,0.6]};
+const DISCO={c:[22,-3.1]};
 {
-  const g=new THREE.Group();g.position.set(20.4,0,0.6);scene.add(g);
+  const g=new THREE.Group();g.position.set(22,0,-6.4);g.rotation.y=Math.PI/2;scene.add(g);
   g.add(at(rbox(2.4,2.3,4.6,0x1b1630),0,TOP+1.15,0));
   g.add(at(rbox(2.55,0.16,4.75,0x2a2244),0,TOP+2.36,0));
   const neonC=[0xff4fa3,0x45e0ff,0xb37bff];const neons=[];
@@ -1882,8 +1936,7 @@ function gondola(axis,fixed,from,to,speed,ph){
     else{g.position.set(fixed,0.05+Math.sin(t*1.6+ph)*0.03,v);g.rotation.y=fwd?-Math.PI/2:Math.PI/2;}
     g.rotation.z=Math.sin(t*1.2+ph)*0.03;oar.rotation.z=Math.sin(t*1.8)*0.35;gd.rotation.z=Math.sin(t*1.8)*0.08;});
 }
-gondola('x',-4,9.3,15.2,0.05,0.3);
-gondola('z',-14.7,-12.6,0.2,0.045,1.1);
+gondola('x',8.7,-20.5,-6.5,0.035,0.3);gondola('x',8.6,4.5,17,0.04,1.4);gondola('z',1.2,-6.6,-0.9,0.045,1.1);gondola('x',-8.5,-21,-11,0.04,2.2);
 
 /* ---------- Cielo (estrellas y luna) ---------- */
 const sky=$('#sky'),sctx=sky.getContext('2d');let stars=[];
@@ -1903,7 +1956,7 @@ let fitZoom=1,userMoved=false;
 const H=12;
 function frustum(){const a=innerWidth/innerHeight;camera.left=-H*a;camera.right=H*a;camera.top=H;camera.bottom=-H;}
 function fitView(animate){
-  const VB={x0:-22.5,x1:23,z0:-12.5,z1:20.5};const cx=(VB.x0+VB.x1)/2,cz=(VB.z0+VB.z1)/2;
+  const VB={x0:-23.5,x1:26,z0:-17.5,z1:21};const cx=(VB.x0+VB.x1)/2,cz=(VB.z0+VB.z1)/2;
   const pos=CAM_DIR.clone().multiplyScalar(80).add(new THREE.Vector3(cx,1,cz));
   const target=new THREE.Vector3(cx,1,cz);
   const tmpCam=camera.clone();tmpCam.position.copy(pos);tmpCam.lookAt(target);tmpCam.updateMatrixWorld();
@@ -2047,7 +2100,7 @@ function placeCard(force){
 const SHOW={on:false,t:0,dur:90,paused:false,phase:null,p:0,cam:true,snap:false,start:16,end:24,n:0};
 const PH=[{k:'ceremonia',a:16,b:17,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17,b:18,lbl:'Fase 2 · Bote y fotos'},
   {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:20.5,lbl:'Fase 4 · Cena y fiesta en el salón'},{k:'fiesta',a:20.5,b:23.5,lbl:'Fase 5 · Fiesta en la pista'},{k:'regreso',a:23.5,b:24,lbl:'Fase 6 · Regreso a los hoteles'}];
-const GARDEN=[[4.0,-1.45],[5.5,-1.45],[6.95,-1.3],[4.0,0.25],[5.5,0.2],[7.0,0.15],[4.5,1.75]];
+const GARDEN=[[-11.6,0.7],[-10.0,0.7],[-8.4,0.7],[-6.8,0.6],[-11.0,2.6],[-9.4,2.6],[-7.8,2.6]];
 /* Mesitas altas del aperitivo y escenario del saxofonista (solo en el Modo Fiesta, durante el aperitivo) */
 const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
 {
@@ -2060,7 +2113,7 @@ const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
     t.add(at(mesh(new THREE.CylinderGeometry(0.03,0.03,0.08,8),glassM),0.06,0.71,0.03));
     t.add(at(mesh(new THREE.CylinderGeometry(0.02,0.02,0.1,8),mat(0xfff1c9,{emissive:0xffc46b,ei:1.2})),-0.05,0.72,-0.04));
     t.children.forEach(c=>c.userData.noPick=true);APERO.add(t);});
-  const stage=new THREE.Group();stage.position.set(6.4,TOP,1.6);APERO.add(stage);
+  const stage=new THREE.Group();stage.position.set(-6.2,TOP,2.9);APERO.add(stage);
   stage.add(at(mesh(new THREE.CylinderGeometry(0.62,0.66,0.08,24),mat(0x1d2233,{emissive:0xd8b45f,ei:0.12,rough:0.5})),0,0.04,0));
   stage.add(at(mesh(new THREE.TorusGeometry(0.64,0.018,6,32),mat(0xd8b45f,{metal:0.8,emissive:0xd8b45f,ei:0.5})),0,0.08,0).rotateX(Math.PI/2));
   const coneG=new THREE.ConeGeometry(0.7,2.6,20,1,true);coneG.translate(0,-1.3,0);
@@ -2071,7 +2124,7 @@ const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
   APERO.userData.spot=spot;APERO.userData.beam=beam;
 }
 let saxShow=0;
-const FIESTA=[[8.4,-1.4],[9.35,-1.4],[10.3,-1.4],[8.4,-0.45],[9.35,-0.45],[10.3,-0.45],[8.4,0.5],[9.35,0.5],[10.3,0.5],[8.4,1.45],[9.35,1.45],[10.3,1.45],[7.9,0.0]];
+const FC={x:-8.6,z:-3.6};const FIESTA=[[-0.95,-1.4],[0,-1.4],[0.95,-1.4],[-0.95,-0.45],[0,-0.45],[0.95,-0.45],[-0.95,0.5],[0,0.5],[0.95,0.5],[-0.95,1.45],[0,1.45],[0.95,1.45],[-1.45,0]].map(o=>[FC.x+o[0],FC.z+o[1]]);
 const showHour=()=>SHOW.start+(SHOW.end-SHOW.start)*SHOW.t/SHOW.dur;
 const showPhase=h=>PH.find(p=>h<p.b)||PH[PH.length-1];
 function fmtHour(h){const H24=Math.floor(h),mm=Math.floor((h-H24)*60);const h12=((H24+11)%12)+1;return h12+':'+String(mm).padStart(2,'0')+(H24<12?' a. m.':' p. m.');}
@@ -2080,13 +2133,17 @@ function polyAt(P,k){let L=0;const seg=[];for(let i=0;i<P.length-1;i++){const l=
   let s=Math.max(0,Math.min(1,k))*L;for(let i=0;i<seg.length;i++){if(s<=seg[i]||i===seg.length-1){const f=seg[i]?Math.min(1,s/seg[i]):1;const a=P[i],b=P[i+1];
     return{x:a[0]+(b[0]-a[0])*f,z:a[1]+(b[1]-a[1])*f,face:Math.atan2(b[0]-a[0],b[1]-a[1])};}s-=seg[i];}return{x:P[0][0],z:P[0][1],face:0};}
 /* Puestos de la cena para el Modo Fiesta (coordenadas del mundo) */
-const PDOOR=[2.3,5.1],PMID=[2.45,2.7];let SHOWSEATS=[];
-function planShowSeats(N){const ox=palazzo.position.x,oz=palazzo.position.z;const out=[];
+palazzo.updateMatrixWorld(true);
+const PW=(lx,lz,ly)=>palazzo.localToWorld(new THREE.Vector3(lx,ly??0,lz));
+const PDOOR=(v=>[v.x,v.z])(PW(-2.75,0)),PIN=(v=>[v.x,v.z])(PW(-1.9,0)),PMID=[-12.9,0.15];let SHOWSEATS=[];
+function planShowSeats(N){const out=[],ry=palazzo.rotation.y;
   const nc=Math.min(6,N),rest=N-nc,ni=Math.ceil(rest/2),nd=rest-ni;const span=U.armZ*2,armLen=U.baseX-U.openX-0.45;
-  const sideL=oz-U.armZ-0.42,sideR=oz+U.armZ+0.42,openX=ox+U.openX-0.35;
-  for(let i=0;i<nc;i++){const x=ox+U.baseX+0.42,z=oz-span/2+span*(i+0.5)/nc;out.push({x,z,face:-Math.PI/2,path:[[openX,sideL],[x,sideL],[x,z]]});}
-  for(let i=0;i<ni;i++){const x=ox+U.baseX-0.45-armLen*(i+0.5)/ni,z=sideL;out.push({x,z,face:0,path:[[openX,sideL],[x,z]]});}
-  for(let i=0;i<nd;i++){const x=ox+U.baseX-0.45-armLen*(i+0.5)/nd,z=sideR;out.push({x,z,face:Math.PI,path:[[openX,sideR],[x,z]]});}
+  const sideL=-U.armZ-0.42,sideR=U.armZ+0.42,openX=U.openX-0.35;
+  const P=(x,z)=>{const v=PW(x,z);return[v.x,v.z];};
+  const seat=(x,z,face,path)=>{const v=PW(x,z,TOP+0.22);out.push({x:v.x,z:v.z,y:v.y,face:face+ry,path:path.map(p=>P(p[0],p[1]))});};
+  for(let i=0;i<nc;i++){const x=U.baseX+0.42,z=-span/2+span*(i+0.5)/nc;seat(x,z,-Math.PI/2,[[openX,sideL],[x,sideL],[x,z]]);}
+  for(let i=0;i<ni;i++){const x=U.baseX-0.45-armLen*(i+0.5)/ni,z=sideL;seat(x,z,0,[[openX,sideL],[x,z]]);}
+  for(let i=0;i<nd;i++){const x=U.baseX-0.45-armLen*(i+0.5)/nd,z=sideR;seat(x,z,Math.PI,[[openX,sideR],[x,z]]);}
   return out;}
 function assignShow(){
   const hum=guests.filter(g=>!g.dog);hum.forEach((g,i)=>{g.si=i;g.bs=g.bs||g.m.scale.x;});SHOW.n=hum.length;SHOWSEATS=planShowSeats(hum.length);
@@ -2105,22 +2162,22 @@ function showTarget(g,ph,p){
     return{x:GARDEN[gi][0]+Math.cos(a)*r,z:GARDEN[gi][1]+Math.sin(a)*r,pose:'chat',cx:GARDEN[gi][0],cz:GARDEN[gi][1],idx,n,gi};}
   if(ph==='cena'){ // entran al palazzo, se sientan a comer y a las 8:30 salen a la pista
     const A=showTarget(g,'aperitivo',0),S=SHOWSEATS[i%SHOWSEATS.length],F=showTarget(g,'fiesta',0);
-    const seatY=TOP+0.22;
+    const seatY=S.y;
     const kin=Math.max(0,Math.min(1,p/0.26*1.25-i/N*0.25)),kout=Math.max(0,Math.min(1,(p-0.8)/0.2*1.25-i/N*0.25));
-    if(kout>0){if(kout>=1)return F;const q=polyAt([[S.x,S.z],...S.path.slice(0,-1).reverse(),PDOOR,PMID,[F.x,F.z]],kout);const inside=kout<0.35;
+    if(kout>0){if(kout>=1)return F;const q=polyAt([[S.x,S.z],...S.path.slice(0,-1).reverse(),PIN,PDOOR,PMID,[F.x,F.z]],kout);const inside=kout<0.35;
       return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true,small:inside};}
     if(kin>=1)return{x:S.x,z:S.z,y:seatY,pose:'sit',face:S.face,small:true,eat:true};
     if(kin<=0)return A;
-    const q=polyAt([[A.x,A.z],PMID,PDOOR,...S.path],kin);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true,small:kin>0.62};}
+    const q=polyAt([[A.x,A.z],PMID,PDOOR,PIN,...S.path],kin);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true,small:kin>0.62};}
   if(ph==='fiesta'){const c=FIESTA[Math.floor(i/2)%FIESTA.length];return{x:c[0],z:c[1],pose:'dance',sign:i%2?1:-1,pair:Math.floor(i/2)};}
   if(ph==='regreso'&&i%4===1){ // unos cuantos siguen la fiesta en la discoteca
     const F=showTarget(g,'fiesta',0);const k=Math.max(0,Math.min(1,p*1.8-(i/N)*0.5));
     const n=Math.ceil(N/4),j=Math.floor(i/4),a=j/n*Math.PI*2;const dx=DISCO.c[0]+Math.cos(a)*0.6,dz=DISCO.c[1]+Math.sin(a)*0.6;
     if(k<=0)return F;if(k>=1)return{x:dx,z:dz,pose:'dance',sign:j%2?1:-1,pair:j+20};
-    const q=polyAt([[F.x,F.z],[11.9,2.9],[12.6,3.3],[16.4,3.3],[17.4,2.4],[dx,dz]],k);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true};}
+    const q=polyAt([[F.x,F.z],[-4.6,1.2],[BRX-BR_HALF-0.4,BR_Z],[BRX+BR_HALF+0.4,BR_Z],[9.8,1.9],[15.6,2.2],[15.6,-1.6],[19.2,-1.6],[dx,dz]],k);return{x:q.x,z:q.z,pose:'walk',face:q.face,route:true};}
   if(ph==='regreso'){const k=p*1.9-(i/N)*0.9;const c=FIESTA[Math.floor(i/2)%FIESTA.length];
     if(k<=0)return{x:c[0],z:c[1],pose:'stand',face:Math.PI*0.5};
-    const R=ROUTES.R1,q=routeAt(R,R.len);const lat=((i%3)-1)*0.2;return{x:q.x+lat,z:q.z,pose:'stand',face:Math.PI,leave:true};}
+    const lat=((i%3)-1)*0.3;return{x:PMID[0]-0.4+lat,z:PMID[1]+0.25,pose:'stand',face:-Math.PI/2,leave:true};}
   return null;
 }
 function showGuest(g,t,dt){
@@ -2128,7 +2185,7 @@ function showGuest(g,t,dt){
   if(g.dog){const o=g.showOwner;if(!o)return false;
     if(ph==='regreso'&&!o.m.visible){m.visible=false;return true;}
     m.visible=true;const jd=guests.filter(x=>x.dog).indexOf(g);const wait=ph==='cena'&&o.m.scale.x<(o.bs||1)*0.9;
-    const tx=wait?1.7+jd*0.38:o.m.position.x+0.42,tz=wait?4.3:o.m.position.z+0.32;const dx=tx-m.position.x,dz=tz-m.position.z,d=Math.hypot(dx,dz);
+    const tx=wait?PDOOR[0]+1.1+jd*0.38:o.m.position.x+0.42,tz=wait?PDOOR[1]+0.4:o.m.position.z+0.32;const dx=tx-m.position.x,dz=tz-m.position.z,d=Math.hypot(dx,dz);
     if(SHOW.snap||d>4){m.position.set(tx,groundY(tx,tz),tz);}
     else if(d>0.08){const s=Math.min(d,dt*2.2);m.position.x+=dx/d*s;m.position.z+=dz/d*s;m.rotation.y=Math.atan2(dx,dz);}
     m.position.y=groundY(m.position.x,m.position.z)+(onFloor(m.position.x,m.position.z)?0.09:0);
@@ -2136,7 +2193,7 @@ function showGuest(g,t,dt){
     D.legs[0].rotation.x=a;D.legs[3].rotation.x=a;D.legs[1].rotation.x=-a;D.legs[2].rotation.x=-a;D.tail.rotation.y=Math.sin(t*12+g.step)*0.7;
     return true;}
   const L=m.userData.limbs;const T=showTarget(g,ph,SHOW.p);if(!T||T.pose!=='sit')restoreLegs(m);
-  if(g.bs){const want=T&&T.small?g.bs*0.66:g.bs;if(Math.abs(m.scale.x-want)>1e-3)m.scale.setScalar(want);}
+  if(g.bs){const want=T&&T.small?g.bs*0.66*PAL_S:g.bs;if(Math.abs(m.scale.x-want)>1e-3)m.scale.setScalar(want);}
   if(T&&T.leave&&Math.hypot(T.x-m.position.x,T.z-m.position.z)<0.3){m.visible=false;return true;}
   if(!T){m.visible=false;return true;}m.visible=true;m.rotation.x=0;m.rotation.z=0;
   if(T.route){m.position.set(T.x,groundY(T.x,T.z),T.z);m.rotation.y=T.face;resetArms(L);
@@ -2195,12 +2252,13 @@ function onPhase(P){
   SHOW.snap=true;
   if(!SHOW.cam)return;
   const zf=innerWidth<640?2.0:2.5;
-  if(cer)flyTo(-8,-6,zf*1.15,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
+  const CD=[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z];
+  if(cer)flyTo(church.position.x,church.position.z,zf*1.15,null,CD);
   else if(P.k==='traslado')flyTo(taxi.position.x,taxi.position.z,zf*0.85,taxi);
-  else if(P.k==='aperitivo')flyTo(5.4,-0.2,zf);
-  else if(cena)flyTo(4.3,4.2,zf*0.98,null,[CAM_DIR.x,CAM_DIR.y,CAM_DIR.z]);
-  else if(P.k==='regreso'){const q=routeAt(ROUTES.R1,ROUTES.R1.len);flyTo((q.x+9.5)/2,(q.z+0.2)/2,zf*0.8);}
-  else flyTo(9.7,0.2,zf,null,[1,0.92,0.35]);
+  else if(P.k==='aperitivo')flyTo(-9.0,1.4,zf,null,CD);
+  else if(cena)flyTo(-14.6,-1.2,zf*0.98,null,CD);
+  else if(P.k==='regreso')flyTo((PMID[0]+DISCO.c[0])/2+0.5,(PMID[1]+DISCO.c[1])/2-1,zf*0.47,null,CD);   // de la puerta del hotel a la discoteca
+  else flyTo(FC.x,FC.z,zf,null,CD);
 }
 function startShow(){
   if(MESA_OPEN)setMesa(false);if(CHURCH_OPEN)setChurch(false,false);closeCard();
