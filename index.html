@@ -994,8 +994,8 @@ function island(x0,x1,z0,z1){
 island(-23,-12.6,-7.6,0.75);   // Ca' Sagredo (el palacio sobre el agua)
 island(-12.6,-0.6,-7.6,4.2);   // campo del hotel (aperitivo y pista) + Campo Santi Apostoli
 island(3,16.5,-7.6,4.2);       // Santa Maria dei Miracoli
-island(-23,-6.5,-17,-9.4);     // Cannaregio: estación de tren Santa Lucia
-island(-4.5,16.5,-17,-9.4);    // Fondamente Nove
+island(-23,-1.5,-17,-9.4);     // Cannaregio: estación de tren Santa Lucia
+island(0.5,16.5,-17,-9.4);     // Fondamente Nove
 island(18.5,25.5,-9,0.5);      // islita de la discoteca
 island(-23,-1,10,18);          // Rialto: mercado
 island(3,19.5,11,20.5);        // Plaza San Marco
@@ -1028,7 +1028,7 @@ function house(x,z,w,h,d,color){
 const HC=[0xd6a77a,0xc9826a,0xe0c48f,0xb86f58,0xd9b3a0,0xc79a6b];
 [[-22.3,-3.4,1.2,2.8,3.4],[-4.4,-4.9,1.4,3.0,2.2],[-1.3,-4.9,1.2,2.6,2.2],
  [4.6,-4.6,2.2,3.0,2.6],[5.0,-1.3,2.0,2.6,2.4],[13.4,-4.4,2.2,3.2,2.6],[13.6,-0.6,2.4,2.6,2.0],
- [0.6,-14.6,2.6,3.0,2.4],[10.0,-14.4,2.6,3.2,2.6],[13.8,-14.6,2.2,2.6,2.4],
+ [2.3,-14.6,2.6,3.0,2.4],[10.0,-14.4,2.6,3.2,2.6],[13.8,-14.6,2.2,2.6,2.4],
  [-19.6,11.6,2.4,3.0,2.2],[-5.4,16.4,2.6,3.0,2.2],[-9.6,17.0,2.4,2.6,1.6],[-14.6,17.0,2.4,2.4,1.6],
  [24.2,-1.6,1.6,2.4,2.4]].forEach((h,i)=>house(h[0],h[1],h[2],h[3],h[4],HC[i%HC.length]));
 
@@ -1488,13 +1488,13 @@ const NAV={
   rm:[-2.9,7.1],m1:[-2.9,11.0],m2:[-5.5,12.8],mc:[-8.6,12.8],m4:[-16.8,12.8],m5:[-20.4,16.6],m3:[-2.2,14.5],
   s1:[3.8,14.5],s6:[6.2,16.4],s3:[12.6,17.4],s4:[13.6,20.0],
   c2:[6.6,2.6],c3:[15.4,2.6],c4:[15.6,-1.6],c5:[15.6,-6.9],e1:[19.2,-1.6],e2:[22,-3.1],
-  bl1:[-9.0,-10.3],blc:[-11.4,-10.2],bl2w:[-17.5,-10.4],bl2:[-19.0,-13.2],bl4:[-6.95,-10.3],bl3:[-6.95,-13.0],
-  br1:[-2.6,-10.3],br2:[-3.6,-13.0],br3:[5.0,-12.2],br4:[15.6,-10.3],br5:[6.0,-16.4]};
+  bl1:[-9.0,-10.3],blc:[-6.7,-10.2],bl2w:[-17.5,-10.4],bl2:[-19.0,-13.2],
+  br1:[-2.6,-10.3],bE:[1.4,-10.35],br3:[5.0,-12.2],br4:[15.6,-10.3],br5:[6.0,-16.4]};
 const NAVE=[['hd','h1'],['h1','g'],['h1','h2'],['h2','h3'],['h3','h4'],['h4','f'],['g','f'],['h4','bl1'],['g','p1'],
   ['p1','pc'],['p1','pbw'],['pc','pbw'],['pc','pb'],['pb','br1'],['p1','pf'],['pf','rm'],['rm','m1'],['pbw','brm'],['brm','pbe'],
   ['pbe','c2'],['c2','c3'],['c3','c4'],['c4','e1'],['e1','e2'],['c4','c5'],['c5','br4'],
   ['m1','m2'],['m2','mc'],['mc','m4'],['m4','m5'],['m1','m3'],['m3','s1'],['s1','s6'],['s6','s3'],['s3','s4'],
-  ['bl1','blc'],['blc','bl2w'],['bl2w','bl2'],['bl1','bl4'],['bl4','bl3'],['bl3','br2'],['br1','br2'],['br1','br3'],['br3','br4'],['br3','br5']];
+  ['bl1','blc'],['bl1','bl2w'],['bl2w','bl2'],['blc','br1'],['br1','bE'],['bE','br3'],['br3','br4'],['br3','br5']];
 const NADJ={};NAVE.forEach(([a,b])=>{const d=Math.hypot(NAV[a][0]-NAV[b][0],NAV[a][1]-NAV[b][1]);(NADJ[a]=NADJ[a]||[]).push([b,d]);(NADJ[b]=NADJ[b]||[]).push([a,d]);});
 function navPath(from,to){const dist={},prev={},Q=new Set(Object.keys(NAV));Object.keys(NAV).forEach(k=>dist[k]=Infinity);dist[from]=0;
   while(Q.size){let u=null;Q.forEach(k=>{if(u===null||dist[k]<dist[u])u=k;});Q.delete(u);if(u===to||dist[u]===Infinity)break;
@@ -1832,8 +1832,8 @@ function flatBridge(x0,z0,x1,z1){const alongX=Math.abs(x1-x0)>Math.abs(z1-z0);co
   g.add(at(rbox(L,0.16,1.15,0xe9e2d2),0,TOP-0.04,0));
   [-0.55,0.55].forEach(zz=>{g.add(at(rbox(L,0.06,0.06,0xf4ecdc),0,TOP+0.42,zz));
     for(let i=0;i<=Math.round(L/0.6);i++)g.add(at(rbox(0.05,0.4,0.05,0xf4ecdc),-L/2+i*(L/Math.round(L/0.6)),TOP+0.2,zz));});}
-flatBridge(-9,-7.4,-9,-9.6);flatBridge(-2.6,-7.4,-2.6,-9.6);flatBridge(15.6,-7.4,15.6,-9.6);flatBridge(-6.7,-13,-4.3,-13);flatBridge(16.3,-1.6,18.7,-1.6);flatBridge(-1.2,14.5,3.2,14.5);
-tree(-21.9,-10.1,0.8);tree(-7.5,-16.1,0.7);tree(11.4,-10.1,0.8);tree(-21.2,14.6,0.8);tree(-1.8,17.4,0.7);tree(4.2,19.8,0.75);tree(25,-8.4,0.75);tree(19.2,-8.4,0.7);
+flatBridge(-9,-7.4,-9,-9.6);flatBridge(-2.6,-7.4,-2.6,-9.6);flatBridge(15.6,-7.4,15.6,-9.6);flatBridge(-1.9,-10.35,0.9,-10.35);flatBridge(16.3,-1.6,18.7,-1.6);flatBridge(-1.2,14.5,3.2,14.5);
+tree(-21.9,-10.1,0.8);tree(-3.0,-16.0,0.7);tree(11.4,-10.1,0.8);tree(-21.2,14.6,0.8);tree(-1.8,17.4,0.7);tree(4.2,19.8,0.75);tree(25,-8.4,0.75);tree(19.2,-8.4,0.7);
 { // puestos del mercado
   const cols=[0xb4473a,0x2f6f8f,0xd8b45f];
   [[-12.2,11.6],[-10.6,11.6],[-9.0,11.6],[-7.4,11.6]].forEach(([x,z],i)=>{const g=new THREE.Group();g.position.set(x,TOP,z);scene.add(g);
@@ -1883,7 +1883,7 @@ tree(-21.9,-10.1,0.8);tree(-7.5,-16.1,0.7);tree(11.4,-10.1,0.8);tree(-21.2,14.6,
 /* Estación de tren Venezia Santa Lucia: edificio bajo y largo de piedra blanca, andenes, vías y el puente
    del tren sobre la laguna (Ponte della Libertà). Un tren llega, se detiene y vuelve a salir (es terminal). */
 {
-  const st=new THREE.Group();st.position.set(-11.4,0,-12.6);scene.add(st);
+  const st=new THREE.Group();st.position.set(-6.7,0,-12.6);scene.add(st);
   const stone=0xefe8da,glass=()=>mat(0x2c2a24,{emissive:0xffc778,ei:0.85,rough:0.35});
   st.add(at(rbox(7.6,1.9,2.6,stone),0,TOP+0.95,0));
   st.add(at(rbox(7.85,0.12,2.85,0xf8f3ea),0,TOP+1.96,0));
@@ -1904,13 +1904,13 @@ tree(-21.9,-10.1,0.8);tree(-7.5,-16.1,0.7);tree(11.4,-10.1,0.8);tree(-21.2,14.6,
   scene.add(st);
   interactive(st,'estacion',2.3,4.6);
   // andenes y vías (detrás del edificio, hacia el oeste)
-  const X0=-29.6,XS=-15.4,TZ=[-14.9,-16.0];
+  const X0=-29.6,XS=-10.7,TZ=[-14.9,-16.0];
   [-14.35,-15.45,-16.55].forEach((z,i)=>{const L=XS-0.4-(-21.6);const pl=rbox(L,0.14,0.42,0xd9d0bf);pl.position.set((-21.6+XS-0.4)/2,TOP+0.07,z);scene.add(pl);
-    for(let k=0;k<3;k++){const lp=new THREE.Group();lp.position.set(-20.6+k*1.9,TOP+0.14,z);scene.add(lp);
+    for(let k=0;k<4;k++){const lp=new THREE.Group();lp.position.set(-20.6+k*2.9,TOP+0.14,z);scene.add(lp);
       lp.add(at(mesh(new THREE.CylinderGeometry(0.025,0.03,0.7,6),0x2a2d33),0,0.35,0));
       const b=rbox(0.12,0.08,0.12,mat(0xfff0cc,{emissive:0xffd08a,ei:1.2}));b.position.y=0.74;b.castShadow=false;lp.add(b);}});
   { const L=XS-0.4-(-21.6);const roof=rbox(L,0.06,0.9,0xcfc8ba);roof.position.set((-21.6+XS-0.4)/2,TOP+1.15,-16.65);scene.add(roof);   // cubierta del andén de fondo
-    for(let k=0;k<3;k++)scene.add(at(mesh(new THREE.CylinderGeometry(0.035,0.035,1.0,6),0x6b6f78),-21+k*2.4,TOP+0.64,-16.55));}
+    for(let k=0;k<5;k++)scene.add(at(mesh(new THREE.CylinderGeometry(0.035,0.035,1.0,6),0x6b6f78),-21+k*2.4,TOP+0.64,-16.55));}
   TZ.forEach(z=>{const L=XS-X0;const cx=(X0+XS)/2;
     const bal=rbox(L,0.04,0.66,0x5f5953);bal.position.set(cx,TOP+0.02,z);bal.castShadow=false;scene.add(bal);
     [-0.17,0.17].forEach(o=>{const r=rbox(L,0.05,0.05,mat(0x9aa0a8,{metal:0.7,rough:0.35}));r.position.set(cx,TOP+0.065,z+o);r.castShadow=false;scene.add(r);});
