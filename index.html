@@ -121,6 +121,18 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .guest .live{display:none;}
 .guest .tools{display:none;}
 .showing .tabs{display:none!important;}
+.wish{position:fixed;z-index:12;left:50%;top:50%;transform:translate(-50%,-50%);width:min(400px, calc(100vw - 32px));box-sizing:border-box;padding:20px 20px 16px;border-radius:20px;
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.wish .eyebrow{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);}
+.wish h3{font-family:var(--display);font-weight:400;font-size:28px;color:var(--gold);margin:4px 0 6px;}
+.wish p{margin:0 0 12px;font-size:13px;line-height:1.5;color:var(--ivory);}
+.wish label{display:block;font-size:12px;color:var(--mist);margin:0 0 10px;}
+.wish input,.wish textarea{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(10,18,34,.6);color:var(--ivory);font:14px var(--ui);resize:vertical;}
+.wish input:focus,.wish textarea:focus{outline:2px solid var(--gold-soft);outline-offset:1px;}
+.wish .wbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
+.wish .go{background:var(--gold);color:var(--night);border-color:var(--gold);}
+.wish .wmsg{margin:10px 0 0;color:var(--gold-soft);}
+.wish .wx{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ivory);cursor:pointer;}
 .touring .tabs{display:none!important;} .touring .hint{opacity:0;}
 .cdown{top:calc(env(safe-area-inset-top,0px) + 66px);right:max(16px, env(safe-area-inset-right,0px));text-align:right;padding:9px 14px 10px;border-radius:16px;
   background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
@@ -854,13 +866,22 @@ print-color-adjust: exact;
   <div class="legend" aria-hidden="true"><span><i class="ok"></i>Confirmado</span><span><i class="pe"></i>Por confirmar</span><span id="lgPot" hidden><i class="po"></i>Potencial</span></div>
 </div>
 <div class="hud hint" id="hint">Arrastra para girar · clic derecho, Shift + arrastrar o flechas para mover · rueda o pellizco para acercar · toca la iglesia, Ca’ Sagredo, la estación de tren, el vaporetto, el taxi acuático, los músicos o la foto de cualquier invitado.</div>
-<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="tourBtn" type="button" aria-pressed="false">Recorrido</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
+<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="wishBtn" type="button">Deja un deseo</button><button class="reset" id="tourBtn" type="button" aria-pressed="false">Recorrido</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
 <section class="plan" id="plan" aria-label="Plano de la mesa en U" hidden>
   <div class="eyebrow" id="planSub">Cena en Ca’ Sagredo</div>
   <h3>Mesa en U</h3>
   <div class="u" id="uPlan"></div>
   <div class="unassigned" id="planFree" hidden></div>
   <p class="note">Vista desde la entrada de la U. Toca un puesto para ver a la persona. Para cambiar puestos, pídelo en el chat del proyecto.</p>
+</section>
+<section class="wish" id="wish" role="dialog" aria-modal="true" aria-labelledby="wTitle" hidden>
+  <button class="wx" id="wClose" type="button" aria-label="Cerrar">✕</button>
+  <div class="eyebrow">Linternas de deseos</div><h3 id="wTitle">Deja tu deseo</h3>
+  <p>Tu deseo subirá en una linterna sobre la laguna de Venecia. Los demás lo verán sin tu nombre; solo Miguel y Marcela sabrán quién lo escribió.</p>
+  <form id="wForm"><label>Tu nombre<input id="wName" required maxlength="60" autocomplete="name"></label>
+    <label>Tu deseo para los novios<textarea id="wText" required maxlength="400" rows="4"></textarea></label>
+    <div class="wbtns"><button class="reset go" id="wSend" type="submit">Soltar mi linterna</button></div></form>
+  <p class="wmsg" id="wMsg" hidden></p>
 </section>
 <section class="show tour" id="tour" aria-label="Recorrido" hidden>
   <div class="eyebrow" id="tStep"></div><h4 id="tTitle"></h4><p id="tText"></p>
@@ -2120,11 +2141,14 @@ LOCAL_OBJ.vaporetto={titulo:'Vaporetto línea 1',sub:'El bus acuático del Gran 
   {label:'Desde la estación',value:'Parada Ferrovia'},
   {label:'Para Ca’ Sagredo',value:'Parada Ca’ d’Oro · ≈ 20 min'},
   {label:'Recorre',value:'Todo el Gran Canal hasta San Marco'}]};
-const LANT=[];
+const LANT=[];let WISH_N=0;
+const WISHES=()=>(DATA&&Array.isArray(DATA.deseos))?DATA.deseos.filter(d=>d&&d.texto):[];
+function wishFor(L){const W=WISHES();if(!W.length)return null;if(L.wi===undefined||L.wi>=W.length)L.wi=(WISH_N++)%W.length;return W[L.wi];}
 function localObj(id){if(!id)return null;if(LOCAL_OBJ[id])return LOCAL_OBJ[id];
-  if(id.startsWith('linterna:')){const W=(DATA&&Array.isArray(DATA.deseos))?DATA.deseos.filter(d=>d&&d.texto):[];const i=+id.slice(9);
-    if(W.length){const w=W[i%W.length];return{titulo:'Linterna de deseos',sub:'Para Miguel y Marcela',metricas:[{label:w.de||'Un invitado',value:w.texto}]};}
-    return{titulo:'Linterna de deseos',sub:'Para Miguel y Marcela',metricas:[{label:'Muy pronto',value:'Cada linterna llevará el deseo de un invitado para los novios.'}]};}
+  if(id.startsWith('linterna:')){const L=LANT[+id.slice(9)];const w=L&&(L.mine||wishFor(L));
+    if(w){const priv=DATA&&DATA.modo!=='invitados';return{titulo:'Linterna de deseos',sub:L.mine?'Tu linterna · llegará a todos en la próxima hora':'Para Miguel y Marcela',
+      metricas:[{label:L.mine?'Tu deseo':(priv&&w.de?w.de:'Deseo anónimo'),value:w.texto}].concat(priv&&w.fecha&&!L.mine?[{label:'Fecha',value:w.fecha}]:[])};}
+    return{titulo:'Linterna de deseos',sub:'Para Miguel y Marcela',metricas:[{label:'Todavía vacía',value:'Toca “Deja un deseo” y tu deseo subirá en una de estas linternas.'}]};}
   return null;}
 function titleOf(id){return DATA?.objetos?.[id]?.titulo||localObj(id)?.titulo||id;}
 /* ---------- Vaporetto línea 1: recorre el Gran Canal, para en Ca' d'Oro y en San Marco, y vuelve ---------- */
@@ -2173,7 +2197,7 @@ const vapo=new THREE.Group();
   gr.addColorStop(0,'rgba(255,200,120,.95)');gr.addColorStop(0.35,'rgba(255,150,60,.4)');gr.addColorStop(1,'rgba(255,120,40,0)');gx.fillStyle=gr;gx.fillRect(0,0,64,64);
   const gtex=new THREE.CanvasTexture(gcv);
   const onLand=(x,z)=>ISL.some(([x0,x1,z0,z1])=>x>x0-0.4&&x<x1+0.4&&z>z0-0.4&&z<z1+0.4);
-  const spawn=L=>{for(let i=0;i<30;i++){const x=-27+Math.random()*54,z=-21+Math.random()*46;if(!onLand(x,z)){L.x0=x;L.z0=z;break;}}L.y=0.3;L.v=0.13+Math.random()*0.08;L.ph=Math.random()*6.28;};
+  const spawn=L=>{for(let i=0;i<30;i++){const x=-27+Math.random()*54,z=-21+Math.random()*46;if(!onLand(x,z)){L.x0=x;L.z0=z;break;}}L.y=0.3;L.v=0.13+Math.random()*0.08;L.ph=Math.random()*6.28;L.mine=null;const W=WISHES();L.wi=W.length?(WISH_N++)%W.length:undefined;};
   for(let i=0;i<14;i++){const g=new THREE.Group();scene.add(g);
     const bm=mat(0xffb062,{emissive:0xff9a3c,ei:1.5,rough:0.6});bm.transparent=true;
     const body=mesh(new THREE.CylinderGeometry(0.13,0.1,0.26,8),bm);body.castShadow=false;g.add(body);
@@ -2467,6 +2491,23 @@ function startShow(){
   $('#sPause').textContent='Pausa';
   if(!MUSIC.on)toggleMusic(true);
 }
+/* ---------- Deja un deseo: se envía al formulario de Google; la sincronización lo pasa a las linternas ---------- */
+const WFORM='https://docs.google.com/forms/d/e/1FAIpQLSelgdOiIC3hPj1FfMAQ_kARtZxHf25Q8j0yhcTf1APqIoc1mQ',W_NAME='entry.309451010',W_TEXT='entry.1855601812';
+const wishEl=$('#wish');
+function openWish(){closeCard();wishEl.hidden=false;$('#wMsg').hidden=true;$('#wForm').hidden=false;setTimeout(()=>$('#wName').focus(),50);}
+function closeWish(){wishEl.hidden=true;}
+$('#wishBtn').addEventListener('click',openWish);$('#wClose').addEventListener('click',closeWish);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!wishEl.hidden)closeWish();});
+$('#wForm').addEventListener('submit',async e=>{e.preventDefault();const n=$('#wName').value.trim(),t=$('#wText').value.trim();if(!n||!t)return;
+  const btn=$('#wSend');btn.disabled=true;const body=new URLSearchParams();body.set(W_NAME,n);body.set(W_TEXT,t);let ok=true;
+  try{await fetch(WFORM+'/formResponse',{method:'POST',mode:'no-cors',body});}
+  catch(err){ok=false;const u=WFORM+'/viewform?usp=pp_url&'+W_NAME+'='+encodeURIComponent(n)+'&'+W_TEXT+'='+encodeURIComponent(t);window.open(u,'_blank','noopener');}
+  btn.disabled=false;$('#wForm').hidden=true;$('#wMsg').hidden=false;
+  $('#wMsg').textContent=ok?'¡Listo! Tu linterna ya va subiendo. En la próxima hora aparecerá para todos, sin tu nombre.':'Se abrió el formulario en otra pestaña: toca “Enviar” allá para soltar tu linterna.';
+  $('#wText').value='';
+  // su linterna sube ya mismo frente a Ca' Sagredo
+  const L=LANT.reduce((a,b)=>(a.y>b.y?a:b));L.x0=-13+Math.random()*3;L.z0=5.2+Math.random();L.y=0.3;L.v=0.16;L.mine={texto:t,de:n};
+  setTimeout(()=>{closeWish();userMoved=true;flyTo(L.x0,L.z0,2.4,L.g);},1800);});
 /* ---------- Recorrido guiado: la cámara visita los lugares del día ---------- */
 const TOUR={on:false,i:0,t:0,paused:false,DUR:7};
 const TSTEPS=[
@@ -2607,6 +2648,7 @@ function renderExtras(){
   const act=$('#cAct'),gal=$('#cGal');act.innerHTML='';gal.innerHTML='';
   const id=selectedId;const btn=(label,fn,ghost)=>{const b=document.createElement('button');b.type='button';b.textContent=label;if(ghost)b.className='ghost';b.addEventListener('click',fn);act.appendChild(b);};
   if(id==='iglesia')btn(CHURCH_OPEN?'Cerrar la iglesia':'Ver por dentro',()=>{setChurch(!CHURCH_OPEN);renderExtras();},CHURCH_OPEN);
+  if(id&&id.startsWith('linterna:'))btn('Deja tu deseo',()=>openWish());
   if(id==='palazzo'&&DATA&&DATA.mesa)btn(MESA_OPEN?'Cerrar Ca’ Sagredo':'Ver por dentro',()=>{setMesa(!MESA_OPEN);renderExtras();},MESA_OPEN);
   const fotos=(DATA&&DATA.galerias&&DATA.galerias[GAL_FOR[id]])||[];
   if(fotos.length){fotos.slice(0,6).forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver foto '+(i+1));
