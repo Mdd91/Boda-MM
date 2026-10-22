@@ -1,1 +1,1342 @@
-{"modo": "invitados", "actualizado": "2026-10-21T13:20:44+00:00", "fuente": "Matrimonio M&M · Venecia", "evento": {"fecha": "2027-01-07", "adultos": 20, "ninos": 5}, "objetos": {"campanile": {"titulo": "Cuenta regresiva", "sub": "Campanile · 7 de enero de 2027", "metricas": [{"label": "Días para la boda", "value": "2027-01-07", "fmt": "dias"}, {"label": "Ceremonia", "value": "4:30 PM", "fmt": "text"}, {"label": "Aperitivo", "value": "6:00 PM", "fmt": "text"}, {"label": "Cena", "value": "7:00 PM", "fmt": "text"}, {"label": "Vestimenta", "value": "Corbata negra · vestido largo", "fmt": "text"}]}, "iglesia": {"titulo": "Santa Maria dei Miracoli", "sub": "Ceremonia religiosa", "metricas": [{"label": "Hora", "value": "4:30 PM", "fmt": "text"}, {"label": "Días para la ceremonia", "value": "2027-01-07", "fmt": "dias"}, {"label": "Vestimenta", "value": "Corbata negra · vestido largo", "fmt": "text"}]}, "palazzo": {"titulo": "Ca’ Sagredo", "sub": "Aperitivo y cena", "metricas": [{"label": "Aperitivo", "value": "6:00 PM", "fmt": "text"}, {"label": "Cena", "value": "7:00 PM", "fmt": "text"}]}, "taxi": {"titulo": "Taxi acuático", "sub": "El bote de los novios", "metricas": [{"label": "Recorrido", "value": "De los Miracoli a Ca’ Sagredo", "fmt": "text"}]}, "fotografo": {"titulo": "Fotógrafo", "sub": "Mirco Toffolo Studio", "metricas": [{"label": "Acompaña", "value": "De la ceremonia a la fiesta", "fmt": "text"}]}, "dj": {"titulo": "DJ, sonido y luces", "sub": "Massimo Pillon", "metricas": [{"label": "Dónde", "value": "Ca’ Sagredo", "fmt": "text"}]}, "saxo": {"titulo": "Saxofonista", "sub": "Marco G.", "metricas": [{"label": "Aperitivo", "value": "6:00 PM", "fmt": "text"}]}, "decoracion": {"titulo": "Decoración", "sub": "Flores y faroles de Ca’ Sagredo", "metricas": [{"label": "Dónde", "value": "Entrada por el canal", "fmt": "text"}]}, "invitados": {"titulo": "Invitados", "sub": "Familia y amigos", "metricas": [{"label": "Invitados", "value": 25, "fmt": "int"}, {"label": "Niños", "value": 5, "fmt": "int"}]}, "novios": {"titulo": "Miguel y Marcela", "sub": "Los novios", "fotos": ["fotos/migue.jpg", "fotos/marce.jpg"], "metricas": [{"label": "Ceremonia", "value": "4:30 PM", "fmt": "text"}, {"label": "Aperitivo", "value": "6:00 PM", "fmt": "text"}, {"label": "Cena", "value": "7:00 PM", "fmt": "text"}]}, "raul": {"titulo": "Raúl", "sub": "Papá de Miguel", "foto": "fotos/rad.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "giancarlo": {"titulo": "Giancarlo", "sub": "Papá de Marcela", "foto": "fotos/gian.jpg", "metricas": [{"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g1": {"titulo": "Marce", "sub": "Novia", "foto": "fotos/marce.jpg", "metricas": [{"label": "Nombre", "value": "Marcela", "fmt": "text"}, {"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g2": {"titulo": "Migue", "sub": "Novio", "foto": "fotos/migue.jpg", "metricas": [{"label": "Nombre", "value": "Miguel", "fmt": "text"}, {"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g3": {"titulo": "Lili", "sub": "Mamá de Marcela", "foto": "fotos/lili.jpg", "metricas": [{"label": "Nombre", "value": "Liliana María Hidalgo Morán", "fmt": "text"}, {"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g4": {"titulo": "Gian", "sub": "Papá de Marcela", "foto": "fotos/gian.jpg", "metricas": [{"label": "Nombre", "value": "Giancarlo Auqué De Silvestri", "fmt": "text"}, {"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g5": {"titulo": "Toti", "sub": "Hermana de Marcela", "foto": "fotos/toti.jpg", "metricas": [{"label": "Nombre", "value": "Rosana Auqué Rosenwach", "fmt": "text"}, {"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g6": {"titulo": "FA", "sub": "Mamá de Miguel", "foto": "fotos/fa.jpg", "metricas": [{"label": "Nombre", "value": "Fátima Dávila Armenta", "fmt": "text"}, {"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g7": {"titulo": "RAD", "sub": "Papá de Miguel", "foto": "fotos/rad.jpg", "metricas": [{"label": "Nombre", "value": "Raúl Alberto Dávila Jimeno", "fmt": "text"}, {"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g8": {"titulo": "RED", "sub": "Hermano de Miguel", "foto": "fotos/red.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g9": {"titulo": "TIZ", "sub": "Cuñada de Miguel", "foto": "fotos/tiz.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g10": {"titulo": "Raúl Alberto", "sub": "Sobrino de Miguel", "foto": "fotos/raul-alberto.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g11": {"titulo": "Cristina", "sub": "Sobrina de Miguel", "foto": "fotos/cristina.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g12": {"titulo": "Rafa", "sub": "Sobrino de Miguel", "foto": "fotos/rafa.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g13": {"titulo": "Machi", "sub": "Hermana de Miguel", "foto": "fotos/machi.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g14": {"titulo": "Jose", "sub": "Cuñado de Miguel", "foto": "fotos/jose.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g15": {"titulo": "Ale", "sub": "Sobrina de Miguel", "foto": "fotos/ale.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g16": {"titulo": "Fa Jr.", "sub": "Sobrina de Miguel", "foto": "fotos/fa-jr.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g17": {"titulo": "Beto", "sub": "Hermano de Miguel", "foto": "fotos/beto.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g18": {"titulo": "Cata", "sub": "Cuñada de Miguel", "foto": "fotos/cata.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g19": {"titulo": "Pipe", "sub": "Hermano de Miguel", "foto": "fotos/pipe.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g20": {"titulo": "Nana", "sub": "Cuñada de Miguel", "foto": "fotos/nana.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}]}, "p:g22": {"titulo": "Henry", "sub": "Cuñado de Marcela", "foto": "fotos/henry.jpg", "metricas": [{"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g23": {"titulo": "Isa", "sub": "Hermana de Marcela", "foto": "fotos/isa.jpg", "metricas": [{"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g24": {"titulo": "Juanchi", "sub": "Cuñado de Marcela", "foto": "fotos/juanchi.jpg", "metricas": [{"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g25": {"titulo": "Pacho", "sub": "Amigo de la familia de Marcela", "foto": "", "metricas": [{"label": "Nombre", "value": "Pacho Infante", "fmt": "text"}, {"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "p:g26": {"titulo": "Maribel", "sub": "Tía de Marcela", "foto": "", "metricas": [{"label": "Familia", "value": "Familia de la novia", "fmt": "text"}]}, "m:m1": {"titulo": "Rayo", "sub": "Sobrino perruno de Miguel", "foto": "fotos/rayo.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}, {"label": "Quién es", "value": "Perro de la familia", "fmt": "text"}]}, "m:m2": {"titulo": "Billi", "sub": "Sobrino perruno de Miguel", "foto": "fotos/billi.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}, {"label": "Quién es", "value": "Perro de la familia", "fmt": "text"}]}, "m:m3": {"titulo": "Fiji", "sub": "Sobrina perruna de Miguel", "foto": "fotos/fiji.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}, {"label": "Quién es", "value": "Perro de la familia", "fmt": "text"}]}, "m:m4": {"titulo": "Ruffo", "sub": "Sobrino perruno de Miguel", "foto": "fotos/ruffo.jpg", "metricas": [{"label": "Familia", "value": "Familia del novio", "fmt": "text"}, {"label": "Quién es", "value": "Perro de la familia", "fmt": "text"}]}}, "personas": [{"id": "g1", "nombre": "Marce", "completo": "Marcela", "relacion": "Novia", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/marce.jpg", "potencial": false, "escena": "taxi-novia"}, {"id": "g2", "nombre": "Migue", "completo": "Miguel", "relacion": "Novio", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/migue.jpg", "potencial": false, "escena": "taxi-novio"}, {"id": "g3", "nombre": "Lili", "completo": "Liliana María Hidalgo Morán", "relacion": "Mamá de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/lili.jpg", "potencial": false, "escena": "camina"}, {"id": "g4", "nombre": "Gian", "completo": "Giancarlo Auqué De Silvestri", "relacion": "Papá de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/gian.jpg", "potencial": false, "escena": "giancarlo"}, {"id": "g5", "nombre": "Toti", "completo": "Rosana Auqué Rosenwach", "relacion": "Hermana de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/toti.jpg", "potencial": false, "escena": "camina"}, {"id": "g6", "nombre": "FA", "completo": "Fátima Dávila Armenta", "relacion": "Mamá de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/fa.jpg", "potencial": false, "escena": "camina"}, {"id": "g7", "nombre": "RAD", "completo": "Raúl Alberto Dávila Jimeno", "relacion": "Papá de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/rad.jpg", "potencial": false, "escena": "raul"}, {"id": "g8", "nombre": "RED", "completo": "RED", "relacion": "Hermano de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/red.jpg", "potencial": false, "escena": "camina"}, {"id": "g9", "nombre": "TIZ", "completo": "TIZ", "relacion": "Cuñada de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/tiz.jpg", "potencial": false, "escena": "camina"}, {"id": "g10", "nombre": "Raúl Alberto", "completo": "Raúl Alberto", "relacion": "Sobrino de Miguel", "lado": "Miguel", "tipo": "Niño", "confirmado": false, "foto": "fotos/raul-alberto.jpg", "potencial": false, "escena": "camina"}, {"id": "g11", "nombre": "Cristina", "completo": "Cristina", "relacion": "Sobrina de Miguel", "lado": "Miguel", "tipo": "Niño", "confirmado": false, "foto": "fotos/cristina.jpg", "potencial": false, "escena": "camina"}, {"id": "g12", "nombre": "Rafa", "completo": "Rafa", "relacion": "Sobrino de Miguel", "lado": "Miguel", "tipo": "Niño", "confirmado": false, "foto": "fotos/rafa.jpg", "potencial": false, "escena": "camina"}, {"id": "g13", "nombre": "Machi", "completo": "Machi", "relacion": "Hermana de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/machi.jpg", "potencial": false, "escena": "camina"}, {"id": "g14", "nombre": "Jose", "completo": "Jose", "relacion": "Cuñado de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/jose.jpg", "potencial": false, "escena": "camina"}, {"id": "g15", "nombre": "Ale", "completo": "Ale", "relacion": "Sobrina de Miguel", "lado": "Miguel", "tipo": "Niño", "confirmado": false, "foto": "fotos/ale.jpg", "potencial": false, "escena": "camina"}, {"id": "g16", "nombre": "Fa Jr.", "completo": "Fa Jr.", "relacion": "Sobrina de Miguel", "lado": "Miguel", "tipo": "Niño", "confirmado": false, "foto": "fotos/fa-jr.jpg", "potencial": false, "escena": "camina"}, {"id": "g17", "nombre": "Beto", "completo": "Beto", "relacion": "Hermano de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/beto.jpg", "potencial": false, "escena": "camina"}, {"id": "g18", "nombre": "Cata", "completo": "Cata", "relacion": "Cuñada de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/cata.jpg", "potencial": false, "escena": "camina"}, {"id": "g19", "nombre": "Pipe", "completo": "Pipe", "relacion": "Hermano de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/pipe.jpg", "potencial": false, "escena": "camina"}, {"id": "g20", "nombre": "Nana", "completo": "Nana", "relacion": "Cuñada de Miguel", "lado": "Miguel", "tipo": "Adulto", "confirmado": false, "foto": "fotos/nana.jpg", "potencial": false, "escena": "camina"}, {"id": "g22", "nombre": "Henry", "completo": "Henry", "relacion": "Cuñado de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/henry.jpg", "potencial": false, "escena": "camina"}, {"id": "g23", "nombre": "Isa", "completo": "Isa", "relacion": "Hermana de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/isa.jpg", "potencial": false, "escena": "camina"}, {"id": "g24", "nombre": "Juanchi", "completo": "Juanchi", "relacion": "Cuñado de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "fotos/juanchi.jpg", "potencial": false, "escena": "camina"}, {"id": "g25", "nombre": "Pacho", "completo": "Pacho Infante", "relacion": "Amigo de la familia de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "", "potencial": false, "escena": "camina"}, {"id": "g26", "nombre": "Maribel", "completo": "Maribel", "relacion": "Tía de Marcela", "lado": "Marcela", "tipo": "Adulto", "confirmado": false, "foto": "", "potencial": false, "escena": "camina"}], "mascotas": [{"id": "m1", "nombre": "Rayo", "relacion": "Sobrino perruno de Miguel", "lado": "Miguel", "foto": "fotos/rayo.jpg"}, {"id": "m2", "nombre": "Billi", "relacion": "Sobrino perruno de Miguel", "lado": "Miguel", "foto": "fotos/billi.jpg"}, {"id": "m3", "nombre": "Fiji", "relacion": "Sobrina perruna de Miguel", "lado": "Miguel", "foto": "fotos/fiji.jpg"}, {"id": "m4", "nombre": "Ruffo", "relacion": "Sobrino perruno de Miguel", "lado": "Miguel", "foto": "fotos/ruffo.jpg"}], "galerias": {}, "info": {"ciudad": "Venecia, Italia", "consejos": ["En enero las noches en Venecia suelen estar entre 1 °C y 7 °C: lleven abrigo para los trayectos a pie.", "En invierno puede haber acqua alta. Revisen el pronóstico ese día y lleven calzado de repuesto.", "No se permite fumar dentro de Ca’ Sagredo."], "fecha": "Jueves 7 de enero de 2027", "lugares": [{"direccion": "Campo dei Miracoli, Cannaregio 6075, 30121 Venezia", "id": "iglesia", "llegar": "Vaporetto línea 1, parada Ca’ d’Oro o Rialto; desde cualquiera de las dos son unos minutos a pie por Cannaregio.", "mapa": "https://www.google.com/maps/search/?api=1&query=Chiesa+di+Santa+Maria+dei+Miracoli+Venezia", "nombre": "Chiesa di Santa Maria dei Miracoli", "rol": "Ceremonia · 4:30 PM", "telefono": ""}, {"direccion": "Campo Santa Sofia 4198/99, Cannaregio, 30121 Venezia", "id": "palazzo", "llegar": "Vaporetto línea 1, parada Ca’ d’Oro, junto al hotel. En taxi acuático: unos 5 minutos desde la estación Santa Lucia y unos 30 minutos desde el aeropuerto.", "mapa": "https://www.google.com/maps/search/?api=1&query=Ca%27+Sagredo+Hotel+Venezia", "nombre": "Ca’ Sagredo Hotel", "rol": "Aperitivo, cena y celebración · desde las 6:00 PM", "telefono": "+39 041 241 3111"}], "programa": [{"detalle": "", "hora": "4:30 PM", "lugar": "Santa Maria dei Miracoli", "lugarId": "iglesia", "titulo": "Ceremonia"}, {"detalle": "", "hora": "6:00 PM", "lugar": "Ca’ Sagredo", "lugarId": "palazzo", "titulo": "Aperitivo"}, {"detalle": "", "hora": "7:00 PM", "lugar": "Ca’ Sagredo", "lugarId": "palazzo", "titulo": "Cena"}], "titulo": "Miguel & Marcela", "vestimenta": "Corbata negra · vestido largo", "venecia": {"intro": "Ideas para aprovechar Venecia antes y después de la boda. Enero es temporada baja: hay menos gente, pero algunos lugares tienen horario de invierno, así que conviene confirmar y reservar.", "categorias": [{"id": "cultura", "titulo": "Culturales", "icono": "cultura", "items": [{"nombre": "Basílica de San Marco y Palacio Ducal", "zona": "San Marco", "detalle": "El corazón de Venecia. Compra entradas con hora en línea; en enero hay menos fila temprano.", "mapa": "https://www.google.com/maps/search/?api=1&query=Basilica%20di%20San%20Marco%2C%20Venezia"}, {"nombre": "Gallerie dell'Accademia", "zona": "Dorsoduro", "detalle": "La gran pinacoteca veneciana: Tiziano, Tintoretto, Bellini, Veronese.", "mapa": "https://www.google.com/maps/search/?api=1&query=Gallerie%20dell%27Accademia%2C%20Venezia"}, {"nombre": "Colección Peggy Guggenheim", "zona": "Dorsoduro", "detalle": "Arte moderno en un palacio sobre el Gran Canal. Cierra los martes.", "mapa": "https://www.google.com/maps/search/?api=1&query=Peggy%20Guggenheim%20Collection%2C%20Venezia"}, {"nombre": "Scuola Grande di San Rocco", "zona": "San Polo", "detalle": "Salas enteras pintadas por Tintoretto; una joya poco concurrida.", "mapa": "https://www.google.com/maps/search/?api=1&query=Scuola%20Grande%20di%20San%20Rocco%2C%20Venezia"}, {"nombre": "Teatro La Fenice", "zona": "San Marco", "detalle": "Ópera o concierto en el teatro más bello de Italia; también hay visitas guiadas de día.", "mapa": "https://www.google.com/maps/search/?api=1&query=Teatro%20La%20Fenice%2C%20Venezia"}, {"nombre": "Gueto judío", "zona": "Cannaregio", "detalle": "El primer gueto del mundo, a pocos minutos de Ca' Sagredo. Sinagogas y museo.", "mapa": "https://www.google.com/maps/search/?api=1&query=Ghetto%20Ebraico%20Venezia%2C%20Venezia"}, {"nombre": "Mercado de Rialto", "zona": "San Polo", "detalle": "Pescado y verduras en la mañana (martes a sábado). Ideal antes de un cicchetto.", "mapa": "https://www.google.com/maps/search/?api=1&query=Mercato%20di%20Rialto%2C%20Venezia"}, {"nombre": "Murano y Burano", "zona": "Laguna", "detalle": "Vidrio soplado y casitas de colores. Vaporetto desde Fondamente Nove, cerca de los Miracoli.", "mapa": "https://www.google.com/maps/search/?api=1&query=Fondamente%20Nove%2C%20Venezia"}]}, {"id": "restaurantes", "titulo": "Restaurantes", "icono": "restaurantes", "items": [{"nombre": "Vini da Gigio", "zona": "Cannaregio", "detalle": "Cocina veneciana clásica y gran carta de vinos, cerca de Ca' Sagredo. Reservar.", "mapa": "https://www.google.com/maps/search/?api=1&query=Vini%20da%20Gigio%2C%20Venezia"}, {"nombre": "Osteria Bentigodi", "zona": "Cannaregio", "detalle": "Osteria familiar con platos de la laguna; ambiente relajado.", "mapa": "https://www.google.com/maps/search/?api=1&query=Osteria%20Bentigodi%2C%20Venezia"}, {"nombre": "Antiche Carampane", "zona": "San Polo", "detalle": "Pescado y mariscos, escondida cerca de Rialto. Reservar con tiempo.", "mapa": "https://www.google.com/maps/search/?api=1&query=Trattoria%20Antiche%20Carampane%2C%20Venezia"}, {"nombre": "Osteria alle Testiere", "zona": "Castello", "detalle": "Pequeñísima y muy buscada; pescado del día.", "mapa": "https://www.google.com/maps/search/?api=1&query=Osteria%20alle%20Testiere%2C%20Venezia"}, {"nombre": "Cantina Do Mori", "zona": "San Polo", "detalle": "Bacaro histórico para cicchetti y una ombra de vino de pie.", "mapa": "https://www.google.com/maps/search/?api=1&query=Cantina%20Do%20Mori%2C%20Venezia"}, {"nombre": "Al Timon", "zona": "Cannaregio", "detalle": "Cicchetti y vino en la Fondamenta degli Ormesini, con una barca como terraza.", "mapa": "https://www.google.com/maps/search/?api=1&query=Al%20Timon%2C%20Venezia"}, {"nombre": "Harry's Bar", "zona": "San Marco", "detalle": "Donde nació el Bellini y el carpaccio. Clásico para un brindis.", "mapa": "https://www.google.com/maps/search/?api=1&query=Harry%27s%20Bar%2C%20Venezia"}, {"nombre": "Caffè Florian", "zona": "Plaza San Marco", "detalle": "Café desde 1720; un chocolate caliente en enero es obligado.", "mapa": "https://www.google.com/maps/search/?api=1&query=Caff%C3%A8%20Florian%2C%20Venezia"}]}, {"id": "hoteles", "titulo": "Hoteles", "icono": "hoteles", "items": [{"nombre": "Ca' Sagredo Hotel", "zona": "Cannaregio", "detalle": "Donde es la recepción: dormir aquí evita todo traslado esa noche.", "mapa": "https://www.google.com/maps/search/?api=1&query=Ca%27%20Sagredo%20Hotel%2C%20Venezia"}, {"nombre": "Hotel Al Ponte Antico", "zona": "Cannaregio", "detalle": "Boutique sobre el Gran Canal junto a Rialto; a pocos minutos a pie.", "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Al%20Ponte%20Antico%2C%20Venezia"}, {"nombre": "Hotel Ai Mori d'Oriente", "zona": "Cannaregio", "detalle": "Cómodo y tranquilo, cerca de la Fondamenta della Misericordia.", "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Ai%20Mori%20d%27Oriente%2C%20Venezia"}, {"nombre": "Palazzo Venart", "zona": "Santa Croce", "detalle": "Palacio-hotel de lujo con jardín sobre el Gran Canal.", "mapa": "https://www.google.com/maps/search/?api=1&query=Palazzo%20Venart%20Luxury%20Hotel%2C%20Venezia"}, {"nombre": "The Gritti Palace", "zona": "San Marco", "detalle": "Gran clásico veneciano frente a la Salute.", "mapa": "https://www.google.com/maps/search/?api=1&query=The%20Gritti%20Palace%2C%20Venezia"}, {"nombre": "Hotel Danieli", "zona": "Castello", "detalle": "Palacio gótico junto al Palacio Ducal, con terraza sobre la laguna.", "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Danieli%2C%20Venezia"}]}, {"id": "fiestas", "titulo": "Fiestas", "icono": "fiestas", "items": [{"nombre": "Regata de las Befanas · 6 de enero", "zona": "Gran Canal", "detalle": "El día antes de la boda: remeros disfrazados de Befana corren por el Gran Canal hasta Rialto. Fiesta local muy veneciana.", "mapa": "https://www.google.com/maps/search/?api=1&query=Ponte%20di%20Rialto%2C%20Venezia"}, {"nombre": "Carnaval de Venecia · 23 ene–9 feb 2027", "zona": "Toda la ciudad", "detalle": "Para quien se quede o vuelva: máscaras, bailes y desfiles de agua.", "mapa": "https://www.google.com/maps/search/?api=1&query=Piazza%20San%20Marco%2C%20Venezia"}, {"nombre": "Fondamenta della Misericordia y Ormesini", "zona": "Cannaregio", "detalle": "La zona de bares de los venecianos, a 10 minutos de Ca' Sagredo. Spritz y cicchetti hasta tarde.", "mapa": "https://www.google.com/maps/search/?api=1&query=Fondamenta%20della%20Misericordia%2C%20Venezia"}, {"nombre": "Campo Santa Margherita", "zona": "Dorsoduro", "detalle": "Plaza animada con bares y ambiente joven por la noche.", "mapa": "https://www.google.com/maps/search/?api=1&query=Campo%20Santa%20Margherita%2C%20Venezia"}, {"nombre": "Il Mercante", "zona": "San Polo", "detalle": "Coctelería de autor cerca de los Frari.", "mapa": "https://www.google.com/maps/search/?api=1&query=Il%20Mercante%20cocktail%20bar%2C%20Venezia"}, {"nombre": "Skyline Rooftop Bar", "zona": "Giudecca", "detalle": "Terraza con vista panorámica de la ciudad (Hilton Molino Stucky).", "mapa": "https://www.google.com/maps/search/?api=1&query=Skyline%20Rooftop%20Bar%20Hilton%20Molino%20Stucky%2C%20Venezia"}]}]}}}
+{
+ "modo": "invitados",
+ "actualizado": "2026-10-22T02:34:53+00:00",
+ "fuente": "Matrimonio M&M · Venecia",
+ "evento": {
+  "fecha": "2027-01-07",
+  "adultos": 20,
+  "ninos": 5
+ },
+ "objetos": {
+  "campanile": {
+   "titulo": "Cuenta regresiva",
+   "sub": "Campanile · 7 de enero de 2027",
+   "metricas": [
+    {
+     "label": "Días para la boda",
+     "value": "2027-01-07",
+     "fmt": "dias"
+    },
+    {
+     "label": "Ceremonia",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Vestimenta",
+     "value": "Corbata negra · vestido largo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "iglesia": {
+   "titulo": "Santa Maria dei Miracoli",
+   "sub": "Ceremonia religiosa",
+   "metricas": [
+    {
+     "label": "Hora",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Días para la ceremonia",
+     "value": "2027-01-07",
+     "fmt": "dias"
+    },
+    {
+     "label": "Vestimenta",
+     "value": "Corbata negra · vestido largo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "palazzo": {
+   "titulo": "Ca’ Sagredo",
+   "sub": "Aperitivo y cena",
+   "metricas": [
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "taxi": {
+   "titulo": "Taxi acuático",
+   "sub": "El bote de los novios",
+   "metricas": [
+    {
+     "label": "Recorrido",
+     "value": "De los Miracoli a Ca’ Sagredo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "fotografo": {
+   "titulo": "Fotógrafo",
+   "sub": "Mirco Toffolo Studio",
+   "metricas": [
+    {
+     "label": "Acompaña",
+     "value": "De la ceremonia a la fiesta",
+     "fmt": "text"
+    }
+   ]
+  },
+  "dj": {
+   "titulo": "DJ, sonido y luces",
+   "sub": "Massimo Pillon",
+   "metricas": [
+    {
+     "label": "Dónde",
+     "value": "Ca’ Sagredo",
+     "fmt": "text"
+    }
+   ]
+  },
+  "saxo": {
+   "titulo": "Saxofonista",
+   "sub": "Marco G.",
+   "metricas": [
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "decoracion": {
+   "titulo": "Decoración",
+   "sub": "Flores y faroles de Ca’ Sagredo",
+   "metricas": [
+    {
+     "label": "Dónde",
+     "value": "Entrada por el canal",
+     "fmt": "text"
+    }
+   ]
+  },
+  "invitados": {
+   "titulo": "Invitados",
+   "sub": "Familia y amigos",
+   "metricas": [
+    {
+     "label": "Invitados",
+     "value": 25,
+     "fmt": "int"
+    },
+    {
+     "label": "Niños",
+     "value": 5,
+     "fmt": "int"
+    }
+   ]
+  },
+  "novios": {
+   "titulo": "Miguel y Marcela",
+   "sub": "Los novios",
+   "fotos": [
+    "fotos/migue.jpg",
+    "fotos/marce.jpg"
+   ],
+   "metricas": [
+    {
+     "label": "Ceremonia",
+     "value": "4:30 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Aperitivo",
+     "value": "6:00 PM",
+     "fmt": "text"
+    },
+    {
+     "label": "Cena",
+     "value": "7:00 PM",
+     "fmt": "text"
+    }
+   ]
+  },
+  "raul": {
+   "titulo": "Raúl",
+   "sub": "Papá de Miguel",
+   "foto": "fotos/rad.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "giancarlo": {
+   "titulo": "Giancarlo",
+   "sub": "Papá de Marcela",
+   "foto": "fotos/gian.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g1": {
+   "titulo": "Marce",
+   "sub": "Novia",
+   "foto": "fotos/marce.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Marcela",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g2": {
+   "titulo": "Migue",
+   "sub": "Novio",
+   "foto": "fotos/migue.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Miguel",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g3": {
+   "titulo": "Lili",
+   "sub": "Mamá de Marcela",
+   "foto": "fotos/lili.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Liliana María Hidalgo Morán",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g4": {
+   "titulo": "Gian",
+   "sub": "Papá de Marcela",
+   "foto": "fotos/gian.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Giancarlo Auqué De Silvestri",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g5": {
+   "titulo": "Toti",
+   "sub": "Hermana de Marcela",
+   "foto": "fotos/toti.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Rosana Auqué Rosenwach",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g6": {
+   "titulo": "FA",
+   "sub": "Mamá de Miguel",
+   "foto": "fotos/fa.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Fátima Dávila Armenta",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g7": {
+   "titulo": "RAD",
+   "sub": "Papá de Miguel",
+   "foto": "fotos/rad.jpg",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Raúl Alberto Dávila Jimeno",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g8": {
+   "titulo": "RED",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/red.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g9": {
+   "titulo": "TIZ",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/tiz.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g10": {
+   "titulo": "Raúl Alberto",
+   "sub": "Sobrino de Miguel",
+   "foto": "fotos/raul-alberto.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g11": {
+   "titulo": "Cristina",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/cristina.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g12": {
+   "titulo": "Rafa",
+   "sub": "Sobrino de Miguel",
+   "foto": "fotos/rafa.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g13": {
+   "titulo": "Machi",
+   "sub": "Hermana de Miguel",
+   "foto": "fotos/machi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g14": {
+   "titulo": "Jose",
+   "sub": "Cuñado de Miguel",
+   "foto": "fotos/jose.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g15": {
+   "titulo": "Ale",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/ale.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g16": {
+   "titulo": "Fa Jr.",
+   "sub": "Sobrina de Miguel",
+   "foto": "fotos/fa-jr.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g17": {
+   "titulo": "Beto",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/beto.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g18": {
+   "titulo": "Cata",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/cata.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g19": {
+   "titulo": "Pipe",
+   "sub": "Hermano de Miguel",
+   "foto": "fotos/pipe.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g20": {
+   "titulo": "Nana",
+   "sub": "Cuñada de Miguel",
+   "foto": "fotos/nana.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g22": {
+   "titulo": "Henry",
+   "sub": "Cuñado de Marcela",
+   "foto": "fotos/henry.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g23": {
+   "titulo": "Isa",
+   "sub": "Hermana de Marcela",
+   "foto": "fotos/isa.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g24": {
+   "titulo": "Juanchi",
+   "sub": "Cuñado de Marcela",
+   "foto": "fotos/juanchi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g25": {
+   "titulo": "Pacho",
+   "sub": "Amigo de la familia de Marcela",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Nombre",
+     "value": "Pacho Infante",
+     "fmt": "text"
+    },
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g26": {
+   "titulo": "Maribel",
+   "sub": "Tía de Marcela",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m1": {
+   "titulo": "Rayo",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/rayo.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m2": {
+   "titulo": "Billi",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/billi.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m3": {
+   "titulo": "Fiji",
+   "sub": "Sobrina perruna de Miguel",
+   "foto": "fotos/fiji.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "m:m4": {
+   "titulo": "Ruffo",
+   "sub": "Sobrino perruno de Miguel",
+   "foto": "fotos/ruffo.jpg",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia del novio",
+     "fmt": "text"
+    },
+    {
+     "label": "Quién es",
+     "value": "Perro de la familia",
+     "fmt": "text"
+    }
+   ]
+  }
+ },
+ "personas": [
+  {
+   "id": "g1",
+   "nombre": "Marce",
+   "completo": "Marcela",
+   "relacion": "Novia",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/marce.jpg",
+   "potencial": false,
+   "escena": "taxi-novia"
+  },
+  {
+   "id": "g2",
+   "nombre": "Migue",
+   "completo": "Miguel",
+   "relacion": "Novio",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/migue.jpg",
+   "potencial": false,
+   "escena": "taxi-novio"
+  },
+  {
+   "id": "g3",
+   "nombre": "Lili",
+   "completo": "Liliana María Hidalgo Morán",
+   "relacion": "Mamá de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/lili.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g4",
+   "nombre": "Gian",
+   "completo": "Giancarlo Auqué De Silvestri",
+   "relacion": "Papá de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/gian.jpg",
+   "potencial": false,
+   "escena": "giancarlo"
+  },
+  {
+   "id": "g5",
+   "nombre": "Toti",
+   "completo": "Rosana Auqué Rosenwach",
+   "relacion": "Hermana de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/toti.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g6",
+   "nombre": "FA",
+   "completo": "Fátima Dávila Armenta",
+   "relacion": "Mamá de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/fa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g7",
+   "nombre": "RAD",
+   "completo": "Raúl Alberto Dávila Jimeno",
+   "relacion": "Papá de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/rad.jpg",
+   "potencial": false,
+   "escena": "raul"
+  },
+  {
+   "id": "g8",
+   "nombre": "RED",
+   "completo": "RED",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/red.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g9",
+   "nombre": "TIZ",
+   "completo": "TIZ",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/tiz.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g10",
+   "nombre": "Raúl Alberto",
+   "completo": "Raúl Alberto",
+   "relacion": "Sobrino de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/raul-alberto.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g11",
+   "nombre": "Cristina",
+   "completo": "Cristina",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/cristina.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g12",
+   "nombre": "Rafa",
+   "completo": "Rafa",
+   "relacion": "Sobrino de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/rafa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g13",
+   "nombre": "Machi",
+   "completo": "Machi",
+   "relacion": "Hermana de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/machi.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g14",
+   "nombre": "Jose",
+   "completo": "Jose",
+   "relacion": "Cuñado de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/jose.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g15",
+   "nombre": "Ale",
+   "completo": "Ale",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/ale.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g16",
+   "nombre": "Fa Jr.",
+   "completo": "Fa Jr.",
+   "relacion": "Sobrina de Miguel",
+   "lado": "Miguel",
+   "tipo": "Niño",
+   "confirmado": false,
+   "foto": "fotos/fa-jr.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g17",
+   "nombre": "Beto",
+   "completo": "Beto",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/beto.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g18",
+   "nombre": "Cata",
+   "completo": "Cata",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/cata.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g19",
+   "nombre": "Pipe",
+   "completo": "Pipe",
+   "relacion": "Hermano de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/pipe.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g20",
+   "nombre": "Nana",
+   "completo": "Nana",
+   "relacion": "Cuñada de Miguel",
+   "lado": "Miguel",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/nana.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g22",
+   "nombre": "Henry",
+   "completo": "Henry",
+   "relacion": "Cuñado de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/henry.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g23",
+   "nombre": "Isa",
+   "completo": "Isa",
+   "relacion": "Hermana de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/isa.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g24",
+   "nombre": "Juanchi",
+   "completo": "Juanchi",
+   "relacion": "Cuñado de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "fotos/juanchi.jpg",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g25",
+   "nombre": "Pacho",
+   "completo": "Pacho Infante",
+   "relacion": "Amigo de la familia de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g26",
+   "nombre": "Maribel",
+   "completo": "Maribel",
+   "relacion": "Tía de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  }
+ ],
+ "mascotas": [
+  {
+   "id": "m1",
+   "nombre": "Rayo",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/rayo.jpg"
+  },
+  {
+   "id": "m2",
+   "nombre": "Billi",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/billi.jpg"
+  },
+  {
+   "id": "m3",
+   "nombre": "Fiji",
+   "relacion": "Sobrina perruna de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/fiji.jpg"
+  },
+  {
+   "id": "m4",
+   "nombre": "Ruffo",
+   "relacion": "Sobrino perruno de Miguel",
+   "lado": "Miguel",
+   "foto": "fotos/ruffo.jpg"
+  }
+ ],
+ "galerias": {},
+ "info": {
+  "ciudad": "Venecia, Italia",
+  "consejos": [
+   "En enero las noches en Venecia suelen estar entre 1 °C y 7 °C: lleven abrigo para los trayectos a pie.",
+   "En invierno puede haber acqua alta. Revisen el pronóstico ese día y lleven calzado de repuesto.",
+   "No se permite fumar dentro de Ca’ Sagredo."
+  ],
+  "fecha": "Jueves 7 de enero de 2027",
+  "lugares": [
+   {
+    "direccion": "Campo dei Miracoli, Cannaregio 6075, 30121 Venezia",
+    "id": "iglesia",
+    "llegar": "Vaporetto línea 1, parada Ca’ d’Oro o Rialto; desde cualquiera de las dos son unos minutos a pie por Cannaregio.",
+    "mapa": "https://www.google.com/maps/search/?api=1&query=Chiesa+di+Santa+Maria+dei+Miracoli+Venezia",
+    "nombre": "Chiesa di Santa Maria dei Miracoli",
+    "rol": "Ceremonia · 4:30 PM",
+    "telefono": ""
+   },
+   {
+    "direccion": "Campo Santa Sofia 4198/99, Cannaregio, 30121 Venezia",
+    "id": "palazzo",
+    "llegar": "Vaporetto línea 1, parada Ca’ d’Oro, junto al hotel. En taxi acuático: unos 5 minutos desde la estación Santa Lucia y unos 30 minutos desde el aeropuerto.",
+    "mapa": "https://www.google.com/maps/search/?api=1&query=Ca%27+Sagredo+Hotel+Venezia",
+    "nombre": "Ca’ Sagredo Hotel",
+    "rol": "Aperitivo, cena y celebración · desde las 6:00 PM",
+    "telefono": "+39 041 241 3111"
+   }
+  ],
+  "programa": [
+   {
+    "detalle": "",
+    "hora": "4:30 PM",
+    "lugar": "Santa Maria dei Miracoli",
+    "lugarId": "iglesia",
+    "titulo": "Ceremonia"
+   },
+   {
+    "detalle": "",
+    "hora": "6:00 PM",
+    "lugar": "Ca’ Sagredo",
+    "lugarId": "palazzo",
+    "titulo": "Aperitivo"
+   },
+   {
+    "detalle": "",
+    "hora": "7:00 PM",
+    "lugar": "Ca’ Sagredo",
+    "lugarId": "palazzo",
+    "titulo": "Cena"
+   }
+  ],
+  "titulo": "Miguel & Marcela",
+  "venecia": {
+   "categorias": [
+    {
+     "icono": "cultura",
+     "id": "cultura",
+     "items": [
+      {
+       "detalle": "El corazón de Venecia. Compra entradas con hora en línea; en enero hay menos fila temprano.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Basilica%20di%20San%20Marco%2C%20Venezia",
+       "nombre": "Basílica de San Marco y Palacio Ducal",
+       "zona": "San Marco"
+      },
+      {
+       "detalle": "La gran pinacoteca veneciana: Tiziano, Tintoretto, Bellini, Veronese.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Gallerie%20dell%27Accademia%2C%20Venezia",
+       "nombre": "Gallerie dell'Accademia",
+       "zona": "Dorsoduro"
+      },
+      {
+       "detalle": "Arte moderno en un palacio sobre el Gran Canal. Cierra los martes.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Peggy%20Guggenheim%20Collection%2C%20Venezia",
+       "nombre": "Colección Peggy Guggenheim",
+       "zona": "Dorsoduro"
+      },
+      {
+       "detalle": "Salas enteras pintadas por Tintoretto; una joya poco concurrida.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Scuola%20Grande%20di%20San%20Rocco%2C%20Venezia",
+       "nombre": "Scuola Grande di San Rocco",
+       "zona": "San Polo"
+      },
+      {
+       "detalle": "Ópera o concierto en el teatro más bello de Italia; también hay visitas guiadas de día.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Teatro%20La%20Fenice%2C%20Venezia",
+       "nombre": "Teatro La Fenice",
+       "zona": "San Marco"
+      },
+      {
+       "detalle": "El primer gueto del mundo, a pocos minutos de Ca' Sagredo. Sinagogas y museo.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Ghetto%20Ebraico%20Venezia%2C%20Venezia",
+       "nombre": "Gueto judío",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Pescado y verduras en la mañana (martes a sábado). Ideal antes de un cicchetto.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Mercato%20di%20Rialto%2C%20Venezia",
+       "nombre": "Mercado de Rialto",
+       "zona": "San Polo"
+      },
+      {
+       "detalle": "Vidrio soplado y casitas de colores. Vaporetto desde Fondamente Nove, cerca de los Miracoli.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Fondamente%20Nove%2C%20Venezia",
+       "nombre": "Murano y Burano",
+       "zona": "Laguna"
+      }
+     ],
+     "titulo": "Culturales"
+    },
+    {
+     "icono": "restaurantes",
+     "id": "restaurantes",
+     "items": [
+      {
+       "detalle": "Cocina veneciana clásica y gran carta de vinos, cerca de Ca' Sagredo. Reservar.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Vini%20da%20Gigio%2C%20Venezia",
+       "nombre": "Vini da Gigio",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Osteria familiar con platos de la laguna; ambiente relajado.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Osteria%20Bentigodi%2C%20Venezia",
+       "nombre": "Osteria Bentigodi",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Pescado y mariscos, escondida cerca de Rialto. Reservar con tiempo.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Trattoria%20Antiche%20Carampane%2C%20Venezia",
+       "nombre": "Antiche Carampane",
+       "zona": "San Polo"
+      },
+      {
+       "detalle": "Pequeñísima y muy buscada; pescado del día.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Osteria%20alle%20Testiere%2C%20Venezia",
+       "nombre": "Osteria alle Testiere",
+       "zona": "Castello"
+      },
+      {
+       "detalle": "Bacaro histórico para cicchetti y una ombra de vino de pie.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Cantina%20Do%20Mori%2C%20Venezia",
+       "nombre": "Cantina Do Mori",
+       "zona": "San Polo"
+      },
+      {
+       "detalle": "Cicchetti y vino en la Fondamenta degli Ormesini, con una barca como terraza.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Al%20Timon%2C%20Venezia",
+       "nombre": "Al Timon",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Donde nació el Bellini y el carpaccio. Clásico para un brindis.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Harry%27s%20Bar%2C%20Venezia",
+       "nombre": "Harry's Bar",
+       "zona": "San Marco"
+      },
+      {
+       "detalle": "Café desde 1720; un chocolate caliente en enero es obligado.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Caff%C3%A8%20Florian%2C%20Venezia",
+       "nombre": "Caffè Florian",
+       "zona": "Plaza San Marco"
+      }
+     ],
+     "titulo": "Restaurantes"
+    },
+    {
+     "icono": "hoteles",
+     "id": "hoteles",
+     "items": [
+      {
+       "detalle": "Donde es la recepción: dormir aquí evita todo traslado esa noche.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Ca%27%20Sagredo%20Hotel%2C%20Venezia",
+       "nombre": "Ca' Sagredo Hotel",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Boutique sobre el Gran Canal junto a Rialto; a pocos minutos a pie.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Al%20Ponte%20Antico%2C%20Venezia",
+       "nombre": "Hotel Al Ponte Antico",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Cómodo y tranquilo, cerca de la Fondamenta della Misericordia.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Ai%20Mori%20d%27Oriente%2C%20Venezia",
+       "nombre": "Hotel Ai Mori d'Oriente",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Palacio-hotel de lujo con jardín sobre el Gran Canal.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Palazzo%20Venart%20Luxury%20Hotel%2C%20Venezia",
+       "nombre": "Palazzo Venart",
+       "zona": "Santa Croce"
+      },
+      {
+       "detalle": "Gran clásico veneciano frente a la Salute.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=The%20Gritti%20Palace%2C%20Venezia",
+       "nombre": "The Gritti Palace",
+       "zona": "San Marco"
+      },
+      {
+       "detalle": "Palacio gótico junto al Palacio Ducal, con terraza sobre la laguna.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Hotel%20Danieli%2C%20Venezia",
+       "nombre": "Hotel Danieli",
+       "zona": "Castello"
+      }
+     ],
+     "titulo": "Hoteles"
+    },
+    {
+     "icono": "fiestas",
+     "id": "fiestas",
+     "items": [
+      {
+       "detalle": "El día antes de la boda: remeros disfrazados de Befana corren por el Gran Canal hasta Rialto. Fiesta local muy veneciana.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Ponte%20di%20Rialto%2C%20Venezia",
+       "nombre": "Regata de las Befanas · 6 de enero",
+       "zona": "Gran Canal"
+      },
+      {
+       "detalle": "Para quien se quede o vuelva: máscaras, bailes y desfiles de agua.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Piazza%20San%20Marco%2C%20Venezia",
+       "nombre": "Carnaval de Venecia · 23 ene–9 feb 2027",
+       "zona": "Toda la ciudad"
+      },
+      {
+       "detalle": "La zona de bares de los venecianos, a 10 minutos de Ca' Sagredo. Spritz y cicchetti hasta tarde.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Fondamenta%20della%20Misericordia%2C%20Venezia",
+       "nombre": "Fondamenta della Misericordia y Ormesini",
+       "zona": "Cannaregio"
+      },
+      {
+       "detalle": "Plaza animada con bares y ambiente joven por la noche.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Campo%20Santa%20Margherita%2C%20Venezia",
+       "nombre": "Campo Santa Margherita",
+       "zona": "Dorsoduro"
+      },
+      {
+       "detalle": "Coctelería de autor cerca de los Frari.",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Il%20Mercante%20cocktail%20bar%2C%20Venezia",
+       "nombre": "Il Mercante",
+       "zona": "San Polo"
+      },
+      {
+       "detalle": "Terraza con vista panorámica de la ciudad (Hilton Molino Stucky).",
+       "mapa": "https://www.google.com/maps/search/?api=1&query=Skyline%20Rooftop%20Bar%20Hilton%20Molino%20Stucky%2C%20Venezia",
+       "nombre": "Skyline Rooftop Bar",
+       "zona": "Giudecca"
+      }
+     ],
+     "titulo": "Fiestas"
+    }
+   ],
+   "intro": "Ideas para aprovechar Venecia antes y después de la boda. Enero es temporada baja: hay menos gente, pero algunos lugares tienen horario de invierno, así que conviene confirmar y reservar."
+  },
+  "vestimenta": "Corbata negra · vestido largo",
+  "belleza": {
+   "intro": "Opciones de maquillaje y peinado para las invitadas que quieran arreglarse en Venecia. Trabajan a domicilio u hotel, o en su salón. Enero es temporada baja, pero el 7 cae después de Reyes: conviene escribir con tiempo, decir que es para el 7 de enero de 2027 en la tarde (ceremonia 4:30 PM) y cuántas personas son, y pedir precio por grupo.",
+   "items": [
+    {
+     "nombre": "Lisa Semenzato",
+     "tipo": "Maquillaje y peinado",
+     "zona": "Venecia · a domicilio u hotel",
+     "detalle": "Maquilladora y peinadora con base en Venecia; atiende a la novia, mamás e invitadas (hasta 5 personas ella sola y más con su equipo). Habla inglés. Productos aptos para piel sensible.",
+     "precio": "Desde €60 (peinado) · cotización gratis",
+     "tel": "+39 347 893 9376",
+     "whatsapp": "393478939376",
+     "web": "https://www.weddingmakeupvenice.com/",
+     "nota": "5,0 en Matrimonio.com (5 opiniones). Reservar con 3 a 6 meses."
+    },
+    {
+     "nombre": "BLBS Management",
+     "tipo": "Equipo de maquillaje y peinado",
+     "zona": "Venecia · en la habitación del hotel",
+     "detalle": "Agencia con equipo de maquilladoras y peinadoras; atiende novias, damas y grupos en el hotel o el lugar del evento. Ideal si varias invitadas quieren arreglarse a la vez.",
+     "precio": "Cotización en su web (calculadora de costos)",
+     "tel": "+39 370 110 3623",
+     "whatsapp": "393701103623",
+     "email": "info@blbs-management.com",
+     "web": "https://www.blbs-management.com/venice",
+     "instagram": "https://www.instagram.com/blbsmanagement/"
+    },
+    {
+     "nombre": "Samantha Pretto",
+     "tipo": "Maquillaje y peinado",
+     "zona": "Venecia · a domicilio u hotel",
+     "detalle": "Atelier de peinado y maquillaje para bodas de destino en Venecia, con su equipo. Estilo elegante y natural; servicio privado en el lugar.",
+     "precio": "Cotización por formulario (responde en 48–72 h)",
+     "tel": "+39 342 164 6778",
+     "web": "https://www.samanthapretto.org/makeup-artist-hairstylist-lookmaker-wedding-services-venice",
+     "instagram": "https://www.instagram.com/samanthapretto_hair_and_makeup/"
+    },
+    {
+     "nombre": "Art Studio Acconciature Giulio",
+     "tipo": "Peluquería · peinado",
+     "zona": "Castello · Calle del Pistor 5992/93",
+     "detalle": "Salón de peinado en el centro, cerca de los Miracoli. Peinan a la novia, mamás, hermanas y damas; prueba previa en el salón y servicio a domicilio. Solo peinado (no maquillaje).",
+     "precio": "Peinado de novia €200–550 · invitadas: cotización",
+     "web": "https://www.matrimonio.com/acconciature-sposa/art-studio-acconciature-giulio--e310309",
+     "mapa": "https://www.google.com/maps/search/?api=1&query=Calle%20del%20Pistor%205992%20Castello%20Venezia",
+     "nota": "5,0 en Matrimonio.com (15 opiniones). Contacto por el formulario de Matrimonio.com. Avisar con al menos 1 mes."
+    }
+   ]
+  },
+  "mapa": {
+   "lugares": [
+    {
+     "id": "iglesia",
+     "nombre": "Santa Maria dei Miracoli",
+     "sub": "Ceremonia · 4:30 PM",
+     "lat": 45.43944,
+     "lng": 12.33917,
+     "tipo": "evento"
+    },
+    {
+     "id": "palazzo",
+     "nombre": "Ca’ Sagredo Hotel",
+     "sub": "Aperitivo y cena · 6:00 PM",
+     "lat": 45.44061,
+     "lng": 12.33468,
+     "tipo": "evento"
+    },
+    {
+     "nombre": "Vaporetto Ca’ d’Oro",
+     "sub": "Línea 1 · la parada del hotel",
+     "lat": 45.44028,
+     "lng": 12.33362,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Puente de Rialto",
+     "lat": 45.438,
+     "lng": 12.3359,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Plaza San Marco",
+     "lat": 45.4341,
+     "lng": 12.3388,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Fondamente Nove",
+     "sub": "Vaporetto a Murano y Burano",
+     "lat": 45.4427,
+     "lng": 12.3411,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Estación Santa Lucia",
+     "sub": "Tren",
+     "lat": 45.4411,
+     "lng": 12.3211,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Piazzale Roma",
+     "sub": "Taxis, buses y aeropuerto",
+     "lat": 45.438,
+     "lng": 12.3181,
+     "tipo": "ref"
+    },
+    {
+     "nombre": "Gallerie dell’Accademia",
+     "lat": 45.4311,
+     "lng": 12.3282,
+     "tipo": "ref"
+    }
+   ],
+   "ruta": [
+    [
+     45.43944,
+     12.33917
+    ],
+    [
+     45.43962,
+     12.3386
+    ],
+    [
+     45.43955,
+     12.338
+    ],
+    [
+     45.43985,
+     12.337
+    ],
+    [
+     45.4401,
+     12.3364
+    ],
+    [
+     45.4404,
+     12.3356
+    ],
+    [
+     45.44061,
+     12.33468
+    ]
+   ],
+   "rutaNota": "Camino sugerido a pie: Campo dei Miracoli → Campo Santa Maria Nova → Campo Santi Apostoli → Strada Nova → Campo Santa Sofia. La distancia es la del trazado aproximado; Google Maps da el recorrido exacto calle por calle.",
+   "googleRuta": "https://www.google.com/maps/dir/?api=1&origin=Santa+Maria+dei+Miracoli,+Venezia&destination=Ca'+Sagredo+Hotel,+Venezia&travelmode=walking"
+  }
+ }
+}
