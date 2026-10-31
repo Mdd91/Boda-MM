@@ -3145,7 +3145,7 @@ requestAnimationFrame(frame);
     <div class="card" id="sobreCard">
       <div class="k">Con alegría os invitamos</div>
       <img src="img/mm.png" alt="">
-      <div class="n">Miguel &amp; Marcela</div>
+      <div class="n">Marcela &amp; Miguel</div>
       <div class="f">Jueves 7 de enero de 2027</div>
       <div class="l">Venecia, Italia</div>
       <hr>
@@ -3160,7 +3160,7 @@ requestAnimationFrame(frame);
       <div class="fw"><div class="flap"><i class="ff"></i><i class="fb"></i></div></div>
       <img class="emono" src="img/mm.png" alt="">
     </div>
-    <div class="hint" id="sobreHint">Toca para abrir</div>
+    
   </div>
 </div>
 <script>
@@ -3187,6 +3187,7 @@ requestAnimationFrame(frame);
   sk.addEventListener('click',cerrar);
   addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
   try{env.focus({preventScroll:true});}catch(e){}
+  setTimeout(abrir,rm?0:1300);
 })();
 </script>
 
@@ -3209,7 +3210,7 @@ requestAnimationFrame(frame);
 <div class="gate" id="gate">
   <form id="gateForm" autocomplete="off">
     <div class="gmono"><img src="img/mm.png" alt="M&amp;M"></div>
-    <div class="gt">Miguel &amp; Marcela</div>
+    <div class="gt">Marcela &amp; Miguel</div>
     <div class="gd">Venecia · 7 de enero de 2027</div>
     <label for="gateIn">Escribe la clave de tu invitación</label>
     <input id="gateIn" type="password" inputmode="numeric" autocomplete="off" aria-describedby="gateErr">
