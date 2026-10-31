@@ -893,7 +893,7 @@ print-color-adjust: exact;
 <section class="show" id="show" aria-label="Modo Fiesta" hidden>
   <div class="srow"><div class="clock" id="sClock">4:30 p. m.</div><div class="sphase" id="sPhase"></div></div>
   <div class="strack" id="sTrack" title="Toca para saltar a otra hora"><i id="sBar"></i></div>
-  <div class="slabels"><span style="left:8.75%">Ceremonia</span><span style="left:37.5%">Aperitivo</span><span class="r2" style="left:53.75%">Cena</span><span style="left:75%">Fiesta</span><span class="r2 e" style="right:0">Regreso</span></div>
+  <div class="slabels"><span style="left:10%">Ceremonia</span><span style="left:42.9%">Aperitivo</span><span class="r2" style="left:61.4%">Cena</span><span style="left:78.6%">Fiesta</span><span class="r2 e" style="right:0">Regreso</span></div>
   <div class="sbtns"><button class="reset" id="sPause" type="button">Pausa</button><button class="reset" id="sStop" type="button">Salir</button></div>
 </section>
 <div class="lb" id="lb" role="dialog" aria-label="Fotos" hidden>
@@ -2348,7 +2348,7 @@ function placeCard(force){
   card.style.left=x+'px';card.style.top=y+'px';
 }
 
-/* ---------- Modo Fiesta: el día completo de 4:30 PM a medianoche en 20 segundos ---------- */
+/* ---------- Modo Fiesta: el día completo de 4:30 PM a medianoche en 17,5 segundos ---------- */
 const SHOW={on:false,t:0,dur:20,paused:false,phase:null,p:0,cam:true,snap:false,start:16.5,end:24,n:0};
 const PH=[{k:'ceremonia',a:16.5,b:17.5,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17.5,b:18,lbl:'Fase 2 · Bote y fotos'},
   {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:20.5,lbl:'Fase 4 · Cena y fiesta en el salón'},{k:'fiesta',a:20.5,b:23.5,lbl:'Fase 5 · Fiesta en la pista'},{k:'regreso',a:23.5,b:24,lbl:'Fase 6 · Regreso a los hoteles'}];
@@ -2378,7 +2378,7 @@ const APERO=new THREE.Group();APERO.visible=false;scene.add(APERO);
 let saxShow=0;
 const FC={x:-8.6,z:-3.6};const FIESTA=[[-0.95,-1.4],[0,-1.4],[0.95,-1.4],[-0.95,-0.45],[0,-0.45],[0.95,-0.45],[-0.95,0.5],[0,0.5],[0.95,0.5],[-0.95,1.45],[0,1.45],[0.95,1.45],[-1.45,0]].map(o=>[FC.x+o[0],FC.z+o[1]]);
 /* Tiempo no lineal: cada fase dura lo que dice D (segundos); la cena y la fiesta, que son largas, pasan más rápido por hora */
-const PD={ceremonia:3.5,traslado:2.5,aperitivo:3,cena:3.5,fiesta:5,regreso:2.5};
+const PD={ceremonia:3.5,traslado:2.5,aperitivo:3,cena:3.5,fiesta:2.5,regreso:2.5};
 {let c=0;PH.forEach(p=>{p.d=PD[p.k];p.t0=c;c+=p.d;});SHOW.dur=c;}
 const showHour=()=>{const t=SHOW.t;let P=PH.find(p=>t<p.t0+p.d)||PH[PH.length-1];return P.a+(P.b-P.a)*Math.min(1,(t-P.t0)/P.d);};
 const showPhase=h=>PH.find(p=>h<p.b)||PH[PH.length-1];
