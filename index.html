@@ -866,7 +866,7 @@ print-color-adjust: exact;
   <div class="legend" aria-hidden="true"><span><i class="ok"></i>Confirmado</span><span><i class="pe"></i>Por confirmar</span><span id="lgPot" hidden><i class="po"></i>Potencial</span></div>
 </div>
 <div class="hud hint" id="hint">Arrastra para girar · clic derecho, Shift + arrastrar o flechas para mover · rueda o pellizco para acercar · toca la iglesia, Ca’ Sagredo, la estación de tren, el vaporetto, el taxi acuático, los músicos o la foto de cualquier invitado.</div>
-<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="wishBtn" type="button">Deja un deseo</button><button class="reset" id="tourBtn" type="button" aria-pressed="false">Recorrido</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
+<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="wishBtn" type="button">Deja un deseo</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
 <section class="plan" id="plan" aria-label="Plano de la mesa en U" hidden>
   <div class="eyebrow" id="planSub">Cena en Ca’ Sagredo</div>
   <h3>Mesa en U</h3>
@@ -2549,7 +2549,7 @@ const TSTEPS=[
   {k:'fiesta',x:-8.6,z:-3.6,zf:2.5,eb:'Después de la cena',ti:'¡A bailar!',tx:'DJ y pista de baile hasta las 11:30 p. m.'},
   {k:'sanmarco',x:10.5,z:16.6,zf:2.3,eb:'Para pasear',ti:'Plaza San Marco',tx:'El campanile, la basílica y sus palomas. El vaporetto también para aquí.'},
   {k:'fin',eb:'Jueves 7 de enero de 2027',ti:'Nos vemos en Venecia',tx:'Gracias por acompañarnos. Miguel y Marcela.'}];
-const tourEl=$('#tour'),tourBtn=$('#tourBtn');
+const tourEl=$('#tour'),tourBtn=$('#tourBtn')||document.createElement('button');
 $('#tDots').innerHTML=TSTEPS.map((s,i)=>'<button type="button" aria-label="Parada '+(i+1)+': '+s.ti.replace(/"/g,'')+'"></button>').join('');
 [...$('#tDots').children].forEach((b,i)=>b.addEventListener('click',()=>{goStep(i);}));
 function goStep(i){
