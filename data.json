@@ -1,6 +1,6 @@
 {
  "modo": "invitados",
- "actualizado": "2026-10-22T02:34:53+00:00",
+ "actualizado": "2026-10-31T20:34:51+00:00",
  "fuente": "Matrimonio M&M · Venecia",
  "evento": {
   "fecha": "2027-01-07",
@@ -508,15 +508,10 @@
    ]
   },
   "p:g25": {
-   "titulo": "Pacho",
+   "titulo": "Pacho Infante",
    "sub": "Amigo de la familia de Marcela",
    "foto": "",
    "metricas": [
-    {
-     "label": "Nombre",
-     "value": "Pacho Infante",
-     "fmt": "text"
-    },
     {
      "label": "Familia",
      "value": "Familia de la novia",
@@ -527,6 +522,42 @@
   "p:g26": {
    "titulo": "Maribel",
    "sub": "Tía de Marcela",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Familia de la novia",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g27": {
+   "titulo": "Victoria Tres Palacios",
+   "sub": "Amiga de ambas familias",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Amigos de ambas familias",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g31": {
+   "titulo": "Juan Pablo Cotes",
+   "sub": "Amigo de ambas familias",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Amigos de ambas familias",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:alx39vmvokz23fo71ljr": {
+   "titulo": "Marcela vives",
+   "sub": "Esposa pacho",
    "foto": "",
    "metricas": [
     {
@@ -884,7 +915,7 @@
   },
   {
    "id": "g25",
-   "nombre": "Pacho",
+   "nombre": "Pacho Infante",
    "completo": "Pacho Infante",
    "relacion": "Amigo de la familia de Marcela",
    "lado": "Marcela",
@@ -899,6 +930,42 @@
    "nombre": "Maribel",
    "completo": "Maribel",
    "relacion": "Tía de Marcela",
+   "lado": "Marcela",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g27",
+   "nombre": "Victoria Tres Palacios",
+   "completo": "Victoria Tres Palacios",
+   "relacion": "Amiga de ambas familias",
+   "lado": "Ambos",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g31",
+   "nombre": "Juan Pablo Cotes",
+   "completo": "Juan Pablo Cotes",
+   "relacion": "Amigo de ambas familias",
+   "lado": "Ambos",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "alx39vmvokz23fo71ljr",
+   "nombre": "Marcela vives",
+   "completo": "Marcela vives",
+   "relacion": "Esposa pacho",
    "lado": "Marcela",
    "tipo": "Adulto",
    "confirmado": false,
@@ -939,6 +1006,54 @@
  ],
  "galerias": {},
  "info": {
+  "belleza": {
+   "intro": "Opciones de maquillaje y peinado para las invitadas que quieran arreglarse en Venecia. Trabajan a domicilio u hotel, o en su salón. Enero es temporada baja, pero el 7 cae después de Reyes: conviene escribir con tiempo, decir que es para el 7 de enero de 2027 en la tarde (ceremonia 4:30 PM) y cuántas personas son, y pedir precio por grupo.",
+   "items": [
+    {
+     "detalle": "Maquilladora y peinadora con base en Venecia; atiende a la novia, mamás e invitadas (hasta 5 personas ella sola y más con su equipo). Habla inglés. Productos aptos para piel sensible.",
+     "nombre": "Lisa Semenzato",
+     "nota": "5,0 en Matrimonio.com (5 opiniones). Reservar con 3 a 6 meses.",
+     "precio": "Desde €60 (peinado) · cotización gratis",
+     "tel": "+39 347 893 9376",
+     "tipo": "Maquillaje y peinado",
+     "web": "https://www.weddingmakeupvenice.com/",
+     "whatsapp": "393478939376",
+     "zona": "Venecia · a domicilio u hotel"
+    },
+    {
+     "detalle": "Agencia con equipo de maquilladoras y peinadoras; atiende novias, damas y grupos en el hotel o el lugar del evento. Ideal si varias invitadas quieren arreglarse a la vez.",
+     "email": "info@blbs-management.com",
+     "instagram": "https://www.instagram.com/blbsmanagement/",
+     "nombre": "BLBS Management",
+     "precio": "Cotización en su web (calculadora de costos)",
+     "tel": "+39 370 110 3623",
+     "tipo": "Equipo de maquillaje y peinado",
+     "web": "https://www.blbs-management.com/venice",
+     "whatsapp": "393701103623",
+     "zona": "Venecia · en la habitación del hotel"
+    },
+    {
+     "detalle": "Atelier de peinado y maquillaje para bodas de destino en Venecia, con su equipo. Estilo elegante y natural; servicio privado en el lugar.",
+     "instagram": "https://www.instagram.com/samanthapretto_hair_and_makeup/",
+     "nombre": "Samantha Pretto",
+     "precio": "Cotización por formulario (responde en 48–72 h)",
+     "tel": "+39 342 164 6778",
+     "tipo": "Maquillaje y peinado",
+     "web": "https://www.samanthapretto.org/makeup-artist-hairstylist-lookmaker-wedding-services-venice",
+     "zona": "Venecia · a domicilio u hotel"
+    },
+    {
+     "detalle": "Salón de peinado en el centro, cerca de los Miracoli. Peinan a la novia, mamás, hermanas y damas; prueba previa en el salón y servicio a domicilio. Solo peinado (no maquillaje).",
+     "mapa": "https://www.google.com/maps/search/?api=1&query=Calle%20del%20Pistor%205992%20Castello%20Venezia",
+     "nombre": "Art Studio Acconciature Giulio",
+     "nota": "5,0 en Matrimonio.com (15 opiniones). Contacto por el formulario de Matrimonio.com. Avisar con al menos 1 mes.",
+     "precio": "Peinado de novia €200–550 · invitadas: cotización",
+     "tipo": "Peluquería · peinado",
+     "web": "https://www.matrimonio.com/acconciature-sposa/art-studio-acconciature-giulio--e310309",
+     "zona": "Castello · Calle del Pistor 5992/93"
+    }
+   ]
+  },
   "ciudad": "Venecia, Italia",
   "consejos": [
    "En enero las noches en Venecia suelen estar entre 1 °C y 7 °C: lleven abrigo para los trayectos a pie.",
@@ -966,6 +1081,260 @@
     "telefono": "+39 041 241 3111"
    }
   ],
+  "mapa": {
+   "googleRuta": "https://www.google.com/maps/dir/Iglesia+de+Santa+Mar%C3%ADa+de+los+Milagros/Ca'+Sagredo+Hotel/data=!4m16!4m15!1m5!1m4!1s0x477eb1d94d5169eb:0x67b340be2251f1ca!8m2!3d45.4394001!4d12.3391512!1m5!1m4!1s0x477eb1dc9a1ddfc3:0x67864cbe906204a3!8m2!3d45.4407783!4d12.334588799999999!2m1!11b1!3e2",
+   "lugares": [
+    {
+     "id": "iglesia",
+     "lat": 45.43944,
+     "lng": 12.33917,
+     "nombre": "Santa Maria dei Miracoli",
+     "sub": "Ceremonia · 4:30 PM",
+     "tipo": "evento"
+    },
+    {
+     "id": "palazzo",
+     "lat": 45.44061,
+     "lng": 12.33468,
+     "nombre": "Ca’ Sagredo Hotel",
+     "sub": "Aperitivo y cena · 6:00 PM",
+     "tipo": "evento"
+    },
+    {
+     "lat": 45.44028,
+     "lng": 12.33362,
+     "nombre": "Vaporetto Ca’ d’Oro",
+     "sub": "Línea 1 · la parada del hotel",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.438,
+     "lng": 12.3359,
+     "nombre": "Puente de Rialto",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.4341,
+     "lng": 12.3388,
+     "nombre": "Plaza San Marco",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.4427,
+     "lng": 12.3411,
+     "nombre": "Fondamente Nove",
+     "sub": "Vaporetto a Murano y Burano",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.4411,
+     "lng": 12.3211,
+     "nombre": "Estación Santa Lucia",
+     "sub": "Tren",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.438,
+     "lng": 12.3181,
+     "nombre": "Piazzale Roma",
+     "sub": "Taxis, buses y aeropuerto",
+     "tipo": "ref"
+    },
+    {
+     "lat": 45.4311,
+     "lng": 12.3282,
+     "nombre": "Gallerie dell’Accademia",
+     "tipo": "ref"
+    }
+   ],
+   "ruta": [
+    [
+     45.4394,
+     12.33915
+    ],
+    [
+     45.43935,
+     12.33908
+    ],
+    [
+     45.43936,
+     12.33898
+    ],
+    [
+     45.43937,
+     12.33887
+    ],
+    [
+     45.43941,
+     12.33876
+    ],
+    [
+     45.43946,
+     12.33866
+    ],
+    [
+     45.43951,
+     12.33856
+    ],
+    [
+     45.43956,
+     12.33847
+    ],
+    [
+     45.43961,
+     12.33837
+    ],
+    [
+     45.43967,
+     12.33829
+    ],
+    [
+     45.43973,
+     12.3382
+    ],
+    [
+     45.4398,
+     12.33812
+    ],
+    [
+     45.43984,
+     12.33804
+    ],
+    [
+     45.4398,
+     12.33794
+    ],
+    [
+     45.43977,
+     12.33784
+    ],
+    [
+     45.4397,
+     12.33747
+    ],
+    [
+     45.4397,
+     12.33735
+    ],
+    [
+     45.43967,
+     12.33711
+    ],
+    [
+     45.43974,
+     12.33699
+    ],
+    [
+     45.43974,
+     12.33686
+    ],
+    [
+     45.43974,
+     12.33674
+    ],
+    [
+     45.43981,
+     12.33669
+    ],
+    [
+     45.43989,
+     12.33666
+    ],
+    [
+     45.44,
+     12.33659
+    ],
+    [
+     45.44002,
+     12.33647
+    ],
+    [
+     45.44006,
+     12.33643
+    ],
+    [
+     45.44015,
+     12.33645
+    ],
+    [
+     45.44023,
+     12.33646
+    ],
+    [
+     45.44028,
+     12.33638
+    ],
+    [
+     45.4403,
+     12.33627
+    ],
+    [
+     45.44032,
+     12.33615
+    ],
+    [
+     45.44035,
+     12.33604
+    ],
+    [
+     45.4404,
+     12.33594
+    ],
+    [
+     45.44045,
+     12.33584
+    ],
+    [
+     45.44049,
+     12.33574
+    ],
+    [
+     45.44055,
+     12.33564
+    ],
+    [
+     45.4406,
+     12.33554
+    ],
+    [
+     45.44064,
+     12.33544
+    ],
+    [
+     45.44069,
+     12.33534
+    ],
+    [
+     45.44073,
+     12.33524
+    ],
+    [
+     45.44078,
+     12.33513
+    ],
+    [
+     45.44082,
+     12.33503
+    ],
+    [
+     45.44087,
+     12.33493
+    ],
+    [
+     45.44078,
+     12.33486
+    ],
+    [
+     45.44074,
+     12.33481
+    ],
+    [
+     45.44069,
+     12.33477
+    ]
+   ],
+   "rutaNota": "Ruta a pie de Google Maps, de la iglesia a Ca’ Sagredo: unos 6 minutos caminando. El botón de abajo la abre calle por calle."
+  },
   "programa": [
    {
     "detalle": "",
@@ -1191,152 +1560,11 @@
    ],
    "intro": "Ideas para aprovechar Venecia antes y después de la boda. Enero es temporada baja: hay menos gente, pero algunos lugares tienen horario de invierno, así que conviene confirmar y reservar."
   },
-  "vestimenta": "Corbata negra · vestido largo",
-  "belleza": {
-   "intro": "Opciones de maquillaje y peinado para las invitadas que quieran arreglarse en Venecia. Trabajan a domicilio u hotel, o en su salón. Enero es temporada baja, pero el 7 cae después de Reyes: conviene escribir con tiempo, decir que es para el 7 de enero de 2027 en la tarde (ceremonia 4:30 PM) y cuántas personas son, y pedir precio por grupo.",
-   "items": [
-    {
-     "nombre": "Lisa Semenzato",
-     "tipo": "Maquillaje y peinado",
-     "zona": "Venecia · a domicilio u hotel",
-     "detalle": "Maquilladora y peinadora con base en Venecia; atiende a la novia, mamás e invitadas (hasta 5 personas ella sola y más con su equipo). Habla inglés. Productos aptos para piel sensible.",
-     "precio": "Desde €60 (peinado) · cotización gratis",
-     "tel": "+39 347 893 9376",
-     "whatsapp": "393478939376",
-     "web": "https://www.weddingmakeupvenice.com/",
-     "nota": "5,0 en Matrimonio.com (5 opiniones). Reservar con 3 a 6 meses."
-    },
-    {
-     "nombre": "BLBS Management",
-     "tipo": "Equipo de maquillaje y peinado",
-     "zona": "Venecia · en la habitación del hotel",
-     "detalle": "Agencia con equipo de maquilladoras y peinadoras; atiende novias, damas y grupos en el hotel o el lugar del evento. Ideal si varias invitadas quieren arreglarse a la vez.",
-     "precio": "Cotización en su web (calculadora de costos)",
-     "tel": "+39 370 110 3623",
-     "whatsapp": "393701103623",
-     "email": "info@blbs-management.com",
-     "web": "https://www.blbs-management.com/venice",
-     "instagram": "https://www.instagram.com/blbsmanagement/"
-    },
-    {
-     "nombre": "Samantha Pretto",
-     "tipo": "Maquillaje y peinado",
-     "zona": "Venecia · a domicilio u hotel",
-     "detalle": "Atelier de peinado y maquillaje para bodas de destino en Venecia, con su equipo. Estilo elegante y natural; servicio privado en el lugar.",
-     "precio": "Cotización por formulario (responde en 48–72 h)",
-     "tel": "+39 342 164 6778",
-     "web": "https://www.samanthapretto.org/makeup-artist-hairstylist-lookmaker-wedding-services-venice",
-     "instagram": "https://www.instagram.com/samanthapretto_hair_and_makeup/"
-    },
-    {
-     "nombre": "Art Studio Acconciature Giulio",
-     "tipo": "Peluquería · peinado",
-     "zona": "Castello · Calle del Pistor 5992/93",
-     "detalle": "Salón de peinado en el centro, cerca de los Miracoli. Peinan a la novia, mamás, hermanas y damas; prueba previa en el salón y servicio a domicilio. Solo peinado (no maquillaje).",
-     "precio": "Peinado de novia €200–550 · invitadas: cotización",
-     "web": "https://www.matrimonio.com/acconciature-sposa/art-studio-acconciature-giulio--e310309",
-     "mapa": "https://www.google.com/maps/search/?api=1&query=Calle%20del%20Pistor%205992%20Castello%20Venezia",
-     "nota": "5,0 en Matrimonio.com (15 opiniones). Contacto por el formulario de Matrimonio.com. Avisar con al menos 1 mes."
-    }
-   ]
-  },
-  "mapa": {
-   "lugares": [
-    {
-     "id": "iglesia",
-     "nombre": "Santa Maria dei Miracoli",
-     "sub": "Ceremonia · 4:30 PM",
-     "lat": 45.43944,
-     "lng": 12.33917,
-     "tipo": "evento"
-    },
-    {
-     "id": "palazzo",
-     "nombre": "Ca’ Sagredo Hotel",
-     "sub": "Aperitivo y cena · 6:00 PM",
-     "lat": 45.44061,
-     "lng": 12.33468,
-     "tipo": "evento"
-    },
-    {
-     "nombre": "Vaporetto Ca’ d’Oro",
-     "sub": "Línea 1 · la parada del hotel",
-     "lat": 45.44028,
-     "lng": 12.33362,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Puente de Rialto",
-     "lat": 45.438,
-     "lng": 12.3359,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Plaza San Marco",
-     "lat": 45.4341,
-     "lng": 12.3388,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Fondamente Nove",
-     "sub": "Vaporetto a Murano y Burano",
-     "lat": 45.4427,
-     "lng": 12.3411,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Estación Santa Lucia",
-     "sub": "Tren",
-     "lat": 45.4411,
-     "lng": 12.3211,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Piazzale Roma",
-     "sub": "Taxis, buses y aeropuerto",
-     "lat": 45.438,
-     "lng": 12.3181,
-     "tipo": "ref"
-    },
-    {
-     "nombre": "Gallerie dell’Accademia",
-     "lat": 45.4311,
-     "lng": 12.3282,
-     "tipo": "ref"
-    }
-   ],
-   "ruta": [
-    [
-     45.43944,
-     12.33917
-    ],
-    [
-     45.43962,
-     12.3386
-    ],
-    [
-     45.43955,
-     12.338
-    ],
-    [
-     45.43985,
-     12.337
-    ],
-    [
-     45.4401,
-     12.3364
-    ],
-    [
-     45.4404,
-     12.3356
-    ],
-    [
-     45.44061,
-     12.33468
-    ]
-   ],
-   "rutaNota": "Camino sugerido a pie: Campo dei Miracoli → Campo Santa Maria Nova → Campo Santi Apostoli → Strada Nova → Campo Santa Sofia. La distancia es la del trazado aproximado; Google Maps da el recorrido exacto calle por calle.",
-   "googleRuta": "https://www.google.com/maps/dir/?api=1&origin=Santa+Maria+dei+Miracoli,+Venezia&destination=Ca'+Sagredo+Hotel,+Venezia&travelmode=walking"
+  "vestimenta": "Corbata negra · vestido largo"
+ },
+ "deseos": [
+  {
+   "texto": "Les deseo lo mejor"
   }
- }
+ ]
 }
