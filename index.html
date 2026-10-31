@@ -3100,11 +3100,11 @@ requestAnimationFrame(frame);
 .sobre .efr{background:#f1e6cb;clip-path:polygon(100% 0,48% 54%,100% 100%);}
 .sobre .efb{background:#f7efdc;clip-path:polygon(0 100%,50% 48%,100% 100%);border-radius:0 0 3px 3px;}
 .sobre .env>.fw{z-index:5;height:110px;}
-.sobre .flap{position:absolute;inset:0;transform-origin:50% 0;transform-style:preserve-3d;transform:perspective(900px) rotateX(0deg);transition:transform .8s cubic-bezier(.4,0,.2,1);}
-.sobre .flap i{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.sobre .flap{position:absolute;inset:0;transform-origin:50% 0;transform:scaleY(1);transition:transform .8s cubic-bezier(.4,0,.2,1);}
+.sobre .flap i{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);}
 .sobre .flap .ff{background:#f4ead2;}
-.sobre .flap .fb{background:#e3d4b0;transform:rotateX(180deg);}
-.sobre .env>.emono{z-index:7;left:94px;top:58px;width:112px;height:auto;pointer-events:none;}
+.sobre .flap .fb{background:#e3d4b0;opacity:0;}
+.sobre .env>.emono{z-index:7;transition:transform 1s cubic-bezier(.5,0,.3,1),opacity .2s ease;left:94px;top:58px;width:112px;height:auto;pointer-events:none;}
 .sobre .hint{pointer-events:none;position:absolute;left:0;right:0;top:352px;text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#e9d39a;animation:sobreHint 2.4s ease-in-out infinite;transition:opacity .4s;}
 @keyframes sobreHint{0%,100%{opacity:.45}50%{opacity:1}}
 /* tarjeta */
@@ -3125,7 +3125,9 @@ requestAnimationFrame(frame);
 .sobre .card .go{margin-top:auto;font:600 14px "Albert Sans",system-ui,sans-serif;letter-spacing:.06em;padding:11px 26px;border-radius:999px;border:0;background:#14213f;color:#f4ecdc;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s ease .5s;}
 .sobre .card .go:focus-visible{outline:2px solid #d8b45f;outline-offset:3px;}
 /* estados */
-.sobre.abre .flap{transform:perspective(900px) rotateX(180deg);}
+.sobre.abre .flap{transform:scaleY(-1);}
+.sobre.abre .flap .ff{opacity:0;transition:opacity 0s .4s;}
+.sobre.abre .flap .fb{opacity:1;transition:opacity 0s .4s;}
 .sobre.abre .emono,.sobre.abre .hint{opacity:0;}
 .sobre.atras .env>.fw{z-index:1;}
 .sobre.sube .card{transform:translateY(-118px) scale(.5);}
