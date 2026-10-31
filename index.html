@@ -103,7 +103,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
   padding:12px 16px;border-radius:18px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.4);}
 .srow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
 .clock{font-family:var(--display);font-size:30px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums;}
-.sphase{font-size:12.5px;color:var(--ivory);}
+.sphase{display:none;font-size:12.5px;color:var(--ivory);}
 .strack{position:relative;height:8px;margin-top:10px;border-radius:8px;background:rgba(169,184,212,.2);cursor:pointer;}
 .strack i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,#e8a35c,var(--gold));}
 .strack .tick{position:absolute;top:-2px;width:2px;height:12px;background:rgba(244,236,220,.55);}
@@ -2348,8 +2348,8 @@ function placeCard(force){
   card.style.left=x+'px';card.style.top=y+'px';
 }
 
-/* ---------- Modo Fiesta: el día completo de 4:30 PM a medianoche en 60 segundos ---------- */
-const SHOW={on:false,t:0,dur:60,paused:false,phase:null,p:0,cam:true,snap:false,start:16.5,end:24,n:0};
+/* ---------- Modo Fiesta: el día completo de 4:30 PM a medianoche en 40 segundos ---------- */
+const SHOW={on:false,t:0,dur:40,paused:false,phase:null,p:0,cam:true,snap:false,start:16.5,end:24,n:0};
 const PH=[{k:'ceremonia',a:16.5,b:17.5,lbl:'Fase 1 · Ceremonia en los Miracoli'},{k:'traslado',a:17.5,b:18,lbl:'Fase 2 · Bote y fotos'},
   {k:'aperitivo',a:18,b:19,lbl:'Fase 3 · Aperitivo en la plaza con saxo en vivo'},{k:'cena',a:19,b:20.5,lbl:'Fase 4 · Cena y fiesta en el salón'},{k:'fiesta',a:20.5,b:23.5,lbl:'Fase 5 · Fiesta en la pista'},{k:'regreso',a:23.5,b:24,lbl:'Fase 6 · Regreso a los hoteles'}];
 const GARDEN=[[-11.6,0.7],[-10.0,0.7],[-8.4,0.7],[-6.8,0.6],[-11.0,2.6],[-9.4,2.6],[-7.8,2.6]];
