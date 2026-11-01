@@ -1,6 +1,6 @@
 {
  "modo": "invitados",
- "actualizado": "2026-10-31T20:34:51+00:00",
+ "actualizado": "2026-11-01T18:25:46+00:00",
  "fuente": "Matrimonio M&M · Venecia",
  "evento": {
   "fecha": "2027-01-07",
@@ -236,11 +236,6 @@
    "foto": "fotos/lili.jpg",
    "metricas": [
     {
-     "label": "Nombre",
-     "value": "Liliana María Hidalgo Morán",
-     "fmt": "text"
-    },
-    {
      "label": "Familia",
      "value": "Familia de la novia",
      "fmt": "text"
@@ -253,11 +248,6 @@
    "foto": "fotos/gian.jpg",
    "metricas": [
     {
-     "label": "Nombre",
-     "value": "Giancarlo Auqué De Silvestri",
-     "fmt": "text"
-    },
-    {
      "label": "Familia",
      "value": "Familia de la novia",
      "fmt": "text"
@@ -265,15 +255,10 @@
    ]
   },
   "p:g5": {
-   "titulo": "Toti",
+   "titulo": "Rosana",
    "sub": "Hermana de Marcela",
    "foto": "fotos/toti.jpg",
    "metricas": [
-    {
-     "label": "Nombre",
-     "value": "Rosana Auqué Rosenwach",
-     "fmt": "text"
-    },
     {
      "label": "Familia",
      "value": "Familia de la novia",
@@ -282,15 +267,10 @@
    ]
   },
   "p:g6": {
-   "titulo": "FA",
+   "titulo": "Fátima",
    "sub": "Mamá de Miguel",
    "foto": "fotos/fa.jpg",
    "metricas": [
-    {
-     "label": "Nombre",
-     "value": "Fátima Dávila Armenta",
-     "fmt": "text"
-    },
     {
      "label": "Familia",
      "value": "Familia del novio",
@@ -303,11 +283,6 @@
    "sub": "Papá de Miguel",
    "foto": "fotos/rad.jpg",
    "metricas": [
-    {
-     "label": "Nombre",
-     "value": "Raúl Alberto Dávila Jimeno",
-     "fmt": "text"
-    },
     {
      "label": "Familia",
      "value": "Familia del novio",
@@ -508,7 +483,7 @@
    ]
   },
   "p:g25": {
-   "titulo": "Pacho Infante",
+   "titulo": "Pacho",
    "sub": "Amigo de la familia de Marcela",
    "foto": "",
    "metricas": [
@@ -532,7 +507,43 @@
    ]
   },
   "p:g27": {
-   "titulo": "Victoria Tres Palacios",
+   "titulo": "Vicky Trespa",
+   "sub": "Amiga de ambas familias",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Amigos de ambas familias",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g28": {
+   "titulo": "Luis Miguel C.",
+   "sub": "Amigo de ambas familias",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Amigos de ambas familias",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g29": {
+   "titulo": "Pipe Co",
+   "sub": "Amigo de ambas familias",
+   "foto": "",
+   "metricas": [
+    {
+     "label": "Familia",
+     "value": "Amigos de ambas familias",
+     "fmt": "text"
+    }
+   ]
+  },
+  "p:g30": {
+   "titulo": "María Paula",
    "sub": "Amiga de ambas familias",
    "foto": "",
    "metricas": [
@@ -544,7 +555,7 @@
    ]
   },
   "p:g31": {
-   "titulo": "Juan Pablo Cotes",
+   "titulo": "Juanpi C.",
    "sub": "Amigo de ambas familias",
    "foto": "",
    "metricas": [
@@ -664,7 +675,7 @@
   {
    "id": "g3",
    "nombre": "Lili",
-   "completo": "Liliana María Hidalgo Morán",
+   "completo": "Lili",
    "relacion": "Mamá de Marcela",
    "lado": "Marcela",
    "tipo": "Adulto",
@@ -676,7 +687,7 @@
   {
    "id": "g4",
    "nombre": "Gian",
-   "completo": "Giancarlo Auqué De Silvestri",
+   "completo": "Gian",
    "relacion": "Papá de Marcela",
    "lado": "Marcela",
    "tipo": "Adulto",
@@ -687,8 +698,8 @@
   },
   {
    "id": "g5",
-   "nombre": "Toti",
-   "completo": "Rosana Auqué Rosenwach",
+   "nombre": "Rosana",
+   "completo": "Rosana",
    "relacion": "Hermana de Marcela",
    "lado": "Marcela",
    "tipo": "Adulto",
@@ -699,8 +710,8 @@
   },
   {
    "id": "g6",
-   "nombre": "FA",
-   "completo": "Fátima Dávila Armenta",
+   "nombre": "Fátima",
+   "completo": "Fátima",
    "relacion": "Mamá de Miguel",
    "lado": "Miguel",
    "tipo": "Adulto",
@@ -712,7 +723,7 @@
   {
    "id": "g7",
    "nombre": "RAD",
-   "completo": "Raúl Alberto Dávila Jimeno",
+   "completo": "RAD",
    "relacion": "Papá de Miguel",
    "lado": "Miguel",
    "tipo": "Adulto",
@@ -915,8 +926,8 @@
   },
   {
    "id": "g25",
-   "nombre": "Pacho Infante",
-   "completo": "Pacho Infante",
+   "nombre": "Pacho",
+   "completo": "Pacho",
    "relacion": "Amigo de la familia de Marcela",
    "lado": "Marcela",
    "tipo": "Adulto",
@@ -939,8 +950,44 @@
   },
   {
    "id": "g27",
-   "nombre": "Victoria Tres Palacios",
-   "completo": "Victoria Tres Palacios",
+   "nombre": "Vicky Trespa",
+   "completo": "Vicky Trespa",
+   "relacion": "Amiga de ambas familias",
+   "lado": "Ambos",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g28",
+   "nombre": "Luis Miguel C.",
+   "completo": "Luis Miguel C.",
+   "relacion": "Amigo de ambas familias",
+   "lado": "Ambos",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g29",
+   "nombre": "Pipe Co",
+   "completo": "Pipe Co",
+   "relacion": "Amigo de ambas familias",
+   "lado": "Ambos",
+   "tipo": "Adulto",
+   "confirmado": false,
+   "foto": "",
+   "potencial": false,
+   "escena": "camina"
+  },
+  {
+   "id": "g30",
+   "nombre": "María Paula",
+   "completo": "María Paula",
    "relacion": "Amiga de ambas familias",
    "lado": "Ambos",
    "tipo": "Adulto",
@@ -951,8 +998,8 @@
   },
   {
    "id": "g31",
-   "nombre": "Juan Pablo Cotes",
-   "completo": "Juan Pablo Cotes",
+   "nombre": "Juanpi C.",
+   "completo": "Juanpi C.",
    "relacion": "Amigo de ambas familias",
    "lado": "Ambos",
    "tipo": "Adulto",
