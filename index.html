@@ -151,7 +151,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .tdots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(169,184,212,.35);cursor:pointer;}
 .tdots button[aria-current="true"]{background:var(--gold);transform:scale(1.25);}
 .tdots button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px;}
-@media (max-width:640px){.guest .tabs{top:calc(env(safe-area-inset-top,0px) + 66px);left:max(16px, env(safe-area-inset-left,0px));transform:none;}}
+@media (max-width:640px){.guest .tabs{top:calc(env(safe-area-inset-top,0px) + 66px);left:max(16px, env(safe-area-inset-left,0px));right:max(16px, env(safe-area-inset-right,0px));transform:none;justify-content:space-between;gap:0;}.tabs button{padding:8px 6px;font-size:11.5px;letter-spacing:0;}}
 .info{position:fixed;inset:0;z-index:8;overflow:auto;overscroll-behavior:contain;background:linear-gradient(180deg,rgba(8,15,30,.94),rgba(10,19,36,.97));
   padding-top:calc(env(safe-area-inset-top,0px) + 76px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 40px);
   padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));}
@@ -175,7 +175,7 @@ body{margin:0;background:radial-gradient(120% 90% at 30% 10%, var(--night-2) 0%,
 .tl .lg{font-size:12.5px;color:var(--gold-soft);margin-top:2px;}
 .tl p{margin:6px 0 0;font-size:13px;color:var(--mist);line-height:1.5;max-width:60ch;}
 .ilugares{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
-.ilugar{display:grid;gap:8px;padding:18px;border-radius:16px;background:rgba(22,38,74,.55);border:1px solid var(--line);min-width:0;}
+.ilugar{display:grid;align-content:start;gap:8px;padding:18px;border-radius:16px;background:rgba(22,38,74,.55);border:1px solid var(--line);min-width:0;}
 .ilugar .rol{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);}
 .ilugar h4{font-family:var(--display);font-weight:400;font-size:22px;margin:0;color:var(--ivory);text-wrap:balance;}
 .ilugar .addr{font-size:14px;color:var(--ivory);line-height:1.45;user-select:all;}
@@ -844,12 +844,21 @@ print-color-adjust: exact;
   .tools{top:calc(env(safe-area-inset-top,0px) + 118px);}
   .guest .tools{top:calc(env(safe-area-inset-top,0px) + 116px);} .legend{display:none;} .chip{padding:5px 9px;font-size:11.5px;} }
 @media (prefers-reduced-motion:reduce){ .card{animation:none;} .live .dot{animation:none;} }
+.vnow{top:calc(env(safe-area-inset-top,0px) + 104px);right:max(16px, env(safe-area-inset-right,0px));padding:6px 12px;border-radius:12px;text-align:right;
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:12px;color:var(--ivory);font-variant-numeric:tabular-nums;line-height:1.35;}
+body:not(.guest) .vnow{top:calc(env(safe-area-inset-top,0px) + 158px);}
+.vnow b{color:var(--gold);font-weight:600;} .vnow span{color:var(--mist);}
+@media (max-width:640px){.vnow{top:calc(env(safe-area-inset-top,0px) + 116px)!important;font-size:11px;padding:4px 9px;border-radius:10px;}}
+.showing .vnow,.touring .vnow{display:none;}
+#wxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;display:none;}
+.hint,.brand .place,.brand{text-shadow:0 1px 3px rgba(5,10,25,.75),0 0 8px rgba(5,10,25,.45);}
 </style>
 
 <canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="gl" tabindex="0" aria-label="Mundo 3D de la boda en Venecia. Arrastra para girar, clic derecho o dos dedos para mover, rueda o pellizco para acercar, toca un objeto para ver sus datos."></canvas>
 
 <div class="hud brand"><div class="mono"><img src="img/mm.png" alt="M&amp;M"></div><div class="place" id="place">Venecia</div></div>
+<div class="hud vnow" id="vnow" hidden></div>
 <div class="hud cdown" id="cdown" aria-live="off" hidden><div class="cl" id="cdL">Faltan</div><div class="cn" id="cdN"><b id="cdD">–</b> días</div><div class="cs" id="cdS"></div></div>
 <div class="hud live stale" id="live" role="status"><span class="dot"></span><b>LIVE</b><span class="ago" id="ago">Conectando…</span></div>
 <div class="hud tools" id="tools">
@@ -867,8 +876,8 @@ print-color-adjust: exact;
   </div>
   <div class="legend" aria-hidden="true"><span><i class="ok"></i>Confirmado</span><span><i class="pe"></i>Por confirmar</span><span id="lgPot" hidden><i class="po"></i>Potencial</span></div>
 </div>
-<div class="hud hint" id="hint">Arrastra para girar · clic derecho, Shift + arrastrar o flechas para mover · rueda o pellizco para acercar · toca la iglesia, Ca’ Sagredo, la estación de tren, el vaporetto, el taxi acuático, los músicos o la foto de cualquier invitado.</div>
-<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="wishBtn" type="button">Deja un deseo</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
+<div class="hud hint" id="hint">Arrastra para girar · clic derecho, Shift + arrastrar o flechas para mover · rueda o pellizco para acercar · toca la iglesia, Ca’ Sagredo, la casa de información, la estación de tren, el vaporetto, el taxi acuático, los músicos o la foto de cualquier invitado.</div>
+<div class="ctrls"><button class="reset" id="mode" type="button" aria-pressed="false" title="Cambia lo que hace arrastrar con un dedo o el botón izquierdo">Mover vista</button><button class="reset" id="infoBtn" type="button" aria-pressed="false">Información</button><button class="reset" id="venBtn" type="button" aria-pressed="false" hidden>Venecia</button><button class="reset" id="guiaBtn" type="button" aria-pressed="false" hidden>Guía</button><button class="reset" id="belBtn" type="button" aria-pressed="false" hidden>Belleza</button><button class="reset" id="mapBtn" type="button" aria-pressed="false" hidden>Mapa</button><button class="reset" id="wishBtn" type="button">Deja un deseo</button><button class="reset" id="showBtn" type="button" aria-pressed="false">Modo Fiesta</button><button class="reset" id="musicBtn" type="button" aria-pressed="true">Silenciar</button><button class="reset" id="mesaBtn" type="button" aria-pressed="false">Mesa en U</button><button class="reset" id="reset" type="button">Ver todo</button></div>
 <section class="plan" id="plan" aria-label="Plano de la mesa en U" hidden>
   <div class="eyebrow" id="planSub">Cena en Ca’ Sagredo</div>
   <h3>Mesa en U</h3>
@@ -902,7 +911,7 @@ print-color-adjust: exact;
   <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
   <button class="lbn next" id="lbNext" type="button" aria-label="Foto siguiente">›</button>
 </div>
-<nav class="tabs" role="tablist" aria-label="Secciones"><button type="button" role="tab" id="tabMundo" aria-selected="true">Mundo</button><button type="button" role="tab" id="tabInfo" aria-selected="false">Información</button><button type="button" role="tab" id="tabVen" aria-selected="false">Venecia</button><button type="button" role="tab" id="tabBel" aria-selected="false" hidden>Belleza</button><button type="button" role="tab" id="tabMap" aria-selected="false" hidden>Mapa</button></nav>
+<nav class="tabs" role="tablist" aria-label="Secciones"><button type="button" role="tab" id="tabMundo" aria-selected="true">Mundo</button><button type="button" role="tab" id="tabInfo" aria-selected="false">Información</button><button type="button" role="tab" id="tabVen" aria-selected="false">Venecia</button><button type="button" role="tab" id="tabGuia" aria-selected="false">Guía</button><button type="button" role="tab" id="tabBel" aria-selected="false" hidden>Belleza</button><button type="button" role="tab" id="tabMap" aria-selected="false" hidden>Mapa</button></nav>
 <section class="info" id="info" role="tabpanel" aria-labelledby="tabInfo" hidden><div class="iw" id="infoBody"></div></section>
 <div class="tip" id="tip" hidden></div>
 <section class="card" id="card" role="dialog" aria-live="polite" aria-labelledby="cTitle" hidden>
@@ -1046,10 +1055,12 @@ island(18.5,25.5,-9,0.5);      // islita de la discoteca
 island(-23,-1,10,18);          // Rialto: mercado
 island(3,19.5,11,20.5);        // Plaza San Marco
 
+/* El mundo se va encendiendo a medida que se acerca la boda */
+const DL=Math.max(0,Math.ceil((Date.parse('2027-01-07T16:30:00+01:00')-Date.now())/864e5)),FEST=Math.min(1,Math.max(0,1-DL/90));
 /* Ventanas que titilan (decorado) */
 const winMats=[0,1,2].map(()=>mat(0x3b2a18,{emissive:0xffc06a,ei:0.8,rough:0.5}));
 const darkWin=mat(0x1a2236);
-animators.push(t=>{winMats.forEach((m,i)=>{m.emissiveIntensity=0.65+0.25*Math.sin(t*(0.7+i*0.37)+i*2)+0.06*Math.sin(t*7.3+i);});});
+animators.push(t=>{winMats.forEach((m,i)=>{m.emissiveIntensity=0.65+0.3*FEST+0.25*Math.sin(t*(0.7+i*0.37)+i*2)+0.06*Math.sin(t*7.3+i);});});
 
 const HOUSES=[];
 function house(x,z,w,h,d,color){
@@ -1615,6 +1626,13 @@ animators.push((t,dt)=>{
   for(const g of guests){
     if(SHOW.on&&showGuest(g,t,dt))continue;
     if(g.act==='roam'){const m=g.m,L=m.userData.limbs;let x=g.px,z=g.pz,y=TOP;
+      if(g.hiUntil>now&&g.hiTo){ // se están saludando: se miran y agitan la mano
+        turnTo(m,Math.atan2(g.hiTo.px-x,g.hiTo.pz-z),Math.min(1,dt*8));L.legL.rotation.x*=0.8;L.legR.rotation.x*=0.8;resetArms(L);
+        L.armR.rotation.x=-2.7;L.armR.rotation.z=Math.sin(t*13+g.step)*0.4;m.rotation.z=0;m.rotation.x=0;
+        y=Math.max(groundY(x,z),(onFloor(x,z)||onDisco(x,z))?TOP+0.09:0)+Math.abs(Math.sin(t*5+g.step))*0.015;
+        g.st={x,z,dx:Math.sin(m.rotation.y),dz:Math.cos(m.rotation.y)};m.position.set(x,y,z);continue;}
+      if(g.mode==='walk'&&!(now<g.hiCool)){for(const o of guests){if(o===g||o.dog||o.act!=='roam'||now<o.hiCool)continue;
+        if(Math.hypot(o.px-x,o.pz-z)<0.85){g.hiUntil=o.hiUntil=now+1.5+Math.random();g.hiTo=o;o.hiTo=g;g.hiCool=o.hiCool=now+16+Math.random()*10;break;}}}
       if(g.mode==='stay'&&now>g.until){ // se va a otro lugar
         const nxt=pickSpot(g.spot);const path=navPath(g.spot.n,nxt.n).map(k=>NAV[k]);const end=spotPos(nxt);
         g.path=[[g.px,g.pz],...path.slice(path.length>1?1:0),end];g.pi=1;g.next=nxt;g.mode='walk';}
@@ -2084,6 +2102,36 @@ function gondola(axis,fixed,from,to,speed,ph){
     g.rotation.z=Math.sin(t*1.2+ph)*0.03;oar.rotation.z=Math.sin(t*1.8)*0.35;gd.rotation.z=Math.sin(t*1.8)*0.08;});
 }
 gondola('x',8.7,-20.5,-6.5,0.035,0.3);gondola('x',8.6,4.5,17,0.04,1.4);gondola('z',1.2,-6.6,-0.9,0.045,1.1);gondola('x',-8.5,-21,-11,0.04,2.2);
+if(DL<=60)gondola('x',5.4,-20,-3,0.038,0.8);      // más góndolas a medida que se acerca la fecha
+if(DL<=30)gondola('x',6.2,4,17,0.042,1.9);
+if(DL<=7)gondola('x',7.4,-19,-6,0.036,0.5);
+
+/* ---------- Casa de información: al tocarla se abre la guía de viaje ---------- */
+{
+  const ib=new THREE.Group();ib.position.set(7.0,TOP,-13.6);ib.scale.setScalar(1.3);scene.add(ib);
+  const stone=0xf1e8d6,copper=0x3f8f86;
+  const glow=()=>mat(0x2c2a24,{emissive:0xffc778,ei:0.9,rough:0.35});
+  ib.add(at(rbox(2.5,0.1,1.9,0xe3d8c2),0,0.05,0));
+  ib.add(at(rbox(2.0,1.15,1.45,stone),0,0.67,0));
+  const roof=mesh(new THREE.ConeGeometry(1.55,0.62,4),mat(copper,{rough:0.5,metal:0.2}));roof.rotation.y=Math.PI/4;roof.scale.set(1,1,0.78);roof.position.set(0,1.58,0);ib.add(roof);
+  ib.add(at(rbox(2.15,0.07,1.6,0xd9ceb8),0,1.27,0));
+  ib.add(at(rbox(0.5,0.78,0.05,glow()),0,0.5,0.74));
+  ib.add(at(rbox(0.42,0.42,0.05,glow()),-0.68,0.72,0.74));ib.add(at(rbox(0.42,0.42,0.05,glow()),0.68,0.72,0.74));
+  ib.add(at(rbox(0.46,0.42,0.05,glow()),1.02,0.72,0.0).rotateY(Math.PI/2));
+  const awn=[0xb23a3a,0xf4ecdc];for(let k=0;k<6;k++)ib.add(at(rbox(0.33,0.05,0.52,awn[k%2]),-0.83+k*0.33,1.02,0.97));
+  const cv=document.createElement('canvas');cv.width=768;cv.height=120;const cx=cv.getContext('2d');
+  cx.fillStyle='#1d2a44';cx.fillRect(0,0,768,120);cx.strokeStyle='#d8b45f';cx.lineWidth=6;cx.strokeRect(6,6,756,108);
+  cx.font='600 62px "Albert Sans", Helvetica, sans-serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillStyle='#f4ecdc';cx.fillText('INFORMACIÓN',384,64);
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(1.7,0.27),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv)}));sign.position.set(0,1.12,0.755);sign.userData.noPick=true;ib.add(sign);
+  const pole=mesh(new THREE.CylinderGeometry(0.03,0.03,2.1,6),0x3a3226);pole.position.set(1.42,1.05,0.78);ib.add(pole);
+  const c2=document.createElement('canvas');c2.width=c2.height=128;const x2=c2.getContext('2d');
+  x2.fillStyle='#d8b45f';x2.beginPath();x2.arc(64,64,62,0,7);x2.fill();x2.fillStyle='#1d2a44';x2.beginPath();x2.arc(64,64,52,0,7);x2.fill();
+  x2.font='italic 700 84px Georgia, serif';x2.textAlign='center';x2.textBaseline='middle';x2.fillStyle='#f4ecdc';x2.fillText('i',64,70);
+  const disc=new THREE.Mesh(new THREE.CircleGeometry(0.34,28),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c2),side:THREE.DoubleSide}));disc.position.set(1.42,2.25,0.78);disc.userData.noPick=true;ib.add(disc);
+  const lamp=new THREE.PointLight(0xffd29a,0.9,5,1.6);lamp.position.set(0,1.0,1.4);ib.add(lamp);
+  animators.push(t=>{const k=1+0.07*Math.sin(t*2.2);disc.scale.set(k,k,k);disc.quaternion.copy(camera.quaternion);});
+  interactive(ib,'infocasa',2.6,1.7);
+}
 
 /* ---------- Cielo (estrellas y luna) ---------- */
 const sky=$('#sky'),sctx=sky.getContext('2d');let stars=[];
@@ -2139,6 +2187,7 @@ const LOCAL_OBJ={estacion:{titulo:'Estación Venezia Santa Lucia',sub:'Llegada e
   {label:'A Ca’ Sagredo en taxi acuático',value:'≈ 5 min'},
   {label:'En vaporetto',value:'Línea 1 hasta Ca’ d’Oro · ≈ 20 min'},
   {label:'A pie',value:'≈ 20 min'}]}};
+LOCAL_OBJ.infocasa={titulo:'Casa de información',sub:'Toca para abrir la guía de viaje',metricas:[]};
 LOCAL_OBJ.vaporetto={titulo:'Vaporetto línea 1',sub:'El bus acuático del Gran Canal',metricas:[
   {label:'Desde la estación',value:'Parada Ferrovia'},
   {label:'Para Ca’ Sagredo',value:'Parada Ca’ d’Oro · ≈ 20 min'},
@@ -2262,7 +2311,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
 const ring=new THREE.Mesh(new THREE.RingGeometry(0.85,1,40),new THREE.MeshBasicMaterial({color:0xd8b45f,transparent:true,opacity:0.8,side:THREE.DoubleSide,depthWrite:false}));
 ring.rotation.x=-Math.PI/2;ring.visible=false;ring.userData.noPick=true;scene.add(ring);
 
-function select(g){if(CHURCH_OPEN&&!SHOW.on&&g.userData.pid!=='iglesia')setChurch(false,false);selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
+function select(g){if(g.userData.pid==='infocasa'){setInfo(true,'guia');return;}if(CHURCH_OPEN&&!SHOW.on&&g.userData.pid!=='iglesia')setChurch(false,false);selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
 function closeCard(){if(CHURCH_OPEN&&!SHOW.on)setChurch(false);selectedId=null;selectedGroup=null;card.hidden=true;ring.visible=false;rows=[];}
 
 /* ---------- Tarjeta ---------- */
@@ -2484,17 +2533,47 @@ const SKYK=[{h:16,a:[0.96,0.64,0.40],b:[0.36,0.22,0.36],n:0,hs:[1,0.84,0.66],hg:
   {h:18.3,a:[0.086,0.149,0.29],b:[0.039,0.075,0.141],n:1,hs:[0.62,0.71,0.90],hg:[0.165,0.137,0.25],hi:0.95,mc:[0.83,0.87,1],mi:0.85,sp:[-14,24,12]}];
 let SKYN=1;
 const lerpA=(a,b,k)=>a.map((v,i)=>v+(b[i]-v)*k);
-function applySky(h){
-  let A=SKYK[SKYK.length-1],B=A,k=0;
-  for(let i=0;i<SKYK.length-1;i++){if(h<SKYK[i+1].h){A=SKYK[i];B=SKYK[i+1];k=Math.max(0,(h-A.h)/(B.h-A.h));break;}}
-  if(h<SKYK[0].h){A=B=SKYK[0];k=0;}
+function applySky(h,K){K=K||SKYK;
+  let A=K[K.length-1],B=A,k=0;
+  for(let i=0;i<K.length-1;i++){if(h<K[i+1].h){A=K[i];B=K[i+1];k=Math.max(0,(h-A.h)/(B.h-A.h));break;}}
+  if(h<K[0].h){A=B=K[0];k=0;}
   const a=lerpA(A.a,B.a,k),b=lerpA(A.b,B.b,k),rgb=c=>'rgb('+c.map(v=>Math.round(v*255)).join(',')+')';
   document.body.style.background='radial-gradient(120% 90% at 30% 10%, '+rgb(a)+' 0%, '+rgb(b)+' 62%)';
   SKYN=A.n+(B.n-A.n)*k;
   hemi.color.setRGB(...lerpA(A.hs,B.hs,k));hemi.groundColor.setRGB(...lerpA(A.hg,B.hg,k));hemi.intensity=A.hi+(B.hi-A.hi)*k;
   moon.color.setRGB(...lerpA(A.mc,B.mc,k));moon.intensity=A.mi+(B.mi-A.mi)*k;moon.position.set(...lerpA(A.sp,B.sp,k));
 }
-function resetSky(){document.body.style.background='';SKYN=1;applySky(30);document.body.style.background='';}
+function resetSky(){applyReal(true);}
+/* ---------- Hora y clima reales de Venecia: el mundo anochece cuando allá anochece ---------- */
+const SKN=SKYK[3],SKD={a:[0.20,0.37,0.60],b:[0.47,0.61,0.76],n:0,hs:[0.92,0.93,0.97],hg:[0.34,0.32,0.38],hi:0.95,mc:[1,0.94,0.84],mi:0.7,sp:[-10,26,10]};
+const SKYR=[{...SKN,h:0},{...SKN,h:6.2},{...SKYK[1],h:7.4},{...SKD,h:8.8},{...SKD,h:15.0},{...SKYK[0],h:16},{...SKYK[1]},{...SKYK[2]},{...SKYK[3]},{...SKN,h:24}];
+const QS=new URLSearchParams(location.search);
+const venFmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit',hour12:false});
+function venHour(){if(QS.get('hora'))return +QS.get('hora');const p=venFmt.formatToParts(new Date());const g=k=>+p.find(x=>x.type===k).value;return (g('hour')%24)+g('minute')/60;}
+function applyReal(force){if(SHOW.on&&!force)return;applySky(venHour(),SKYR);updateVnow();}
+const WXS={t:null,code:null,ok:false,kind:'none'};
+const WCODE=c=>c==null?'':c===0?'despejado':c<=2?'poco nublado':c===3?'nublado':(c===45||c===48)?'niebla':c<=57?'llovizna':c<=67?'lluvia':c<=77?'nieve':c<=82?'chubascos':c<=86?'nevada':'tormenta';
+const wKind=c=>c==null?'none':(c===45||c===48)?'fog':((c>=71&&c<=77)||c===85||c===86)?'snow':((c>=51&&c<=67)||(c>=80&&c<=82)||c>=95)?'rain':'none';
+function updateVnow(){const el=$('#vnow');if(!el)return;if(SHOW.on){el.hidden=true;return;}
+  let hh=venFmt.format(new Date()).replace(/^24/,'00');if(QS.get('hora')){const H=+QS.get('hora');hh=String(Math.floor(H)).padStart(2,'0')+':'+String(Math.round((H%1)*60)).padStart(2,'0');}
+  el.innerHTML='<span>Venecia ahora</span> <b>'+hh+'</b>'+(WXS.ok?'<br>'+Math.round(WXS.t)+' °C · '+WCODE(WXS.code):'');el.hidden=false;}
+async function loadWx(){
+  const qc=QS.get('clima');if(qc){WXS.ok=true;WXS.t=+(QS.get('temp')||3);WXS.code=qc==='nieve'?73:qc==='lluvia'?63:qc==='niebla'?45:0;WXS.kind=wKind(WXS.code);updateVnow();return;}
+  try{const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),6000);
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=45.4408&longitude=12.3155&current=temperature_2m,weather_code&timezone=Europe%2FRome',{signal:ctl.signal,cache:'no-store'});clearTimeout(to);
+    const j=await r.json();const c=j&&j.current;if(c&&typeof c.temperature_2m==='number'){WXS.t=c.temperature_2m;WXS.code=c.weather_code;WXS.ok=true;WXS.kind=wKind(c.weather_code);}}catch(e){}
+  updateVnow();}
+const wxc=document.createElement('canvas');wxc.id='wxc';canvas.parentNode.insertBefore(wxc,canvas.nextSibling);
+{const wctx=wxc.getContext('2d');let parts=[],wk='none';
+  animators.push((t,dt)=>{const kind=SHOW.on?'none':WXS.kind;if(kind==='none'){if(wxc.style.display!=='none')wxc.style.display='none';return;}
+    const r=Math.min(devicePixelRatio,2),W=innerWidth,H=innerHeight;if(wxc.width!==Math.round(W*r)){wxc.width=Math.round(W*r);wxc.height=Math.round(H*r);}
+    wxc.style.display='block';wctx.setTransform(r,0,0,r,0,0);wctx.clearRect(0,0,W,H);
+    if(kind!==wk){wk=kind;parts=Array.from({length:kind==='rain'?170:kind==='snow'?130:0},()=>({x:Math.random()*W,y:Math.random()*H,s:0.6+Math.random()*0.8,p:Math.random()*6}));}
+    if(kind==='fog'){const g=wctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(215,222,232,.22)');g.addColorStop(0.55,'rgba(215,222,232,.10)');g.addColorStop(1,'rgba(215,222,232,.26)');wctx.fillStyle=g;wctx.fillRect(0,0,W,H);return;}
+    const d=Math.min(dt,0.05);
+    if(kind==='rain'){wctx.strokeStyle='rgba(190,212,240,.5)';wctx.lineWidth=1.1;wctx.beginPath();parts.forEach(p=>{p.y+=700*p.s*d;p.x-=110*p.s*d;if(p.y>H){p.y=-20;p.x=Math.random()*W+60;}wctx.moveTo(p.x,p.y);wctx.lineTo(p.x+3.5*p.s,p.y-15*p.s);});wctx.stroke();}
+    else{wctx.fillStyle='rgba(255,255,255,.88)';parts.forEach(p=>{p.y+=55*p.s*d;p.x+=Math.sin(t*0.9+p.p)*18*d;if(p.y>H){p.y=-8;p.x=Math.random()*W;}wctx.beginPath();wctx.arc(p.x,p.y,1.3+1.6*p.s,0,7);wctx.fill();});}});}
+applyReal();setInterval(applyReal,30000);setInterval(updateVnow,1000);loadWx();setInterval(loadWx,900000);
 
 const showEl=$('#show'),showBtn=$('#showBtn');
 function flyTo(x,z,zf,follow,dir){const p=new THREE.Vector3(x,TOP+0.6,z);
@@ -2828,6 +2907,7 @@ const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 let INFO_OPEN=false,INFO_VIEW='info',infoKey='';
 function renderInfo(){
   const I=(DATA&&DATA.info)||{};const key=INFO_VIEW+JSON.stringify(I);if(key===infoKey)return;infoKey=key;
+  if(INFO_VIEW==='guia')return renderGuia();
   if(INFO_VIEW==='venecia')return renderVenecia(I.venecia);
   if(INFO_VIEW==='belleza')return renderBelleza(I.belleza);
   if(INFO_VIEW==='mapa')return renderMapa(I.mapa);
@@ -2855,6 +2935,49 @@ function renderInfo(){
     const p=new THREE.Vector3();g.getWorldPosition(p);userMoved=true;flyTo(p.x,p.z,innerWidth<640?1.9:2.3);}));
 }
 function selectText(el){try{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);}catch(e){}}
+const GUIA={
+  intro:'Todo lo que necesitan para llegar a Venecia, moverse y disfrutar la boda. Son datos de referencia: confirmen horarios, precios y requisitos antes de viajar.',
+  cats:[
+   {id:'llegar',t:'Cómo llegar',icon:'<path d="M21 3L3 10l7 3 3 7 8-17z"/>',items:[
+    {z:'Vuelo',n:'Volar a Venecia',d:'Desde Colombia lo habitual es una escala en Europa (Madrid, París, Ámsterdam, Fráncfort, Roma o Milán). Aterrizan en el aeropuerto Marco Polo (VCE). Les recomendamos llegar entre el 4 y el 5 de enero para descansar antes de la ceremonia del jueves 7.',l:'https://www.google.com/travel/flights?q=Flights%20from%20Bogota%20to%20Venice%20on%202027-01-04',ll:'Buscar vuelos'},
+    {z:'Del aeropuerto',n:'Taxi acuático',d:'Unos 30 minutos hasta el centro, desde ≈ €70 por embarcación (caben unas 10 o 12 personas). Es lo más cómodo con maletas; pidan que los deje en el muelle del hotel.'},
+    {z:'Del aeropuerto',n:'Alilaguna (barco público)',d:'La línea azul llega a Fondamente Nove en unos 30 minutos y sale cada hora; la tarifa va de €5 a €13 según el tramo (confirmen en alilaguna.com). Fondamente Nove queda en Cannaregio, el mismo barrio de Ca’ Sagredo.',l:'https://www.alilaguna.com',ll:'alilaguna.com'},
+    {z:'Del aeropuerto',n:'Bus ATVO + vaporetto',d:'El bus llega a Piazzale Roma en unos 20 minutos (≈ €8). Desde allí, vaporetto línea 1 hasta la parada Ca’ d’Oro, junto a Ca’ Sagredo.'},
+    {z:'En tren',n:'Estación Venezia Santa Lucia',d:'Si vienen desde otra ciudad de Italia, bajan en Santa Lucia. A Ca’ Sagredo: taxi acuático ≈ 5 min o vaporetto línea 1 hasta Ca’ d’Oro.'}]},
+   {id:'docs',t:'Documentos',icon:'<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>',items:[
+    {z:'Obligatorio',n:'Pasaporte',d:'Vigente, emitido en los últimos 10 años y con al menos 3 meses de validez después de la fecha en que salgan de la zona Schengen.'},
+    {z:'Visa',n:'Sin visa para estancias cortas',d:'Los colombianos no necesitan visa Schengen para estancias de hasta 90 días dentro de un período de 180.'},
+    {z:'Por confirmar',n:'ETIAS',d:'Es una autorización electrónica que la Unión Europea planea exigir a los viajeros de Colombia. Según las últimas noticias que revisamos (septiembre de 2026) todavía no era obligatoria y la fecha de inicio no estaba fijada. Verifíquenlo en el sitio oficial antes de viajar.',l:'https://travel-europe.europa.eu/etias_en',ll:'Sitio oficial de la UE'},
+    {z:'Recomendado',n:'Seguro de viaje',d:'Con cobertura médica y de cancelación. En emergencias, el número único europeo es el 112.'}]},
+   {id:'clima',t:'Clima y luz',icon:'<path d="M12 4v2m0 12v2M4 12H2m20 0h-2M6 6L4.6 4.6M19.4 19.4L18 18M18 6l1.4-1.4M4.6 19.4L6 18M12 8a4 4 0 100 8 4 4 0 000-8z"/>',items:[
+    {z:'Enero en Venecia',n:'Frío y húmedo',d:'Máxima media de 7 a 8 °C y mínima cerca de 0 °C; las noches pueden bajar de cero. La humedad es alta (≈ 78 %), la niebla es frecuente y llueve unos 6 días al mes. La nieve es poco común y casi nunca abundante.'},
+    {z:'Luz',n:'Días cortos',d:'Hay unas 9 horas de luz. El sol se pone hacia las 4:45 PM, así que la ceremonia de las 4:30 será casi al atardecer.'},
+    {z:'Marea',n:'Acqua alta',d:'En invierno puede subir la marea. Desde 2020 el sistema MOSE reduce los eventos, pero revisen el pronóstico ese día y lleven calzado de repuesto.'}]},
+   {id:'llevar',t:'Qué llevar',icon:'<path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2M4 7h16v13H4z"/>',items:[
+    {z:'Ropa',n:'Abrigo, bufanda y guantes',d:'Abrigo largo o chaqueta térmica, bufanda, guantes y gorro. Para la ceremonia: abrigo elegante sobre la corbata negra o el vestido largo.'},
+    {z:'Calzado',n:'Suela cómoda y antideslizante',d:'Calles de piedra, puentes con escalones y piso húmedo. Lleven un par de repuesto por si hay acqua alta.'},
+    {z:'Lluvia',n:'Paraguas compacto',d:'O un impermeable liviano: las calles son angostas y hay mucha gente.'},
+    {z:'Electrónica',n:'Adaptador de enchufe',d:'Europa usa enchufes tipo C, F y L a 230 V; Colombia usa 120 V. Revisen que sus cargadores acepten 100–240 V y lleven un adaptador y una batería externa.'},
+    {z:'Dinero',n:'Euros',d:'Las tarjetas se aceptan casi en todas partes; lleven algo de efectivo para cafés, baños públicos y propinas (no son obligatorias).'},
+    {z:'Equipaje',n:'Maletas livianas',d:'Venecia es peatonal y tiene puentes con escalones: mejor maletas livianas, con ruedas grandes. Los taxis acuáticos llegan a muchos muelles de hotel.'}]},
+   {id:'mover',t:'Moverse',icon:'<path d="M3 15l2 4h14l2-4zM12 3v8M12 5l5 4h-5"/>',items:[
+    {z:'Vaporetto (ACTV)',n:'Tickets y pases',d:'Ticket sencillo ≈ €9,50, válido 75 minutos desde que lo validan. Pases: 24 h ≈ €25, 48 h ≈ €35, 72 h ≈ €45. Validen siempre antes de subir.',l:'https://actv.avmspa.it',ll:'actv.avmspa.it'},
+    {z:'Línea 1',n:'El Gran Canal',d:'Recorre el Gran Canal con paradas frecuentes. La parada Ca’ d’Oro queda junto a Ca’ Sagredo, a pocos minutos de la iglesia de los Miracoli.'},
+    {z:'Consejo',n:'Mapa sin conexión',d:'El GPS falla entre las calles angostas: descarguen el mapa de Venecia para usarlo sin conexión.'}]}
+  ],
+  fuentes:[['venezia.net','https://en.venezia.net/venice-by-plane.html'],['Climates to Travel','https://climatestotravel.com/climate/italy/venice'],['22places','https://www.22places.com/venice-vaporetto/'],['AXA Schengen','https://www.axa-schengen.com/es/visa/etias']]
+};
+let GUIA_CAT='llegar';
+function renderGuia(){
+  const b=$('#infoBody'),G=GUIA;if(!G.cats.some(c=>c.id===GUIA_CAT))GUIA_CAT=G.cats[0].id;const cat=G.cats.find(c=>c.id===GUIA_CAT);
+  let h='<header class="ihero"><div class="mono"><img src="img/mm.png" alt="M&amp;M"></div><div class="names">Guía de viaje</div><p class="vintro">'+esc(G.intro)+'</p></header>';
+  h+='<div class="vcats" role="group" aria-label="Categorías">'+G.cats.map(c=>'<button type="button" data-gcat="'+c.id+'" aria-pressed="'+(c.id===GUIA_CAT)+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+c.icon+'</svg>'+esc(c.t)+'</button>').join('')+'</div>';
+  h+='<div class="ilugares">'+cat.items.map(it=>'<article class="ilugar"><div class="rol">'+esc(it.z)+'</div><h4>'+esc(it.n)+'</h4><div class="how">'+esc(it.d)+'</div>'+
+    (it.l?'<div class="acts"><a href="'+esc(it.l)+'" target="_blank" rel="noopener">'+esc(it.ll||'Ver más')+'</a></div>':'')+'</article>').join('')+'</div>';
+  h+='<p class="ifoot">Datos de referencia revisados en noviembre de 2026. Fuentes: '+G.fuentes.map(f=>'<a href="'+esc(f[1])+'" target="_blank" rel="noopener">'+esc(f[0])+'</a>').join(' · ')+'.</p>';
+  b.innerHTML=h;
+  b.querySelectorAll('[data-gcat]').forEach(bt=>bt.addEventListener('click',()=>{GUIA_CAT=bt.dataset.gcat;infoKey='';renderInfo();$('#info').scrollTop=0;}));
+}
 let VEN_CAT=null;
 const VEN_ICON={cultura:'<path d="M3 10l9-6 9 6M5 10v9m4-9v9m6-9v9m4-9v9M3 21h18"/>',restaurantes:'<path d="M7 3v8m-3-8v4a3 3 0 006 0V3M7 11v10m10-18c-2 0-3 2-3 6s1 5 3 5v7"/>',
   hoteles:'<path d="M3 20V6m0 8h18v6M3 14V9h7a3 3 0 013 3v2m8 0v-2a3 3 0 00-3-3h-5"/>',fiestas:'<path d="M5 21l4-11 5 5-9 6zM14 4l1 2m4 1l-2 1m-3 3l3-3m1 7l2 1M12 3v1"/>'};
@@ -2871,7 +2994,7 @@ function renderVenecia(V){
   b.innerHTML=h;
   b.querySelectorAll('[data-cat]').forEach(bt=>bt.addEventListener('click',()=>{VEN_CAT=bt.dataset.cat;infoKey='';renderInfo();}));
 }
-const VIEWS={info:['tabInfo','infoBtn','Información'],venecia:['tabVen','venBtn','Venecia'],belleza:['tabBel','belBtn','Belleza'],mapa:['tabMap','mapBtn','Mapa']};
+const VIEWS={info:['tabInfo','infoBtn','Información'],guia:['tabGuia','guiaBtn','Guía'],venecia:['tabVen','venBtn','Venecia'],belleza:['tabBel','belBtn','Belleza'],mapa:['tabMap','mapBtn','Mapa']};
 function setInfo(on,view){if(view)INFO_VIEW=view;INFO_OPEN=on;$('#info').hidden=!on;if(on){renderInfo();closeCard();}
   $('#tabMundo').setAttribute('aria-selected',on?'false':'true');
   for(const k in VIEWS){const [tb,bt,lb]=VIEWS[k],act=on&&INFO_VIEW===k;$('#'+tb).setAttribute('aria-selected',act?'true':'false');
@@ -3040,7 +3163,7 @@ function setStaticTags(D){
   spec.forEach(([fig,owner,p],i)=>{if(fig&&p){addTag(fig,owner,p.foto,p.nombre,1.22,true,{lado:p.lado,ok:okOf(p),kind:'persona'});tags[tags.length-1].level=i%2?1.2:0;}});
 }
 function onData(){
-  GUEST=DATA.modo==='invitados';$('#infoBtn').hidden=GUEST||!DATA.info;$('#venBtn').hidden=GUEST||!(DATA.info&&DATA.info.venecia);$('#tabVen').hidden=!(DATA.info&&DATA.info.venecia);
+  GUEST=DATA.modo==='invitados';$('#infoBtn').hidden=GUEST||!DATA.info;$('#venBtn').hidden=GUEST||!(DATA.info&&DATA.info.venecia);$('#guiaBtn').hidden=GUEST;$('#tabVen').hidden=!(DATA.info&&DATA.info.venecia);
   $('#belBtn').hidden=GUEST||!(DATA.info&&DATA.info.belleza);$('#tabBel').hidden=!(DATA.info&&DATA.info.belleza);$('#mapBtn').hidden=GUEST||!(DATA.info&&DATA.info.mapa);$('#tabMap').hidden=!(DATA.info&&DATA.info.mapa);if(INFO_OPEN)renderInfo();document.body.classList.toggle('guest',GUEST);$('#mesaBtn').hidden=!DATA.mesa;if(!DATA.mesa&&MESA_OPEN)setMesa(false);
   updateLive();updateChips();buildSeats(DATA.mesa);if(MESA_OPEN)renderPlan();
   const ev=DATA.evento||{};
