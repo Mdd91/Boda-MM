@@ -2578,6 +2578,27 @@ const wxc=document.createElement('canvas');wxc.id='wxc';canvas.parentNode.insert
     const d=Math.min(dt,0.05);
     if(kind==='rain'){wctx.strokeStyle='rgba(190,212,240,.5)';wctx.lineWidth=1.1;wctx.beginPath();parts.forEach(p=>{p.y+=700*p.s*d;p.x-=110*p.s*d;if(p.y>H){p.y=-20;p.x=Math.random()*W+60;}wctx.moveTo(p.x,p.y);wctx.lineTo(p.x+3.5*p.s,p.y-15*p.s);});wctx.stroke();}
     else{wctx.fillStyle='rgba(255,255,255,.88)';parts.forEach(p=>{p.y+=55*p.s*d;p.x+=Math.sin(t*0.9+p.p)*18*d;if(p.y>H){p.y=-8;p.x=Math.random()*W;}wctx.beginPath();wctx.arc(p.x,p.y,1.3+1.6*p.s,0,7);wctx.fill();});}});}
+/* ---------- Con lluvia, los muñequitos sacan sombrilla ---------- */
+{
+  const UC=[0xb23a3a,0x1d2a44,0xd8b45f,0x3f8f86,0xf4ecdc,0x6a4c93,0x2d6a4f,0xc96a2b];let ui=0;
+  const poleM=new THREE.MeshStandardMaterial({color:0x2c2a26,roughness:0.6}),tipM=new THREE.MeshStandardMaterial({color:0xd8b45f,roughness:0.4,metalness:0.4});
+  const mkUmb=()=>{const u=new THREE.Group();u.visible=false;
+    const col=UC[ui++%UC.length];
+    const can=new THREE.Mesh(new THREE.SphereGeometry(0.56,18,8,0,Math.PI*2,0,Math.PI/2),new THREE.MeshStandardMaterial({color:col,roughness:0.7,side:THREE.DoubleSide}));
+    can.scale.set(1,0.5,1);can.position.set(-0.1,0.82,-0.12);can.rotation.z=0.12;
+    const pole=new THREE.Mesh(new THREE.CylinderGeometry(0.014,0.014,0.9,6),poleM);pole.position.set(0,0.45,0);
+    const tip=new THREE.Mesh(new THREE.SphereGeometry(0.03,6,6),tipM);tip.position.set(-0.1,1.06,-0.12);
+    [can,pole,tip].forEach(x=>{x.userData.noPick=true;x.castShadow=true;u.add(x);});
+    u.position.set(0.23,0.62,0.34);return u;};
+  const stateOf=m=>{let st=m.userData.umbS;if(!st){st={u:mkUmb(),k:0};m.add(st.u);m.userData.umbS=st;}return st;};
+  animators.push((t,dt)=>{const rain=!SHOW.on&&WXS.kind==='rain';const d=Math.min(dt,0.1);
+    const figs=[];for(const g of guests)if(!g.dog)figs.push(g.m);if(raul)figs.push(raul);if(gian)figs.push(gian);
+    for(const m of figs){let st=m.userData.umbS;if(!st){if(!rain)continue;st=stateOf(m);}
+      st.k+=((rain?1:0)-st.k)*Math.min(1,d*5);
+      if(!rain&&st.k<0.02){st.k=0;st.u.visible=false;continue;}
+      st.u.visible=m.visible;st.u.scale.setScalar(Math.max(0.01,st.k));
+      const A=m.userData.limbs.armR;A.rotation.x=A.rotation.x*(1-st.k)-1.35*st.k;A.rotation.z=A.rotation.z*(1-st.k)+0.12*st.k;}});
+}
 applyReal();setInterval(applyReal,30000);setInterval(updateVnow,1000);loadWx();setInterval(loadWx,900000);
 
 const showEl=$('#show'),showBtn=$('#showBtn');
