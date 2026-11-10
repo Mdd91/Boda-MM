@@ -852,10 +852,14 @@ body:not(.guest) .vnow{top:calc(env(safe-area-inset-top,0px) + 158px);}
 .showing .vnow,.touring .vnow{display:none;}
 #wxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;display:none;}
 .hint,.brand .place,.brand{text-shadow:0 1px 3px rgba(5,10,25,.75),0 0 8px rgba(5,10,25,.45);}
-.qtoast{left:50%;top:calc(env(safe-area-inset-top,0px) + 76px);transform:translateX(-50%) translateY(-8px);opacity:0;max-width:min(440px,calc(100vw - 32px));padding:10px 18px;border-radius:14px;
-  background:var(--glass);border:1px solid var(--gold);color:var(--ivory);font-size:14px;line-height:1.4;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
-.qtoast{transition:opacity .3s ease-out,transform .3s ease-out;} .qtoast.in{opacity:1;transform:translateX(-50%) translateY(0);} .qtoast b{display:block;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
-@media (max-width:640px){.qtoast{top:calc(env(safe-area-inset-top,0px) + 124px);}}
+#qdlg{position:fixed;inset:0;z-index:30;display:flex;align-items:flex-end;justify-content:center;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 90px);background:rgba(0,0,0,.35);cursor:pointer;}
+#qdlg[hidden]{display:none;}
+.qd-box{position:relative;width:min(560px,100%);min-height:150px;padding:22px 24px 26px;background:#000;color:#fff;border:4px solid #fff;border-radius:4px;box-shadow:0 0 0 4px #000,0 0 0 8px #fcc868,0 10px 40px rgba(0,0,0,.6);font-family:'Press Start 2P',ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.9;image-rendering:pixelated;}
+.qd-t{white-space:pre-wrap;min-height:5.7em;text-shadow:2px 2px 0 #a04800;}
+.qd-n{position:absolute;right:18px;bottom:10px;color:#fcc868;animation:qdb .7s steps(2) infinite;}
+@keyframes qdb{50%{transform:translateY(4px);}}
+@media (max-width:640px){.qd-box{font-size:11px;padding:18px 16px 24px;}#qdlg{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 70px);}}
+@media (prefers-reduced-motion:reduce){.qd-n{animation:none;}}
 </style>
 
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -1272,7 +1276,7 @@ const campanile=new THREE.Group();campanile.position.set(9.9,0,14.3);
   campanile.add(at(rbox(1.36,6,1.36,brick),0,TOP+3.3,0));
   for(let i=0;i<3;i++)campanile.add(at(rbox(0.08,5.2,0.18,0xb76c51),-0.69,TOP+3.4,-0.4+i*0.4));
   campanile.add(at(rbox(1.5,0.16,1.5,stone),0,TOP+6.35,0));
-  const cv=document.createElement('canvas');cv.width=256;cv.height=128;const cx=cv.getContext('2d');const tex=new THREE.CanvasTexture(cv);
+  const cv=document.createElement('canvas');cv.width=256;cv.height=128;const cx=cv.getContext('2d');const tex=new THREE.CanvasTexture(cv);tex.magFilter=THREE.NearestFilter;tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;
   const pl=new THREE.Mesh(new THREE.PlaneGeometry(1.2,0.6),new THREE.MeshBasicMaterial({map:tex,transparent:true}));pl.position.set(0,TOP+4.5,0.69);pl.userData.noPick=true;campanile.add(pl);
   window.__cdPaint=(top,n,bot)=>{cx.clearRect(0,0,256,128);cx.fillStyle='rgba(18,26,44,.85)';cx.beginPath();if(cx.roundRect)cx.roundRect(6,6,244,116,18);else cx.rect(6,6,244,116);cx.fill();
     cx.strokeStyle='#d8b45f';cx.lineWidth=3;cx.stroke();cx.textAlign='center';cx.fillStyle='#f4ecdc';cx.font='600 17px "Albert Sans", sans-serif';cx.fillText(top,128,30);
@@ -2147,25 +2151,35 @@ const QB={state:'ready',t0:-9,n:0,mi:0};
 function hitQ(){}
 {
   const cv=document.createElement('canvas');cv.width=cv.height=256;const c=cv.getContext('2d');const tex=new THREE.CanvasTexture(cv);
-  const draw=used=>{c.clearRect(0,0,256,256);c.fillStyle=used?'#8a6a45':'#f3b53a';c.fillRect(0,0,256,256);
-    c.strokeStyle=used?'#5b4429':'#b5701a';c.lineWidth=14;c.strokeRect(7,7,242,242);
-    c.fillStyle=used?'#5b4429':'#b5701a';[[28,28],[228,28],[28,228],[228,228]].forEach(p=>{c.beginPath();c.arc(p[0],p[1],9,0,7);c.fill();});
-    if(!used){c.font='900 170px Georgia, serif';c.textAlign='center';c.textBaseline='middle';c.lineWidth=16;c.lineJoin='round';c.strokeStyle='#8a4b0f';c.strokeText('?',128,140);c.fillStyle='#fff6d6';c.fillText('?',128,140);}
+  const PX=16,Q=['.####.','##..##','....##','..###.','..##..','......','..##..','..##..'];
+  const draw=used=>{c.imageSmoothingEnabled=false;c.fillStyle=used?'#7a4a1c':'#5a2d00';c.fillRect(0,0,256,256);
+    c.fillStyle=used?'#b9803f':'#f8a830';c.fillRect(PX,PX,256-2*PX,256-2*PX);
+    c.fillStyle=used?'#d09a58':'#fcc868';c.fillRect(PX,PX,256-2*PX,PX/2);c.fillRect(PX,PX,PX/2,256-2*PX);
+    c.fillStyle=used?'#6a3f17':'#a04800';c.fillRect(PX,256-PX*1.5,256-2*PX,PX/2);c.fillRect(256-PX*1.5,PX,PX/2,256-2*PX);
+    c.fillStyle=used?'#5a2d00':'#a04800';[[2,2],[11,2],[2,11],[11,11]].forEach(p=>c.fillRect(p[0]*PX+PX/2,p[1]*PX+PX/2,PX*2,PX*2));
+    if(!used){const ox=70,oy=44,sz=20;Q.forEach((r,y)=>{for(let x=0;x<6;x++)if(r[x]==='#'){c.fillStyle='#8b3a00';c.fillRect(ox+x*sz+8,oy+y*sz+8,sz,sz);}});
+      Q.forEach((r,y)=>{for(let x=0;x<6;x++)if(r[x]==='#'){c.fillStyle='#fff0b0';c.fillRect(ox+x*sz,oy+y*sz,sz,sz);}});}
     tex.needsUpdate=true;};
   draw(false);
   const bm=new THREE.MeshStandardMaterial({map:tex,emissiveMap:tex,emissive:0xffb020,emissiveIntensity:0.45,roughness:0.5});
-  const qb=new THREE.Group();qb.position.set(1.2,TOP+2.7,1.4);scene.add(qb);
+  const qb=new THREE.Group();qb.position.set(1.2,TOP+2.7,1.4);qb.scale.setScalar(1.25);scene.add(qb);
   const box=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.9,0.9),bm);box.castShadow=true;qb.add(box);
   const ql=new THREE.PointLight(0xffc860,0.9,5,1.8);ql.position.set(0,0,0.8);qb.add(ql);
   const coin=new THREE.Mesh(new THREE.CylinderGeometry(0.24,0.24,0.06,20),new THREE.MeshStandardMaterial({color:0xf5c542,emissive:0xe0a020,emissiveIntensity:0.6,roughness:0.35,metalness:0.5}));
   coin.rotation.z=Math.PI/2;const coinG=new THREE.Group();coinG.add(coin);coinG.visible=false;qb.add(coinG);coin.userData.noPick=true;
-  const MSG=['¡Bloque secreto! Los esperamos en Venecia el 7 de enero. — Marcela &amp; Miguel','Dato: Venecia tiene más de 100 islas y unos 400 puentes.','Salute! Brindaremos con ustedes después de la ceremonia.','La ceremonia es a las 4:30 PM en la iglesia de los Miracoli.','Pista: abrigo, calzado cómodo y muchas ganas de bailar.'];
-  const qt=document.createElement('div');qt.className='hud qtoast';qt.hidden=true;qt.setAttribute('role','status');document.body.appendChild(qt);
+  const PAGES=['* ¡MARCELA & MIGUEL SE CASAN!','* JUEVES 7 DE ENERO DE 2027\n* VENECIA, ITALIA','* CEREMONIA: 4:30 PM\n  IGLESIA DE SANTA MARIA\n  DEI MIRACOLI','* APERITIVO: 6:00 PM\n* CENA: 7:00 PM\n  HOTEL CA\' SAGREDO','* VESTIMENTA:\n  CORBATA NEGRA Y\n  VESTIDO LARGO','* ¡LOS ESPERAMOS!\n  GRACIAS POR VENIR.'];
+  if(!document.getElementById('pxfont')){const l=document.createElement('link');l.id='pxfont';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';document.head.appendChild(l);}
+  const dl=document.createElement('div');dl.id='qdlg';dl.hidden=true;dl.setAttribute('role','dialog');dl.innerHTML='<div class="qd-box"><div class="qd-t"></div><div class="qd-n">▼</div></div>';document.body.appendChild(dl);
+  const dT=dl.querySelector('.qd-t'),dN=dl.querySelector('.qd-n');let pg=0,ch=0,tm=null,full='';
+  const blip=()=>{try{if(MUSIC&&MUSIC.ctx)tone(MUSIC.ctx.currentTime,660,0.04,'square',0.05);}catch(e){}};
+  const showPage=()=>{full=PAGES[pg];ch=0;dT.textContent='';dN.style.visibility='hidden';clearInterval(tm);tm=setInterval(()=>{ch++;dT.textContent=full.slice(0,ch);if(ch%2==0)blip();if(ch>=full.length){clearInterval(tm);tm=null;dN.style.visibility='visible';}},32);};
+  const closeQ=()=>{clearInterval(tm);tm=null;dl.hidden=true;setTimeout(()=>{QB.state='ready';draw(false);bm.emissiveIntensity=0.45;ql.intensity=0.9;},800);};
+  const advance=()=>{if(dl.hidden)return;if(tm){clearInterval(tm);tm=null;dT.textContent=full;dN.style.visibility='visible';return;}pg++;if(pg>=PAGES.length)closeQ();else showPage();};
+  dl.addEventListener('click',advance);addEventListener('keydown',e=>{if(dl.hidden)return;if(e.key==='Escape')closeQ();else if(e.key===' '||e.key==='Enter'){e.preventDefault();advance();}});
   let now=0;
   hitQ=function(){if(QB.state!=='ready')return;QB.state='used';QB.t0=now;QB.n++;draw(true);bm.emissiveIntensity=0;ql.intensity=0;
-    qt.innerHTML='<b>Moneda ×'+QB.n+'</b>'+MSG[QB.mi++%MSG.length];qt.hidden=false;qt.classList.remove('in');void qt.offsetWidth;qt.classList.add('in');clearTimeout(qt._t);qt._t=setTimeout(()=>{qt.hidden=true;},4600);
     try{if(MUSIC&&MUSIC.ctx){const t=MUSIC.ctx.currentTime;tone(t,988,0.09,'square',0.1);tone(t+0.09,1319,0.4,'square',0.1);}}catch(e){}
-    setTimeout(()=>{QB.state='ready';draw(false);bm.emissiveIntensity=0.45;ql.intensity=0.9;},6500);};
+    setTimeout(()=>{pg=0;dl.hidden=false;showPage();},650);};
   animators.push((t,dt)=>{now=t;const u=t-QB.t0;const used=QB.state==='used';
     qb.position.y=TOP+2.7+(used?0:0.1*Math.sin(t*2.1))+(used&&u<0.3?0.5*Math.sin(Math.PI*u/0.3):0);
     if(!used)box.rotation.y+=dt*0.7;else box.rotation.y+=(Math.round(box.rotation.y/(Math.PI*2))*Math.PI*2-box.rotation.y)*Math.min(1,dt*4);
