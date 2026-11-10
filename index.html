@@ -852,6 +852,10 @@ body:not(.guest) .vnow{top:calc(env(safe-area-inset-top,0px) + 158px);}
 .showing .vnow,.touring .vnow{display:none;}
 #wxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;display:none;}
 .hint,.brand .place,.brand{text-shadow:0 1px 3px rgba(5,10,25,.75),0 0 8px rgba(5,10,25,.45);}
+.qtoast{left:50%;top:calc(env(safe-area-inset-top,0px) + 76px);transform:translateX(-50%) translateY(-8px);opacity:0;max-width:min(440px,calc(100vw - 32px));padding:10px 18px;border-radius:14px;
+  background:var(--glass);border:1px solid var(--gold);color:var(--ivory);font-size:14px;line-height:1.4;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+.qtoast{transition:opacity .3s ease-out,transform .3s ease-out;} .qtoast.in{opacity:1;transform:translateX(-50%) translateY(0);} .qtoast b{display:block;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+@media (max-width:640px){.qtoast{top:calc(env(safe-area-inset-top,0px) + 124px);}}
 </style>
 
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -2138,6 +2142,37 @@ if(DL<=7)gondola('x',7.4,-19,-6,0.036,0.5);
   interactive(ib,'infocasa',2.6,1.7);
 }
 
+/* ---------- Bloque "?" secreto: tócalo y sale una moneda y una sorpresa ---------- */
+const QB={state:'ready',t0:-9,n:0,mi:0};
+function hitQ(){}
+{
+  const cv=document.createElement('canvas');cv.width=cv.height=256;const c=cv.getContext('2d');const tex=new THREE.CanvasTexture(cv);
+  const draw=used=>{c.clearRect(0,0,256,256);c.fillStyle=used?'#8a6a45':'#f3b53a';c.fillRect(0,0,256,256);
+    c.strokeStyle=used?'#5b4429':'#b5701a';c.lineWidth=14;c.strokeRect(7,7,242,242);
+    c.fillStyle=used?'#5b4429':'#b5701a';[[28,28],[228,28],[28,228],[228,228]].forEach(p=>{c.beginPath();c.arc(p[0],p[1],9,0,7);c.fill();});
+    if(!used){c.font='900 170px Georgia, serif';c.textAlign='center';c.textBaseline='middle';c.lineWidth=16;c.lineJoin='round';c.strokeStyle='#8a4b0f';c.strokeText('?',128,140);c.fillStyle='#fff6d6';c.fillText('?',128,140);}
+    tex.needsUpdate=true;};
+  draw(false);
+  const bm=new THREE.MeshStandardMaterial({map:tex,emissiveMap:tex,emissive:0xffb020,emissiveIntensity:0.45,roughness:0.5});
+  const qb=new THREE.Group();qb.position.set(1.2,TOP+2.7,1.4);scene.add(qb);
+  const box=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.9,0.9),bm);box.castShadow=true;qb.add(box);
+  const ql=new THREE.PointLight(0xffc860,0.9,5,1.8);ql.position.set(0,0,0.8);qb.add(ql);
+  const coin=new THREE.Mesh(new THREE.CylinderGeometry(0.24,0.24,0.06,20),new THREE.MeshStandardMaterial({color:0xf5c542,emissive:0xe0a020,emissiveIntensity:0.6,roughness:0.35,metalness:0.5}));
+  coin.rotation.z=Math.PI/2;const coinG=new THREE.Group();coinG.add(coin);coinG.visible=false;qb.add(coinG);coin.userData.noPick=true;
+  const MSG=['¡Bloque secreto! Los esperamos en Venecia el 7 de enero. — Marcela &amp; Miguel','Dato: Venecia tiene más de 100 islas y unos 400 puentes.','Salute! Brindaremos con ustedes después de la ceremonia.','La ceremonia es a las 4:30 PM en la iglesia de los Miracoli.','Pista: abrigo, calzado cómodo y muchas ganas de bailar.'];
+  const qt=document.createElement('div');qt.className='hud qtoast';qt.hidden=true;qt.setAttribute('role','status');document.body.appendChild(qt);
+  let now=0;
+  hitQ=function(){if(QB.state!=='ready')return;QB.state='used';QB.t0=now;QB.n++;draw(true);bm.emissiveIntensity=0;ql.intensity=0;
+    qt.innerHTML='<b>Moneda ×'+QB.n+'</b>'+MSG[QB.mi++%MSG.length];qt.hidden=false;qt.classList.remove('in');void qt.offsetWidth;qt.classList.add('in');clearTimeout(qt._t);qt._t=setTimeout(()=>{qt.hidden=true;},4600);
+    try{if(MUSIC&&MUSIC.ctx){const t=MUSIC.ctx.currentTime;tone(t,988,0.09,'square',0.1);tone(t+0.09,1319,0.4,'square',0.1);}}catch(e){}
+    setTimeout(()=>{QB.state='ready';draw(false);bm.emissiveIntensity=0.45;ql.intensity=0.9;},6500);};
+  animators.push((t,dt)=>{now=t;const u=t-QB.t0;const used=QB.state==='used';
+    qb.position.y=TOP+2.7+(used?0:0.1*Math.sin(t*2.1))+(used&&u<0.3?0.5*Math.sin(Math.PI*u/0.3):0);
+    if(!used)box.rotation.y+=dt*0.7;else box.rotation.y+=(Math.round(box.rotation.y/(Math.PI*2))*Math.PI*2-box.rotation.y)*Math.min(1,dt*4);
+    if(used&&u<0.95){coinG.visible=true;const k=u/0.95;coinG.position.y=0.6+3.4*k-3.5*k*k;coin.rotation.x=t*14;coinG.scale.setScalar(k>0.85?Math.max(0.01,(1-k)/0.15):1);}else coinG.visible=false;});
+  interactive(qb,'qblock',1.1,0.9);
+}
+
 /* ---------- Cielo (estrellas y luna) ---------- */
 const sky=$('#sky'),sctx=sky.getContext('2d');let stars=[];
 function sizeSky(){const r=Math.min(devicePixelRatio,2);sky.width=innerWidth*r;sky.height=innerHeight*r;sctx.setTransform(r,0,0,r,0,0);
@@ -2192,6 +2227,7 @@ const LOCAL_OBJ={estacion:{titulo:'Estación Venezia Santa Lucia',sub:'Llegada e
   {label:'A Ca’ Sagredo en taxi acuático',value:'≈ 5 min'},
   {label:'En vaporetto',value:'Línea 1 hasta Ca’ d’Oro · ≈ 20 min'},
   {label:'A pie',value:'≈ 20 min'}]}};
+LOCAL_OBJ.qblock={titulo:'?',sub:'Tócame',metricas:[]};
 LOCAL_OBJ.infocasa={titulo:'Casa de información',sub:'Toca para abrir la guía de viaje',metricas:[]};
 LOCAL_OBJ.vaporetto={titulo:'Vaporetto línea 1',sub:'El bus acuático del Gran Canal',metricas:[
   {label:'Desde la estación',value:'Parada Ferrovia'},
@@ -2316,7 +2352,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
 const ring=new THREE.Mesh(new THREE.RingGeometry(0.85,1,40),new THREE.MeshBasicMaterial({color:0xd8b45f,transparent:true,opacity:0.8,side:THREE.DoubleSide,depthWrite:false}));
 ring.rotation.x=-Math.PI/2;ring.visible=false;ring.userData.noPick=true;scene.add(ring);
 
-function select(g){if(g.userData.pid==='infocasa'){setInfo(true,'guia');return;}if(CHURCH_OPEN&&!SHOW.on&&g.userData.pid!=='iglesia')setChurch(false,false);selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
+function select(g){if(g.userData.pid==='qblock'){hitQ();return;}if(g.userData.pid==='infocasa'){setInfo(true,'guia');return;}if(CHURCH_OPEN&&!SHOW.on&&g.userData.pid!=='iglesia')setChurch(false,false);selectedId=g.userData.pid;selectedGroup=g;renderCard(true);card.hidden=false;placeCard(true);tip.hidden=true;}
 function closeCard(){if(CHURCH_OPEN&&!SHOW.on)setChurch(false);selectedId=null;selectedGroup=null;card.hidden=true;ring.visible=false;rows=[];}
 
 /* ---------- Tarjeta ---------- */
